@@ -1,0 +1,41 @@
+# .gitignore for Next.js
+
+# Node.js
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Yarn
+yarn-error.log
+yarn.lock
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# VSCode / Jetbrains
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# npm
+npm-debug.log*
+*.pem
+
+# Build files
+build/
+dist/
+
+# Next.js image cache
+.cache/
