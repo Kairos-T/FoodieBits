@@ -7,6 +7,9 @@ node_modules/
 .next/
 out/
 
+# Packages
+package-lock.json
+
 # Yarn
 yarn-error.log
 yarn.lock
@@ -39,3 +42,4 @@ dist/
 
 # Next.js image cache
 .cache/
+
