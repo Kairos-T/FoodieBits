@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CSS Assignment
+
+## Table of Contents
 
 ## Getting Started
 
-First, run the development server:
+1. Clone this repository
+   ```bash
+   git clone https://github.com/Kairos-T/CSS
+   cd CSS
+   ```
+2. Install dependencies
+   ```bash
+   npm install
+   ```
+3. Run the development server
+   ```bash
+   npm run dev
+   ```
 
+## Usage
+
+### Development
+
+!! Regularly pull changes from the remote repository to your local repository to keep it up to date !!
+    ```bash
+    git pull
+    ```
+
+### Committing
+Follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification for commit messages, using the following prefixes:
+- `feat`: for new features/functionalities
+- `fix`: for bug fixes
+- `refactor`: for code refactoring (i.e. neither fixes a bug nor adds a feature)
+- `chore`: routine tasks, such as dependency updates, or miscellaneous changes that don't fit the other prefixes
+
+Examples:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git commit -m "chore: Add new dependency (package-name)"
+git commit -m "feat: Add new button component (component-name)"
+git commit -m "fix: Resolve rendering bug in (component-name)"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Ensure that you are on the `dev` branch when working on new changes. Pull the latest changes before working on new changes.
+   ```bash
+   git checkout -b dev
+   ```
+2. Make your changes
+3. Stage your changes
+   ```bash
+   # Adding a specific file:
+   git add (file-name)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    # Adding all files:
+    git add .
+   ```
+4. Commit and push your changes
+   ```bash
+    git commit -m "chore: Add new dependency (package-name)"
+    git push
+    ```
+5. Create a pull request on GitHub to merge your changes into the `main` branch. Ensure that all status checks pass AND that someone else has reviewed your changes before merging.
