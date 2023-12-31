@@ -1,6 +1,10 @@
 # CSS Assignment
 
 ## Table of Contents
+1. [Getting Started](#getting-started)
+2. [Usage](#usage)
+    1. [Development](#development)
+    2. [Committing](#committing)
 
 ## Getting Started
 
