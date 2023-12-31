@@ -60,3 +60,14 @@ git commit -m "fix: Resolve rendering bug in (component-name)"
     git push
     ```
 5. Create a pull request on GitHub to merge your changes into the `main` branch. Ensure that all status checks pass AND that someone else has reviewed your changes before merging.
+
+   Creating PR:
+   
+   ![image](https://github.com/Kairos-T/CSS/assets/80029462/2b358465-081d-4a45-a184-ac3c7ce4381c)
+
+   Editing PR details:
+   ![image](https://github.com/Kairos-T/CSS/assets/80029462/5e9c2a37-50ca-4cc6-bc63-e64f513d7a5a)
+
+   Checks (Request review - or... let them know somewhere else)
+   ![image](https://github.com/Kairos-T/CSS/assets/80029462/5a66fccf-3934-4e2f-80fd-9339222d6182)
+
