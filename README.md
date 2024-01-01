@@ -10,8 +10,8 @@
 
 1. Clone this repository
    ```bash
-   git clone https://github.com/Kairos-T/CSS
-   cd CSS
+   https://github.com/Kairos-T/FoodieBits
+   cd FoodieBits
    ```
 2. Install dependencies
    ```bash
