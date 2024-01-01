@@ -1,15 +1,6 @@
 // Tags for Recipes
 // By: Kairos
 export const tagColor = {
-  nextjs: { bgColor: "#0A7B83E2", hover: "#09686dE2" },
-  javascript: { bgColor: "#ffba08", hover: "#faa307" },
-  asynchronous: { bgColor: "#1A91DAE2", hover: "#0b7bbcE2" },
-  html: { bgColor: "#f06529", hover: "#e34c26" },
-  ssr: { bgColor: "#77aa7bE2", hover: "#609363E2" },
-  css: { bgColor: "#FE4A49E2", hover: "#ed3434E2" },
-  optimization: { bgColor: "#8f4dbf", hover: "#8f4dbfE2" },
-  markdown: { bgColor: "#168aad", hover: "#1a759f" },
-
   Easy: { bgColor: "#0A7B83E2", hover: "#09686dE2" },
   Medium: { bgColor: "#ffba08", hover: "#faa307" },
   Hard: { bgColor: "#3178C6E2", hover: "#265d99E2" },
