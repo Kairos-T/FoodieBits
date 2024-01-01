@@ -1,10 +1,9 @@
 {
-  "name": "portfolio-boilerplate-nextjs",
+  "name": "FoodieBits",
   "version": "0.1.0",
   "private": true,
-  "license": "MIT",
   "repository": {
-    "url": "https://github.com/imadatyatalah/portfolio-boilerplate-nextjs"
+    "url": "https://github.com/kairos-t/foodiebits"
   },
   "scripts": {
     "dev": "next dev",
