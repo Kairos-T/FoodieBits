@@ -1,0 +1,49 @@
+.remark-code-title {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 15.75px;
+  font-weight: 600;
+  display: flex;
+  width: 100%;
+  padding: 10px 8px;
+  margin: 0.5em 0 0 0;
+  border: 1px solid gray;
+  border-bottom: none;
+}
+
+.chakra-ui-light .remark-code-title {
+  color: #1a202c;
+  background-color: #edf2f7;
+}
+
+.chakra-ui-dark .remark-code-title {
+  color: #e2e8f0;
+  background-color: #e2e8f029;
+}
+
+pre {
+  padding: 10px 0;
+}
+
+.remark-code-title + pre {
+  padding: 0 0 10px 0;
+}
+
+blockquote {
+  margin: 1em 0;
+  padding-left: 1em;
+
+  font-weight: 400;
+  font-style: italic;
+  border-left-width: 0.25rem;
+  border-left-color: #ced4da;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+
+blockquote p:first-of-type:before {
+  content: open-quote;
+}
+
+blockquote p:last-of-type:after {
+  content: close-quote;
+}

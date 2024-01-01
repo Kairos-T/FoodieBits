@@ -74,4 +74,3 @@ git commit -m "fix: Resolve rendering bug in (component-name)"
 
    Checks (Request review - or... let them know somewhere else)
    ![image](https://github.com/Kairos-T/CSS/assets/80029462/5a66fccf-3934-4e2f-80fd-9339222d6182)
-
