@@ -17,7 +17,7 @@ const options = {
   keys: ["title"],
 };
 
-const Blog = ({ posts }) => {
+const Recipe = ({ posts }) => {
   const router = useRouter();
 
   const fuse = new Fuse(posts, options);
@@ -128,7 +128,7 @@ const Blog = ({ posts }) => {
 };
 
 export async function getStaticProps() {
-  const data = await getAllFilesFrontMatter("blog");
+  const data = await getAllFilesFrontMatter("recipe");
   const posts = data.sort(
     (a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
   );
@@ -136,4 +136,4 @@ export async function getStaticProps() {
   return { props: { posts } };
 }
 
-export default Blog;
+export default Recipe;

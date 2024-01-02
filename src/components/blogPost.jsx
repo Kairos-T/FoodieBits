@@ -35,7 +35,7 @@ const BlogPost = ({ posts }) => {
             {YearComponent}
 
             <Heading as="h3" fontSize="2xl" fontWeight="700">
-              <NextLink href={`/blog/${slug}`}>
+              <NextLink href={`/recipe/${slug}`}>
                 <a>{title}</a>
               </NextLink>
             </Heading>
@@ -52,7 +52,7 @@ const BlogPost = ({ posts }) => {
                   color={color}
                   onClick={() =>
                     router.push({
-                      pathname: "/blog/",
+                      pathname: "/recipe/",
                       query: { tag },
                     })
                   }
