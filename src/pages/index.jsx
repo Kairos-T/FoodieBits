@@ -3,7 +3,7 @@ import {
   Button,
   Heading,
   Text,
-  useColorModeValue,
+  useColorModeValue
 } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import NextImage from "next/image";
@@ -32,9 +32,9 @@ const Home = () => {
               url: `${seo.canonical}bighead.svg`,
               width: "350px",
               height: "350px",
-              alt: "avatar bigheads",
-            },
-          ],
+              alt: "avatar bigheads"
+            }
+          ]
         }}
       />
 
@@ -60,17 +60,17 @@ const Home = () => {
             Welcome to FoodieBits!{" "}
           </Heading>
           <Heading as="h2" fontSize="2xl" fontWeight="300">
-            
+
             <Text as="span" color={color}>
-            Food Choices
+              Food Choices
             </Text>{" "}
             Made Easy
           </Heading>
           <Text py="4">
             Your one-stop destination for all things food. Dive into the world
-              of culinary delights, explore a myriad of food choices, and
-              unravel the stories behind your favourite dishes! FoodieBits -
-              Where every bite is an adventure waiting to be savoured!
+            of culinary delights, explore a myriad of food choices, and
+            unravel the stories behind your favourite dishes! FoodieBits -
+            Where every bite is an adventure waiting to be savoured!
           </Text>
           <Button
             colorScheme="telegram"
