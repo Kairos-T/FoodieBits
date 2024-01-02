@@ -1,3 +1,5 @@
+// Structure for rendering recipe posts
+// By: Kairos
 import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
@@ -64,7 +66,7 @@ const BlogPost = ({ posts }) => {
             })}
 
             <Text fontSize="16px" fontWeight="500" color={dateColor} py="1">
-              {dayjs(publishedAt).format("MMMM DD, YYYY")}
+              {dayjs(publishedAt).format("DD MMMM, YYYY")}
             </Text>
           </Box>
         );
