@@ -67,7 +67,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
             <Flex direction="column">
               <Text fontSize="16px" color={color} py="1">
                 {frontMatter.author} /{" "}
-                {dayjs(frontMatter.publishedAt).format("MMMM DD, YYYY")} /{" "}
+                {dayjs(frontMatter.publishedAt).format("DD MMMM, YYYY")} /{" "}
                 {frontMatter.readingTime.text}
               </Text>
               <Text py="1">
@@ -79,7 +79,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
                       color={color}
                       onClick={() =>
                         push({
-                          pathname: "/recipe/",
+                          pathname: "/recipes/",
                           query: { tag },
                         })
                       }
