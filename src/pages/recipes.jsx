@@ -1,5 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
-import { Alert, AlertIcon, Box, Flex, Input } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Input,
+  Text,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
 import Fuse from "fuse.js";
@@ -68,6 +77,19 @@ const Recipe = ({ posts }) => {
         }}
       />
 
+      <Box
+        as="section"
+        d="flex"
+        alignItems="center"
+        flexDir="column"
+        textAlign="center"
+        py="4"
+      >
+        {" "}
+        <Heading as="h1" fontSize="4xl" fontWeight="700" py="2">
+          Recipes{" "}
+        </Heading>
+      </Box>
       <Box
         as="section"
         fontSize="16px"
