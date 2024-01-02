@@ -79,7 +79,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
                       color={color}
                       onClick={() =>
                         push({
-                          pathname: "/recipe/",
+                          pathname: "/recipes/",
                           query: { tag },
                         })
                       }
