@@ -29,10 +29,10 @@ const Home = () => {
           description,
           images: [
             {
-              url: `${seo.canonical}bighead.svg`,
+              url: `${seo.canonical}logo.svg`,
               width: "350px",
               height: "350px",
-              alt: "avatar bigheads"
+              alt: "FoodieBits Logo"
             }
           ]
         }}
@@ -47,10 +47,10 @@ const Home = () => {
         py="4"
       >
         <NextImage
-          src="/bighead.svg"
+          src="/logo.svg"
           width="350"
           height="350"
-          alt="avatar bigheads"
+          alt="FoodieBits Logo"
           placeholder="blur"
           blurDataURL="L5I~of#i004mgjw]-4XA00?wL#xu"
           priority
