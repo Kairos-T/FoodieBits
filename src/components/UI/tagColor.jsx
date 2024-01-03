@@ -1,8 +1,8 @@
 // Tags for Recipes
 // By: Kairos
 export const tagColor = {
-  Easy: { bgColor: "#0A7B83E2", hover: "#09686dE2" },
-  Medium: { bgColor: "#ffba08", hover: "#faa307" },
+  Easy: { bgColor: "#38830a", hover: "#09731a" },
+  Medium: { bgColor: "#f48d07", hover: "#da7009" },
   Hard: { bgColor: "#3178C6E2", hover: "#265d99E2" },
   Quick: { bgColor: "#E8265EE2", hover: "#ce0840E2" },
   Moderate: { bgColor: "#1A91DAE2", hover: "#0b7bbcE2" },
