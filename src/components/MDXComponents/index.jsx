@@ -1,12 +1,6 @@
 import Image from "next/image";
 
-import {
-  CustomLink,
-  UnorderedList,
-  OrderedList,
-  ListItem,
-  InlineCode,
-} from "./common";
+import { CustomLink, InlineCode, ListItem, OrderedList, UnorderedList } from "./common";
 import Headings from "./headings";
 import CodeBlock from "./codeBlock";
 
@@ -24,7 +18,7 @@ const MDXComponents = {
   ol: OrderedList,
   li: ListItem,
   inlineCode: InlineCode,
-  Image,
+  Image
 };
 
 export default MDXComponents;

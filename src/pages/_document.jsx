@@ -1,5 +1,5 @@
 import { ColorModeScript } from "@chakra-ui/react";
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 
 import colorMode from "@/theme/colorMode";
 
@@ -33,12 +33,12 @@ class MyDocument extends Document {
           <link rel="manifest" href="/favicon/site.webmanifest" />
         </Head>
         <body>
-          <ColorModeScript
-            initialColorMode={colorMode.config.initialColorMode}
-          />
+        <ColorModeScript
+          initialColorMode={colorMode.config.initialColorMode}
+        />
 
-          <Main />
-          <NextScript />
+        <Main />
+        <NextScript />
         </body>
       </Html>
     );

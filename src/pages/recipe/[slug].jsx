@@ -1,20 +1,11 @@
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import {
-  Box,
-  Flex,
-  Heading,
-  Text,
-  Link as ChakraLink,
-  useColorModeValue,
-  Icon,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { MDXProvider } from "@mdx-js/react";
-import { MdEdit } from "react-icons/md";
 import dayjs from "dayjs";
 import hydrate from "next-mdx-remote/hydrate";
 
-import { getFiles, getFileBySlug } from "@/lib/posts";
+import { getFileBySlug, getFiles } from "@/lib/posts";
 import { seo } from "config";
 import { tagColor } from "@/components/UI/tagColor";
 import MDXComponents from "@/components/MDXComponents";
@@ -26,7 +17,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
   const color = useColorModeValue("gray.700", "gray.400");
 
   const content = hydrate(mdxSource, {
-    components: MDXComponents,
+    components: MDXComponents
   });
 
   const title = frontMatter.title;
@@ -47,8 +38,8 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
           article: {
             publishedTime: frontMatter.publishedAt,
             modifiedTime: frontMatter.modifiedAt,
-            tags: frontMatter.tags?.map((tag) => tag),
-          },
+            tags: frontMatter.tags?.map((tag) => tag)
+          }
         }}
       />
 
@@ -80,7 +71,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
                       onClick={() =>
                         push({
                           pathname: "/recipes/",
-                          query: { tag },
+                          query: { tag }
                         })
                       }
                       key={tag}
@@ -108,11 +99,11 @@ export const getStaticPaths = async () => {
   return {
     paths: posts.map((post) => ({
       params: {
-        slug: post.replace(/\.mdx/, ""),
-      },
+        slug: post.replace(/\.mdx/, "")
+      }
     })),
 
-    fallback: false,
+    fallback: false
   };
 };
 

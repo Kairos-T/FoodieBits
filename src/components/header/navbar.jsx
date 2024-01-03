@@ -29,7 +29,7 @@ const Navbar = () => {
         color={{ base: "black", lg: color }}
         display={{
           base: isOpen ? "block" : "none",
-          lg: "flex",
+          lg: "flex"
         }}
         position={{ base: "absolute", lg: "static" }}
         top="5rem"
@@ -53,9 +53,9 @@ const Navbar = () => {
         </chakra.li>
 
         <chakra.li
-            listStyleType="none"
-            px={{ lg: "8" }}
-            py={{ base: "3", lg: "0" }}
+          listStyleType="none"
+          px={{ lg: "8" }}
+          py={{ base: "3", lg: "0" }}
         >
           <NextLink href="/cuisines">
             <a onClick={closeMenu}>Cuisines</a>
@@ -73,9 +73,9 @@ const Navbar = () => {
         </chakra.li>
 
         <chakra.li
-            listStyleType="none"
-            px={{ lg: "8" }}
-            py={{ base: "3", lg: "0" }}
+          listStyleType="none"
+          px={{ lg: "8" }}
+          py={{ base: "3", lg: "0" }}
         >
           <NextLink href="/restaurants">
             <a onClick={closeMenu}>Restaurants</a>

@@ -1,14 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import {
-  Alert,
-  AlertIcon,
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Input,
-  Text,
-} from "@chakra-ui/react";
+import { useCallback, useEffect, useState } from "react";
+import { Alert, AlertIcon, Box, Flex, Heading, Input } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
 import Fuse from "fuse.js";
@@ -23,7 +14,7 @@ const options = {
   includeScore: true,
   threshold: 0.3,
   ignoreLocation: true,
-  keys: ["title"],
+  keys: ["title"]
 };
 
 const Recipe = ({ posts }) => {
@@ -73,7 +64,7 @@ const Recipe = ({ posts }) => {
         openGraph={{
           title,
           description,
-          url,
+          url
         }}
       />
 

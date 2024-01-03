@@ -1,14 +1,8 @@
-import {
-  Box,
-  Button,
-  Heading,
-  Text,
-  useColorModeValue
-} from "@chakra-ui/react";
+import { Box, Button, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import NextImage from "next/image";
 
-import { seo, data } from "config";
+import { data, seo } from "config";
 
 const Home = () => {
   const color = useColorModeValue("telegram.500", "telegram.400");

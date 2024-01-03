@@ -1,4 +1,4 @@
-import { Link as ChakraLink, chakra, Code } from "@chakra-ui/react";
+import { chakra, Code, Link as ChakraLink } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 export const CustomLink = (props) => {
