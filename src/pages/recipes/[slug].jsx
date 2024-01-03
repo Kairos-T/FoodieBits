@@ -22,7 +22,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
 
   const title = frontMatter.title;
   const description = frontMatter.summary;
-  const url = `${seo.canonical}recipe/${frontMatter.slug}`;
+  const url = `${seo.canonical}recipes/${frontMatter.slug}`;
 
   return (
     <>
@@ -94,7 +94,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
 };
 
 export const getStaticPaths = async () => {
-  const posts = await getFiles("recipe");
+  const posts = await getFiles("recipes");
 
   return {
     paths: posts.map((post) => ({
@@ -108,7 +108,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const post = await getFileBySlug("recipe", params.slug);
+  const post = await getFileBySlug("recipes", params.slug);
 
   return { props: post };
 };

@@ -128,7 +128,7 @@ const Contact = ({ posts }) => {
 };
 
 export async function getStaticProps() {
-  const data = await getAllFilesFrontMatter("recipe");
+  const data = await getAllFilesFrontMatter("recipes");
   const posts = data.sort(
     (a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
   );
