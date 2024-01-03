@@ -1,4 +1,4 @@
-// Structure for rendering recipe posts
+// Structure for rendering recipes posts
 // By: Kairos
 import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
@@ -37,7 +37,7 @@ const BlogPost = ({ posts }) => {
             {YearComponent}
 
             <Heading as="h3" fontSize="2xl" fontWeight="700">
-              <NextLink href={`/recipe/${slug}`}>
+              <NextLink href={`/recipes/${slug}`}>
                 <a>{title}</a>
               </NextLink>
             </Heading>
@@ -54,7 +54,7 @@ const BlogPost = ({ posts }) => {
                   color={color}
                   onClick={() =>
                     router.push({
-                      pathname: "/recipe/",
+                      pathname: "/recipes/",
                       query: { tag }
                     })
                   }
