@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Alert, AlertIcon, Box, Flex, Input } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
@@ -14,7 +14,7 @@ const options = {
   includeScore: true,
   threshold: 0.3,
   ignoreLocation: true,
-  keys: ["title"],
+  keys: ["title"]
 };
 
 const Contact = ({ posts }) => {
@@ -64,7 +64,7 @@ const Contact = ({ posts }) => {
         openGraph={{
           title,
           description,
-          url,
+          url
         }}
       />
 

@@ -55,7 +55,7 @@ const BlogPost = ({ posts }) => {
                   onClick={() =>
                     router.push({
                       pathname: "/recipe/",
-                      query: { tag },
+                      query: { tag }
                     })
                   }
                   key={tag}

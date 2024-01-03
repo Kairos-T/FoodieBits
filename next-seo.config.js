@@ -6,6 +6,6 @@ export default {
     type: "website",
     locale: "en_US",
     url: seo.canonical,
-    site_name: seo.title,
-  },
+    site_name: seo.title
+  }
 };

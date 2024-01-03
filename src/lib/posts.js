@@ -22,8 +22,8 @@ export async function getFileBySlug(type, slug) {
   const mdxSource = await renderToString(content, {
     components: MDXComponents,
     mdxOptions: {
-      remarkPlugins: [remarkSlug, require("remark-code-titles")],
-    },
+      remarkPlugins: [remarkSlug, require("remark-code-titles")]
+    }
   });
 
   return {
@@ -32,8 +32,8 @@ export async function getFileBySlug(type, slug) {
       wordCount: content.split(/\s+/gu).length,
       readingTime: readingTime(content),
       slug: slug || null,
-      ...data,
-    },
+      ...data
+    }
   };
 }
 
@@ -47,9 +47,9 @@ export async function getAllFilesFrontMatter(type) {
     return [
       {
         ...data,
-        slug: postSlug.replace(".mdx", ""),
+        slug: postSlug.replace(".mdx", "")
       },
-      ...allPosts,
+      ...allPosts
     ];
   }, []);
 }
