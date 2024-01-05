@@ -1,7 +1,7 @@
 // components/Faq.js
 // By: Kairos
 
-import { Accordion, AccordionIcon, AccordionItem, AccordionButton, AccordionPanel, Box } from "@chakra-ui/react";
+import { Accordion, AccordionIcon, AccordionItem, AccordionButton, AccordionPanel, Box, Text } from "@chakra-ui/react";
 import faqData from "../data/constants";
 
 const Faq = () => {
@@ -12,7 +12,7 @@ const Faq = () => {
           <h2>
             <AccordionButton>
               <Box as="span" flex="1" textAlign="left">
-                {item.question}
+                <Text fontWeight="bold">{item.question}</Text>
               </Box>
               <AccordionIcon />
             </AccordionButton>

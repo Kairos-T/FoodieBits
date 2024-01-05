@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Alert, AlertIcon, Box, Flex, Heading, Input } from "@chakra-ui/react";
+import { Alert, AlertIcon, Box, Flex, Heading, Input, useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
 import Fuse from "fuse.js";
@@ -19,6 +19,7 @@ const options = {
 
 const Recipe = ({ posts }) => {
   const router = useRouter();
+  const color = useColorModeValue("telegram.500", "telegram.400");
 
   const fuse = new Fuse(posts, options);
 
@@ -77,7 +78,7 @@ const Recipe = ({ posts }) => {
         py="4"
       >
         {" "}
-        <Heading as="h1" fontSize="4xl" fontWeight="700" py="2">
+        <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2">
           Recipes{" "}
         </Heading>
       </Box>
