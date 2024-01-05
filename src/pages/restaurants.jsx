@@ -112,7 +112,7 @@ const Blog = ({ posts }) => {
           <Alert
             status="info"
             borderRadius="md"
-            d="flex"
+            display="flex"
             justifyContent="center"
             mx="auto"
             maxWidth="500px"

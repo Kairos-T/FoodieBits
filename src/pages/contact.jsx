@@ -28,7 +28,7 @@ const Contact = ({  }) => {
       />
       <Box
         as="section"
-        d="flex"
+        display="flex"
         alignItems="center"
         flexDir="column"
         textAlign="center"

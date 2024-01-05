@@ -70,7 +70,7 @@ const Recipe = ({ posts }) => {
 
       <Box
         as="section"
-        d="flex"
+        display="flex"
         alignItems="center"
         flexDir="column"
         textAlign="center"
@@ -125,7 +125,7 @@ const Recipe = ({ posts }) => {
           <Alert
             status="info"
             borderRadius="md"
-            d="flex"
+            display="flex"
             justifyContent="center"
             mx="auto"
             maxWidth="500px"

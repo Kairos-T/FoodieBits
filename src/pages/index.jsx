@@ -34,7 +34,7 @@ const Home = () => {
 
       <Box
         as="section"
-        d="flex"
+        display="flex"
         alignItems="center"
         flexDir="column"
         textAlign="center"
@@ -79,7 +79,7 @@ const Home = () => {
 
       <Box
         as="section"
-        d="flex"
+        display="flex"
         alignItems="center"
         flexDir="column"
         textAlign={{ base: "center", lg: "left" }}
@@ -87,7 +87,7 @@ const Home = () => {
       >
         {data.map((item, index) => (
           <Box
-            d={{ lg: "flex" }}
+            display={{ lg: "flex" }}
             justifyContent={{ lg: "center" }}
             alignItems={{ lg: "center" }}
             flexDir={{ lg: isOdd(index) == 1 && "row-reverse" }}
