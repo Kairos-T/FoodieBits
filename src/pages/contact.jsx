@@ -1,14 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
-import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Flex, Heading } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { Box, Heading } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import { seo } from "config";
 import Faq from "../components/faq";
 
 
-
-const Contact = ({  }) => {
-  const router = useRouter();
+const Contact = ({}) => {
   const title = "Contact";
   const description = seo.description;
   const url = `${seo.canonical}contact`;
@@ -28,7 +24,7 @@ const Contact = ({  }) => {
       />
       <Box
         as="section"
-        d="flex"
+        display="flex"
         alignItems="center"
         flexDir="column"
         textAlign="center"
@@ -44,7 +40,6 @@ const Contact = ({  }) => {
     </>
   );
 };
-
 
 
 export default Contact;
