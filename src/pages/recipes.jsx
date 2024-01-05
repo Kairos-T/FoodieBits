@@ -10,6 +10,8 @@ import { seo } from "config";
 import TagComponent from "@/components/UI/tag";
 import RecipePost from "@/components/recipePost";
 
+import { motion } from "framer-motion";
+
 const options = {
   includeScore: true,
   threshold: 0.3,
@@ -58,6 +60,11 @@ const Recipe = ({ posts }) => {
 
   return (
     <>
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+      >
       <NextSeo
         title={title}
         description={description}
@@ -137,6 +144,7 @@ const Recipe = ({ posts }) => {
           </Alert>
         )}
       </Box>
+      </motion.main>
     </>
   );
 };

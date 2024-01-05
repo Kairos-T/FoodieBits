@@ -3,6 +3,7 @@ import { Alert, AlertIcon, Box, Flex, Input } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
 import Fuse from "fuse.js";
+import { motion } from "framer-motion";
 
 import { getAllFilesFrontMatter } from "@/lib/posts";
 import { tagColor } from "@/components/UI/tagColor";
@@ -57,6 +58,11 @@ const Blog = ({ posts }) => {
 
   return (
     <>
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+      >
       <NextSeo
         title={title}
         description={description}
@@ -123,6 +129,7 @@ const Blog = ({ posts }) => {
           </Alert>
         )}
       </Box>
+      </motion.main>
     </>
   );
 };

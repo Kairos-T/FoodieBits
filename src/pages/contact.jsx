@@ -4,6 +4,7 @@ import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import { seo } from "config";
 import Faq from "../components/faq";
+import { motion } from "framer-motion";
 
 const Contact = ({}) => {
   const title = "Contact";
@@ -13,6 +14,11 @@ const Contact = ({}) => {
 
   return (
     <>
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+      >
       <NextSeo
         title={title}
         description={description}
@@ -53,7 +59,7 @@ const Contact = ({}) => {
            Do you have questions unanswered, want collaborate with us or have suggestions? Drop us an email below and our team will get back to you within 3 days! While waiting, why not check out some of our FAQs?
         </Text>
       </Box>
-
+      </motion.main>
     </>
   );
 };
