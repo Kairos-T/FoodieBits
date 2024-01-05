@@ -32,69 +32,69 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
       >
-      <NextSeo
-        title={title}
-        description={description}
-        canonical={url}
-        openGraph={{
-          title,
-          description,
-          url,
-          type: "article",
-          article: {
-            publishedTime: frontMatter.publishedAt,
-            modifiedTime: frontMatter.modifiedAt,
-            tags: frontMatter.tags?.map((tag) => tag)
-          }
-        }}
-      />
+        <NextSeo
+          title={title}
+          description={description}
+          canonical={url}
+          openGraph={{
+            title,
+            description,
+            url,
+            type: "article",
+            article: {
+              publishedTime: frontMatter.publishedAt,
+              modifiedTime: frontMatter.modifiedAt,
+              tags: frontMatter.tags?.map((tag) => tag)
+            }
+          }}
+        />
 
-      <MDXProvider components={MDXComponents}>
-        <Box
-          as="section"
-          px={{ md: "10", lg: "20", xl: "40" }}
-          py="4"
-          fontSize="16px"
-        >
-          <Box as="header" textAlign="center">
-            <Heading as="h1" py="4" size="2xl">
-              {frontMatter.title}
-            </Heading>
+        <MDXProvider components={MDXComponents}>
+          <Box
+            as="section"
+            px={{ md: "10", lg: "20", xl: "40" }}
+            py="4"
+            fontSize="16px"
+          >
+            <Box as="header" textAlign="center">
+              <Heading as="h1" py="4" size="2xl">
+                {frontMatter.title}
+              </Heading>
 
-            <Flex direction="column">
-              <Text fontSize="16px" color={color} py="1">
-                {frontMatter.author} /{" "}
-                {dayjs(frontMatter.publishedAt).format("DD MMMM, YYYY")} /{" "}
-                {frontMatter.readingTime.text}
-              </Text>
-              <Text py="1">
-                {frontMatter.tags.map((tag) => {
-                  const color = tagColor[tag];
+              <Flex direction="column">
+                <Text fontSize="16px" color={color} py="1">
+                  {frontMatter.author} /{" "}
+                  {dayjs(frontMatter.publishedAt).format("DD MMMM, YYYY")} /{" "}
+                  {frontMatter.readingTime.text}
+                </Text>
+                <Text py="1">
+                  {frontMatter.tags.map((tag) => {
+                    const color = tagColor[tag];
 
-                  return (
-                    <TagComponent
-                      color={color}
-                      onClick={() =>
-                        push({
-                          pathname: "/recipes/",
-                          query: { tag }
-                        })
-                      }
-                      key={tag}
-                    >
-                      {tag}
-                    </TagComponent>
-                  );
-                })}
-              </Text>
-            </Flex>
+                    return (
+                      <TagComponent
+                        color={color}
+                        onClick={() =>
+                          push({
+                            pathname: "/recipes/",
+                            query: { tag }
+                          })
+                        }
+                        key={tag}
+                      >
+                        {tag}
+                      </TagComponent>
+                    );
+                  })}
+                </Text>
+              </Flex>
+            </Box>
+
+            <Box as="article">
+              {content}
+            </Box>
           </Box>
-
-          <Box as="article">
-            {content}
-          </Box>
-        </Box>
-      </MDXProvider>
+        </MDXProvider>
       </motion.main>
     </>
   );

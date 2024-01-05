@@ -63,72 +63,72 @@ const Blog = ({ posts }) => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
       >
-      <NextSeo
-        title={title}
-        description={description}
-        canonical={url}
-        openGraph={{
-          title,
-          description,
-          url
-        }}
-      />
+        <NextSeo
+          title={title}
+          description={description}
+          canonical={url}
+          openGraph={{
+            title,
+            description,
+            url
+          }}
+        />
 
-      <Box
-        as="section"
-        fontSize="16px"
-        px={{ md: "10", lg: "20", xl: "30" }}
-        py="4"
-      >
-        <Flex justify="center">
-          <Input
-            onChange={(e) => {
-              setSearchValue(e.target.value);
-            }}
-            value={searchValue}
-            variant="outline"
-            placeholder="Search..."
-            maxWidth="400px"
-          />
-        </Flex>
-
-        <Flex
-          justify="center"
-          align="center"
-          direction="row"
-          wrap="wrap"
-          m="1.5rem 0"
+        <Box
+          as="section"
+          fontSize="16px"
+          px={{ md: "10", lg: "20", xl: "30" }}
+          py="4"
         >
-          {Object.keys(tagColor).map((tag, index) => {
-            const color = tagColor[tag];
+          <Flex justify="center">
+            <Input
+              onChange={(e) => {
+                setSearchValue(e.target.value);
+              }}
+              value={searchValue}
+              variant="outline"
+              placeholder="Search..."
+              maxWidth="400px"
+            />
+          </Flex>
 
-            return (
-              <Box key={index}>
-                <TagComponent color={color} onClick={() => filteredPosts(tag)}>
-                  {tag}
-                </TagComponent>
-              </Box>
-            );
-          })}
-        </Flex>
-
-        {recipePost.length > 0 ? (
-          <RecipePost posts={recipePost} />
-        ) : (
-          <Alert
-            status="info"
-            borderRadius="md"
-            display="flex"
-            justifyContent="center"
-            mx="auto"
-            maxWidth="500px"
-            fontWeight="500"
+          <Flex
+            justify="center"
+            align="center"
+            direction="row"
+            wrap="wrap"
+            m="1.5rem 0"
           >
-            <AlertIcon />
-            No blog post has been found!
-          </Alert>
-        )}
-      </Box>
+            {Object.keys(tagColor).map((tag, index) => {
+              const color = tagColor[tag];
+
+              return (
+                <Box key={index}>
+                  <TagComponent color={color} onClick={() => filteredPosts(tag)}>
+                    {tag}
+                  </TagComponent>
+                </Box>
+              );
+            })}
+          </Flex>
+
+          {recipePost.length > 0 ? (
+            <RecipePost posts={recipePost} />
+          ) : (
+            <Alert
+              status="info"
+              borderRadius="md"
+              display="flex"
+              justifyContent="center"
+              mx="auto"
+              maxWidth="500px"
+              fontWeight="500"
+            >
+              <AlertIcon />
+              No blog post has been found!
+            </Alert>
+          )}
+        </Box>
       </motion.main>
     </>
   );

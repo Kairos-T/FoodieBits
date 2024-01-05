@@ -19,46 +19,47 @@ const Contact = ({}) => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
       >
-      <NextSeo
-        title={title}
-        description={description}
-        canonical={url}
-        openGraph={{
-          title,
-          description,
-          url
-        }}
-      />
-      <Box
-        as="section"
-        display="flex"
-        alignItems="center"
-        flexDir="column"
-        textAlign="center"
-        py="4"
-      >
-        {" "}
-        <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2">
-          Frequently Asked Questions{" "}
-        </Heading>
-      </Box>
-      <Faq />
-      <Box
-        as="section"
-        display="flex"
-        alignItems="center"
-        flexDir="column"
-        textAlign="center"
-        py="4"
-      >
-        {" "}
-        <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2">
-          Contact Us{" "}
-        </Heading>
-        <Text py="4">
-           Do you have questions unanswered, want collaborate with us or have suggestions? Drop us an email below and our team will get back to you within 3 days! While waiting, why not check out some of our FAQs?
-        </Text>
-      </Box>
+        <NextSeo
+          title={title}
+          description={description}
+          canonical={url}
+          openGraph={{
+            title,
+            description,
+            url
+          }}
+        />
+        <Box
+          as="section"
+          display="flex"
+          alignItems="center"
+          flexDir="column"
+          textAlign="center"
+          py="4"
+        >
+          {" "}
+          <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2">
+            Frequently Asked Questions{" "}
+          </Heading>
+        </Box>
+        <Faq />
+        <Box
+          as="section"
+          display="flex"
+          alignItems="center"
+          flexDir="column"
+          textAlign="center"
+          py="4"
+        >
+          {" "}
+          <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2">
+            Contact Us{" "}
+          </Heading>
+          <Text py="4">
+            Do you have questions unanswered, want collaborate with us or have suggestions? Drop us an email below and
+            our team will get back to you within 3 days! While waiting, why not check out some of our FAQs?
+          </Text>
+        </Box>
       </motion.main>
     </>
   );
