@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Flex, Heading } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
-
 import { seo } from "config";
+import Faq from "../components/faq";
 
 
 
@@ -39,6 +39,8 @@ const Contact = ({  }) => {
           FAQs{" "}
         </Heading>
       </Box>
+      <Faq />
+
     </>
   );
 };
