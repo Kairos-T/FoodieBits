@@ -15,15 +15,16 @@ import TagComponent from "@/components/UI/tag";
 const BlogPost = ({ mdxSource, frontMatter }) => {
   const { push } = useRouter();
 
-  const color = useColorModeValue("gray.700", "gray.400");
+  const color = useColorModeValue("telegram.500", "telegram.400");
 
   const content = hydrate(mdxSource, {
-    components: MDXComponents
+    components: MDXComponents,
   });
 
   const title = frontMatter.title;
   const description = frontMatter.summary;
   const url = `${seo.canonical}recipes/${frontMatter.slug}`;
+  const img = frontMatter.image;
 
   return (
     <>
@@ -43,9 +44,8 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
             type: "article",
             article: {
               publishedTime: frontMatter.publishedAt,
-              modifiedTime: frontMatter.modifiedAt,
-              tags: frontMatter.tags?.map((tag) => tag)
-            }
+              tags: frontMatter.tags?.map((tag) => tag),
+            },
           }}
         />
 
@@ -56,8 +56,13 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
             py="4"
             fontSize="16px"
           >
-            <Box as="header" textAlign="center">
-              <Heading as="h1" py="4" size="2xl">
+            <Box as="header" textAlign="center"  style={{
+              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url(${img})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              borderRadius: "10px",
+            }}>
+              <Heading as="h1" py="4" size="2xl" color={color}>
                 {frontMatter.title}
               </Heading>
 
@@ -77,7 +82,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
                         onClick={() =>
                           push({
                             pathname: "/recipes/",
-                            query: { tag }
+                            query: { tag },
                           })
                         }
                         key={tag}
@@ -89,10 +94,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
                 </Text>
               </Flex>
             </Box>
-
-            <Box as="article">
-              {content}
-            </Box>
+            <Box as="article">{content}</Box>
           </Box>
         </MDXProvider>
       </motion.main>
@@ -106,11 +108,11 @@ export const getStaticPaths = async () => {
   return {
     paths: posts.map((post) => ({
       params: {
-        slug: post.replace(/\.mdx/, "")
-      }
+        slug: post.replace(/\.mdx/, ""),
+      },
     })),
 
-    fallback: false
+    fallback: false,
   };
 };
 
