@@ -4,6 +4,7 @@ import { Box, Flex, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { MDXProvider } from "@mdx-js/react";
 import dayjs from "dayjs";
 import hydrate from "next-mdx-remote/hydrate";
+import { motion } from "framer-motion";
 
 import { getFileBySlug, getFiles } from "@/lib/posts";
 import { seo } from "config";
@@ -26,6 +27,11 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
 
   return (
     <>
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+      >
       <NextSeo
         title={title}
         description={description}
@@ -89,6 +95,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
           </Box>
         </Box>
       </MDXProvider>
+      </motion.main>
     </>
   );
 };
