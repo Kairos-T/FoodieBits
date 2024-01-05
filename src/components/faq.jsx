@@ -11,8 +11,8 @@ const Faq = () => {
         <AccordionItem key={index}>
           <h2>
             <AccordionButton>
-              <Box as="span" flex='1' textAlign='left'>
-              {item.question}
+              <Box as="span" flex="1" textAlign="left">
+                {item.question}
               </Box>
               <AccordionIcon />
             </AccordionButton>
