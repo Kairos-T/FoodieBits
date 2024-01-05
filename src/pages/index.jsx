@@ -23,7 +23,7 @@ const Home = () => {
           description,
           images: [
             {
-              url: `${seo.canonical}logo.svg`,
+              url: `${seo.canonical}/images/logo.svg`,
               width: "350px",
               height: "350px",
               alt: "FoodieBits Logo"
@@ -41,7 +41,7 @@ const Home = () => {
         py="4"
       >
         <NextImage
-          src="/logo.svg"
+          src="/images/logo.svg"
           width="350"
           height="350"
           alt="FoodieBits Logo"
