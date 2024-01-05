@@ -8,7 +8,7 @@ import { getAllFilesFrontMatter } from "@/lib/posts";
 import { tagColor } from "@/components/UI/tagColor";
 import { seo } from "config";
 import TagComponent from "@/components/UI/tag";
-import BlogPost from "@/components/blogPost";
+import RecipePost from "@/components/recipePost";
 
 const options = {
   includeScore: true,
@@ -120,7 +120,7 @@ const Recipe = ({ posts }) => {
         </Flex>
 
         {blogPost.length > 0 ? (
-          <BlogPost posts={blogPost} />
+          <RecipePost posts={blogPost} />
         ) : (
           <Alert
             status="info"

@@ -8,7 +8,7 @@ import dayjs from "dayjs";
 import { tagColor } from "./UI/tagColor";
 import TagComponent from "./UI/tag";
 
-const BlogPost = ({ posts }) => {
+const RecipePost = ({ posts }) => {
   const router = useRouter();
 
   const summaryColor = useColorModeValue("gray.600", "gray.300");
@@ -75,4 +75,4 @@ const BlogPost = ({ posts }) => {
   );
 };
 
-export default BlogPost;
+export default RecipePost;
