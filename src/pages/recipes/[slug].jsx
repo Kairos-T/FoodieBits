@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { Box, Flex, Heading, Text, useColorModeValue } from "@chakra-ui/react";
@@ -12,10 +13,10 @@ import { tagColor } from "@/components/UI/tagColor";
 import MDXComponents from "@/components/MDXComponents";
 import TagComponent from "@/components/UI/tag";
 
-const BlogPost = ({ mdxSource, frontMatter }) => {
+const RecipePost = ({ mdxSource, frontMatter }) => {
   const { push } = useRouter();
 
-  const color = useColorModeValue("telegram.500", "telegram.400");
+  const color = useColorModeValue("telegram.400", "telegram.400");
 
   const content = hydrate(mdxSource, {
     components: MDXComponents,
@@ -25,6 +26,20 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
   const description = frontMatter.summary;
   const url = `${seo.canonical}recipes/${frontMatter.slug}`;
   const img = frontMatter.image;
+
+  const [scrollY, setScrollY] = useState(0);
+
+  const handleScroll = () => {
+    setScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -56,43 +71,55 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
             py="4"
             fontSize="16px"
           >
-            <Box as="header" textAlign="center"  style={{
-              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url(${img})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              borderRadius: "10px",
-            }}>
-              <Heading as="h1" py="4" size="2xl" color={color}>
-                {frontMatter.title}
-              </Heading>
+            <Box
+              as="header"
+              textAlign="center"
+              style={{
+                position: "relative",
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url(${img})`,
+                backgroundSize: "cover",
+                backgroundPosition: `center ${scrollY * 0.4}px`,
+                borderRadius: "10px",
+                overflow: "hidden",
+              }}
+            >
+              <Box
+                style={{
+                  transform: `translateY(-${scrollY * 0.2}px)`,
+                }}
+              >
+                <Heading as="h1" py="4" size="2xl" color={color}>
+                  {frontMatter.title}
+                </Heading>
 
-              <Flex direction="column">
-                <Text fontSize="16px" color={color} py="1">
-                  {frontMatter.author} /{" "}
-                  {dayjs(frontMatter.publishedAt).format("DD MMMM, YYYY")} /{" "}
-                  {frontMatter.readingTime.text}
-                </Text>
-                <Text py="1">
-                  {frontMatter.tags.map((tag) => {
-                    const color = tagColor[tag];
+                <Flex direction="column">
+                  <Text fontSize="16px" color={color} py="1">
+                    {frontMatter.author} /{" "}
+                    {dayjs(frontMatter.publishedAt).format("DD MMMM, YYYY")} /{" "}
+                    {frontMatter.readingTime.text}
+                  </Text>
+                  <Text py="1">
+                    {frontMatter.tags.map((tag) => {
+                      const color = tagColor[tag];
 
-                    return (
-                      <TagComponent
-                        color={color}
-                        onClick={() =>
-                          push({
-                            pathname: "/recipes/",
-                            query: { tag },
-                          })
-                        }
-                        key={tag}
-                      >
-                        {tag}
-                      </TagComponent>
-                    );
-                  })}
-                </Text>
-              </Flex>
+                      return (
+                        <TagComponent
+                          color={color}
+                          onClick={() =>
+                            push({
+                              pathname: "/recipes/",
+                              query: { tag },
+                            })
+                          }
+                          key={tag}
+                        >
+                          {tag}
+                        </TagComponent>
+                      );
+                    })}
+                  </Text>
+                </Flex>
+              </Box>
             </Box>
             <Box as="article">{content}</Box>
           </Box>
@@ -122,4 +149,4 @@ export const getStaticProps = async ({ params }) => {
   return { props: post };
 };
 
-export default BlogPost;
+export default RecipePost;
