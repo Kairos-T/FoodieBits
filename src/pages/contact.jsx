@@ -3,7 +3,6 @@
 import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import { seo } from "config";
-import Faq from "../components/faq";
 import { motion } from "framer-motion";
 
 const Contact = ({}) => {
@@ -29,20 +28,6 @@ const Contact = ({}) => {
             url
           }}
         />
-        <Box
-          as="section"
-          display="flex"
-          alignItems="center"
-          flexDir="column"
-          textAlign="center"
-          py="4"
-        >
-          {" "}
-          <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2">
-            Frequently Asked Questions{" "}
-          </Heading>
-        </Box>
-        <Faq />
         <Box
           as="section"
           display="flex"
