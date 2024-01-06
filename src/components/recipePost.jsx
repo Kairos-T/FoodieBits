@@ -20,7 +20,7 @@ const RecipePost = ({ posts }) => {
   return (
     <>
       {posts.map((post) => {
-        const { slug, title, summary, tags, publishedAt } = post;
+        const { slug, title, summary, tags, publishedAt, image } = post;
 
         const thisYear = publishedAt.substring(0, 4);
 
