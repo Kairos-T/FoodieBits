@@ -25,25 +25,25 @@ const Recipe = ({ posts }) => {
 
   const fuse = new Fuse(posts, options);
 
-  const [blogPost, setBlogPost] = useState(posts);
+  const [recipePost, setrecipePost] = useState(posts);
   const [searchValue, setSearchValue] = useState("");
 
   const filteredPosts = (tag) => {
     const blogResults = posts.filter((post) => post.tags.includes(tag));
-    setBlogPost(blogResults);
+    setrecipePost(blogResults);
   };
 
   const updateSearch = () => {
     const results = fuse.search(searchValue);
     const blogResults = results.map((res) => res.item);
-    setBlogPost(blogResults);
+    setrecipePost(blogResults);
   };
 
   const delayedSearch = useCallback(updateSearch, [searchValue]);
 
   useEffect(() => {
     if (searchValue.length === 0) {
-      return setBlogPost(posts);
+      return setrecipePost(posts);
     }
     delayedSearch();
   }, [delayedSearch]);
@@ -127,8 +127,8 @@ const Recipe = ({ posts }) => {
             })}
           </Flex>
 
-          {blogPost.length > 0 ? (
-            <RecipePost posts={blogPost} />
+          {recipePost.length > 0 ? (
+            <RecipePost posts={recipePost} />
           ) : (
             <Alert
               status="info"
