@@ -28,6 +28,7 @@
 ### Development
 
 !! Regularly pull changes from the remote repository to your local repository to keep it up to date !!
+
 ```bash
 git pull
 ```
@@ -84,4 +85,20 @@ git commit -m "fix: Resolve rendering bug in (component-name)"
 
 ## Documentation
 
-To be updated
+- [Chakra UI](https://chakra-ui.com/docs/getting-started)
+- `public/` contains all the static files used in the project (i.e. images, fonts, etc.)
+    - `public/favicon` contains the favicon used in the project (i.e. the icon that appears on the browser tab)
+    - `public/images/` contains all the images used in the project (create a folder for each page to organise them)
+- `src/components/` contains all the components (i.e. reusable UI elements) used in the project
+- `src/data/` contains all the data used in the project
+    - `src/data/constants/index.jsx` contains all the constants (information usually that will be listed down) used in
+      the project
+    - `src/data/recipes/` contains all the recipes used for recipes SSG
+- `src/layouts/` contains all the layouts used in the project (i.e. reusable page layouts)
+- `src/lib/` contains all the utility functions used in the project (SSG function for recipes)
+- `src/pages/` contains all the pages used in the project
+- `src/styles/` contains all the styles used in the project
+- `src/theme/` contains all the themes used in the project (dark/light mode and other global themes)
+- `config.js` contains main configuration for the project (i.e. site title, description, etc.)
+- `package.json` contains all the dependencies used in the project, should only be updated when adding new
+  dependencies (use chore(deps) for commit message)
