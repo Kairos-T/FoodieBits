@@ -3,7 +3,8 @@ import { NextSeo } from "next-seo";
 import NextImage from "next/image";
 import { motion } from "framer-motion";
 
-import { data, seo } from "config";
+import { seo } from "config";
+import { data } from "../data/constants";
 
 const Home = () => {
   const color = useColorModeValue("telegram.500", "telegram.400");
