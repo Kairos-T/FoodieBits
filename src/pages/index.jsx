@@ -1,9 +1,11 @@
 import { Box, Button, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import NextImage from "next/image";
+import Faq from "../components/faq";
 import { motion } from "framer-motion";
 
-import { data, seo } from "config";
+import { seo } from "config";
+import { data } from "../data/constants";
 
 const Home = () => {
   const color = useColorModeValue("telegram.500", "telegram.400");
@@ -121,6 +123,24 @@ const Home = () => {
             </Box>
           ))}
         </Box>
+
+        {/*FAQ Section*/}
+        {/*By: Kairos*/}
+        <Box
+          as="section"
+          display="flex"
+          alignItems="center"
+          flexDir="column"
+          textAlign="center"
+          py="4"
+        >
+          {" "}
+          <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2">
+            Frequently Asked Questions{" "}
+          </Heading>
+        </Box>
+        <Faq />
+
       </motion.main>
     </>
   );
