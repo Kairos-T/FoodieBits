@@ -8,11 +8,14 @@ import dayjs from "dayjs";
 import { tagColor } from "./UI/tagColor";
 import TagComponent from "./UI/tag";
 
+import styles from "../styles/recipePost.module.css";
+
 const RecipePost = ({ posts }) => {
   const router = useRouter();
 
-  const summaryColor = useColorModeValue("gray.600", "gray.300");
-  const dateColor = useColorModeValue("gray.500", "gray.400");
+  const titleColor = useColorModeValue("gray.100", "gray.100");
+  const summaryColor = useColorModeValue("gray.200", "gray.200");
+  const dateColor = useColorModeValue("gray.300", "gray.300");
   const yearColor = useColorModeValue("telegram.500", "telegram.400");
 
   let year = 0;
@@ -34,40 +37,44 @@ const RecipePost = ({ posts }) => {
 
         return (
           <Box my="3" py="2" px="4" rounded="md" key={slug}>
-            {YearComponent}
+            {/*{YearComponent}*/}
 
-            <Heading as="h3" fontSize="2xl" fontWeight="700">
-              <NextLink href={`/recipes/${slug}`}>
-                <a>{title}</a>
-              </NextLink>
+            <NextLink href={`/recipes/${slug}`}>
+
+            <Box className={styles.postBox} style={{
+              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url(${image})`,
+            }}> <Heading as="h3" fontSize="2xl" fontWeight="700">
+                <Text color={titleColor}>{title}</Text>
             </Heading>
 
-            <Text fontSize="17px" fontWeight="400" color={summaryColor} py="1">
-              {summary}
-            </Text>
+              <Text fontSize="17px" fontWeight="400" color={summaryColor} py="1">
+                {summary}
+              </Text>
 
-            {tags.map((tag) => {
-              const color = tagColor[tag];
+              {tags.map((tag) => {
+                const color = tagColor[tag];
+                return (
+                  <TagComponent
+                    color={color}
+                    onClick={() =>
+                      router.push({
+                        pathname: "/recipes/",
+                        query: { tag }
+                      })
+                    }
+                    key={tag}
+                  >
+                    {tag}
+                  </TagComponent>
+                );
+              })}
 
-              return (
-                <TagComponent
-                  color={color}
-                  onClick={() =>
-                    router.push({
-                      pathname: "/recipes/",
-                      query: { tag }
-                    })
-                  }
-                  key={tag}
-                >
-                  {tag}
-                </TagComponent>
-              );
-            })}
+              <Text fontSize="16px" fontWeight="500" color={dateColor} py="1">
+                {dayjs(publishedAt).format("DD MMMM, YYYY")}
+              </Text>
+            </Box>
+            </NextLink>
 
-            <Text fontSize="16px" fontWeight="500" color={dateColor} py="1">
-              {dayjs(publishedAt).format("DD MMMM, YYYY")}
-            </Text>
           </Box>
         );
       })}

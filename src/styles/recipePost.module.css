@@ -1,0 +1,13 @@
+/* recipePost.module.css */
+/* Front page of each post in /recipes */
+/*By: Kairos*/
+
+.postBox {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    padding: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+}
