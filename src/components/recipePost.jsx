@@ -9,6 +9,7 @@ import { tagColor } from "./UI/tagColor";
 import TagComponent from "./UI/tag";
 
 import styles from "../styles/recipePost.module.css";
+import { useEffect, useState } from "react";
 
 const RecipePost = ({ posts }) => {
   const router = useRouter();
@@ -19,6 +20,19 @@ const RecipePost = ({ posts }) => {
   const yearColor = useColorModeValue("telegram.500", "telegram.400");
 
   let year = 0;
+  const [scrollY, setScrollY] = useState(0);
+
+  const handleScroll = () => {
+    setScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
