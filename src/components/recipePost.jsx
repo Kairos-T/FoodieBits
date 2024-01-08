@@ -52,18 +52,18 @@ const RecipePost = ({ posts }) => {
         return (
           <Box my="3" py="2" px="4" rounded="md" key={slug}>
             {/*{YearComponent}*/}
-
-            <NextLink href={`/recipes/${slug}`}>
-
             <Box className={styles.postBox} style={{
               backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url(${image})`,
-            }}> <Heading as="h3" fontSize="2xl" fontWeight="700">
-                <Text color={titleColor}>{title}</Text>
-            </Heading>
+            }}>
+              <NextLink href={`/recipes/${slug}`}>
+                <a>              <Heading as="h3" fontSize="2xl" fontWeight="700">
+                  <Text color={titleColor}>{title}</Text>
+                </Heading>
+                  <Text fontSize="17px" fontWeight="400" color={summaryColor} py="1">
+                    {summary}
+                  </Text></a>
 
-              <Text fontSize="17px" fontWeight="400" color={summaryColor} py="1">
-                {summary}
-              </Text>
+              </NextLink>
 
               {tags.map((tag) => {
                 const color = tagColor[tag];
@@ -87,8 +87,6 @@ const RecipePost = ({ posts }) => {
                 {dayjs(publishedAt).format("DD MMMM, YYYY")}
               </Text>
             </Box>
-            </NextLink>
-
           </Box>
         );
       })}
