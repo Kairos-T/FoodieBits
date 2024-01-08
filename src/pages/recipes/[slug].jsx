@@ -77,8 +77,8 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
               style={{
                 position: "relative",
                 backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url(${img})`,
-                backgroundSize: "cover",
-                backgroundPosition: `center ${scrollY * 0.4}px`,
+                backgroundSize: `calc(100% + ${scrollY * 0.4}px)`,
+                backgroundPosition: `center`,
                 borderRadius: "10px",
                 overflow: "hidden",
               }}
