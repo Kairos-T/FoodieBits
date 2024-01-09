@@ -28,6 +28,12 @@ const Recipe = ({ posts }) => {
   const [recipePost, setrecipePost] = useState(posts);
   const [searchValue, setSearchValue] = useState("");
 
+  const resetFilters = () => {
+    setSearchValue("");
+    setrecipePost(posts);
+    router.push("/recipes");
+  };
+
   const filteredPosts = (tag) => {
     const blogResults = posts.filter((post) => post.tags.includes(tag));
     setrecipePost(blogResults);
@@ -83,6 +89,8 @@ const Recipe = ({ posts }) => {
           flexDir="column"
           textAlign="center"
           py="4"
+          cursor="pointer"
+          onClick={resetFilters}
         >
           {" "}
           <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2">
