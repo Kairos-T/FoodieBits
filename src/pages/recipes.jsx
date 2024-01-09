@@ -22,7 +22,7 @@ const options = {
 const Recipe = ({ posts }) => {
   const router = useRouter();
   const color = useColorModeValue("telegram.500", "telegram.400");
-  const searchColor = useColorModeValue("gray.400", "gray.500")
+  const searchColor = useColorModeValue("gray.400", "gray.500");
   const fuse = new Fuse(posts, options);
 
   const [recipePost, setrecipePost] = useState(posts);
@@ -64,7 +64,7 @@ const Recipe = ({ posts }) => {
     const recipeContainer = document.getElementById("recipeContainer");
     if (recipeContainer) {
       recipeContainer.style.opacity = 0;
-      recipeContainer.style.transform = 'translateY(20px)';
+      recipeContainer.style.transform = "translateY(20px)";
       let opacity = 0;
       let position = 20;
       const smoothFade = () => {
@@ -86,98 +86,98 @@ const Recipe = ({ posts }) => {
 
   return (
     <>
-        <NextSeo
-          title={title}
-          description={description}
-          canonical={url}
-          openGraph={{
-            title,
-            description,
-            url
-          }}
-        />
+      <NextSeo
+        title={title}
+        description={description}
+        canonical={url}
+        openGraph={{
+          title,
+          description,
+          url
+        }}
+      />
 
-        <Box
-          as="section"
-          display="flex"
-          alignItems="center"
-          flexDir="column"
-          textAlign="center"
-          py="4"
-          cursor="pointer"
-          onClick={resetFilters}
+      <Box
+        as="section"
+        display="flex"
+        alignItems="center"
+        flexDir="column"
+        textAlign="center"
+        py="4"
+
+      >
+        {" "}
+        <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2" cursor="pointer" onClick={resetFilters}
         >
-          {" "}
-          <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2">
-            Recipes{" "}
-          </Heading>
-        </Box>
-        <Box
-          as="section"
-          fontSize="16px"
-          px={{ md: "10", lg: "20", xl: "30" }}
-          py="4"
+          Recipes{" "}
+        </Heading>
+      </Box>
+      <Box
+        as="section"
+        fontSize="16px"
+        px={{ md: "10", lg: "20", xl: "30" }}
+        py="4"
+      >
+        <Flex justify="center">
+          <Input
+            isInvalid
+            errorBorderColor={searchColor}
+            onChange={(e) => {
+              setSearchValue(e.target.value);
+            }}
+            value={searchValue}
+            variant="outline"
+            placeholder="Search..."
+            _placeholder={{ color: searchColor }}
+            maxWidth="400px"
+          />
+        </Flex>
+
+        <Flex
+          justify="center"
+          align="center"
+          direction="row"
+          wrap="wrap"
+          m="1.5rem 0"
         >
-          <Flex justify="center">
-            <Input
-              isInvalid
-              errorBorderColor={searchColor}
-              onChange={(e) => {
-                setSearchValue(e.target.value);
-              }}
-              value={searchValue}
-              variant="outline"
-              placeholder="Search..."
-              _placeholder={{ color: searchColor }}
-              maxWidth="400px"
-            />
-          </Flex>
+          {Object.keys(tagColor).map((tag, index) => {
+            const color = tagColor[tag];
 
-          <Flex
-            justify="center"
-            align="center"
-            direction="row"
-            wrap="wrap"
-            m="1.5rem 0"
-          >
-            {Object.keys(tagColor).map((tag, index) => {
-              const color = tagColor[tag];
+            return (
+              <Box key={index}>
+                <TagComponent color={color} onClick={() => filteredPosts(tag)}>
+                  {tag}
+                </TagComponent>
+              </Box>
+            );
+          })}
+        </Flex>
 
-              return (
-                <Box key={index}>
-                  <TagComponent color={color} onClick={() => filteredPosts(tag)}>
-                    {tag}
-                  </TagComponent>
-                </Box>
-              );
-            })}
-          </Flex>
-
-            <motion.div
-              id="recipeContainer"
-              key={searchValue}
-              initial={{ y: 20 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.5 }}
+        <motion.div
+          id="recipeContainer"
+          key={searchValue}
+          initial={{ y: 20 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {recipePost.length > 0 ? (
+            <RecipePost posts={recipePost} />
+          ) : (
+            <Alert
+              status="info"
+              borderRadius="md"
+              display="flex"
+              justifyContent="center"
+              mx="auto"
+              maxWidth="500px"
+              fontWeight="500"
             >
-              {recipePost.length > 0 ? (
-                <RecipePost posts={recipePost} />
-              ) : (
-                <Alert
-                  status="info"
-                  borderRadius="md"
-                  display="flex"
-                  justifyContent="center"
-                  mx="auto"
-                  maxWidth="500px"
-                  fontWeight="500"
-                >
-                  <AlertIcon />
-                  No recipe has been found :(
-                </Alert>
-              )}
-            </motion.div>
-        </Box>
+              <AlertIcon />
+              No recipe has been found :(
+            </Alert>
+          )}
+        </motion.div>
+      </Box>
     </>
   );
 };
