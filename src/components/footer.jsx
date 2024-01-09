@@ -16,7 +16,7 @@ const Footer = () => {
       <VStack spacing={5} alignItems="initial"
               maxW={MAX_WIDTH}
               px={[4, 6, 10, 14, 20]}
-              marginTop={20}
+              marginTop={10}
               padding={10}
               mx="auto"
       >
