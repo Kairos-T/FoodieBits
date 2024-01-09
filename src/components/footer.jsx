@@ -16,7 +16,7 @@ const Footer = () => {
       <VStack spacing={5} alignItems="initial"
               maxW={MAX_WIDTH}
               px={[4, 6, 10, 14, 20]}
-              marginTop={20}
+              marginTop={10}
               padding={10}
               mx="auto"
       >
@@ -33,7 +33,9 @@ const Footer = () => {
                 href={data.href}
                 color={useColorModeValue("gray.800", "gray.300")}
               >
-                {data.label}
+                <Text as="b">
+                  {data.label}
+                </Text>
               </Link>
               <Flex direction={{ base: "row", md: "column" }}>
                 {data.links.map((link, index) => (
@@ -54,7 +56,7 @@ const Footer = () => {
           ))}
         </Flex>
         <Flex alignItems="center">
-          <Text color="gray.500" fontSize="0.875rem" pl="0.5rem">
+          <Text color="gray.500" fontSize="0.875rem" pl="0.5rem" mx="auto">
             &copy; 2024 FoodieBits. All rights reserved.
           </Text>
         </Flex>
