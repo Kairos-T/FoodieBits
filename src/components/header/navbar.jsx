@@ -8,7 +8,7 @@ import ColorModeToggle from "../UI/colorModeToggle";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const bg = useColorModeValue("gray.200", "gray.300");
+  const bg = useColorModeValue("gray.100", "gray.700");
   const color = useColorModeValue("black", "white");
 
   const closeMenu = () => {
@@ -26,7 +26,7 @@ const Navbar = () => {
       <HamburgerMenu toggled={isOpen} toggle={setIsOpen} />
       <chakra.ul
         bg={{ base: bg, lg: "transparent" }}
-        color={{ base: "black", lg: color }}
+        color={color}
         display={{
           base: isOpen ? "block" : "none",
           lg: "flex"
