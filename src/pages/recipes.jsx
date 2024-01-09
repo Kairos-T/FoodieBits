@@ -10,7 +10,7 @@ import { seo } from "config";
 import TagComponent from "@/components/UI/tag";
 import RecipePost from "@/components/recipePost";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const options = {
   includeScore: true,
@@ -60,6 +60,21 @@ const Recipe = ({ posts }) => {
     }
   }, [router]);
 
+  useEffect(() => {
+    const recipeContainer = document.getElementById("recipeContainer");
+    if (recipeContainer) {
+      recipeContainer.style.opacity = 0;
+      let opacity = 0;
+      const smoothFade = () => {
+        opacity += 0.02;
+        recipeContainer.style.opacity = opacity;
+        if (opacity < 1) {
+          requestAnimationFrame(smoothFade);
+        }
+      };
+      requestAnimationFrame(smoothFade);
+    }
+  }, [recipePost]);
   const title = "Recipes";
   const description = seo.description;
   const url = `${seo.canonical}recipes`;
@@ -135,22 +150,33 @@ const Recipe = ({ posts }) => {
             })}
           </Flex>
 
-          {recipePost.length > 0 ? (
-            <RecipePost posts={recipePost} />
-          ) : (
-            <Alert
-              status="info"
-              borderRadius="md"
-              display="flex"
-              justifyContent="center"
-              mx="auto"
-              maxWidth="500px"
-              fontWeight="500"
+          <AnimatePresence exitBeforeEnter>
+            <motion.div
+              id="recipeContainer"
+              key={searchValue}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
             >
-              <AlertIcon />
-              No recipe has been found :(
-            </Alert>
-          )}
+              {recipePost.length > 0 ? (
+                <RecipePost posts={recipePost} />
+              ) : (
+                <Alert
+                  status="info"
+                  borderRadius="md"
+                  display="flex"
+                  justifyContent="center"
+                  mx="auto"
+                  maxWidth="500px"
+                  fontWeight="500"
+                >
+                  <AlertIcon />
+                  No recipe has been found :(
+                </Alert>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </Box>
       </motion.main>
     </>
