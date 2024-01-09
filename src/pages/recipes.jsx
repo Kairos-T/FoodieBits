@@ -35,14 +35,14 @@ const Recipe = ({ posts }) => {
   };
 
   const filteredPosts = (tag) => {
-    const blogResults = posts.filter((post) => post.tags.includes(tag));
-    setrecipePost(blogResults);
+    const recipeResultults = posts.filter((post) => post.tags.includes(tag));
+    setrecipePost(recipeResultults);
   };
 
   const updateSearch = () => {
     const results = fuse.search(searchValue);
-    const blogResults = results.map((res) => res.item);
-    setrecipePost(blogResults);
+    const recipeResultults = results.map((res) => res.item);
+    setrecipePost(recipeResultults);
   };
 
   const delayedSearch = useCallback(updateSearch, [searchValue]);
@@ -69,7 +69,7 @@ const Recipe = ({ posts }) => {
       let position = 20;
       const smoothFade = () => {
         opacity += 0.04;
-        position -= 0.4; 
+        position -= 0.4;
         recipeContainer.style.opacity = opacity;
         recipeContainer.style.transform = `translateY(${position}px)`;
         if (opacity < 1) {
@@ -159,9 +159,8 @@ const Recipe = ({ posts }) => {
             <motion.div
               id="recipeContainer"
               key={searchValue}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.5 }}
             >
               {recipePost.length > 0 ? (

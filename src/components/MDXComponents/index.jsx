@@ -2,7 +2,6 @@ import Image from "next/image";
 
 import { CustomLink, InlineCode, ListItem, OrderedList, UnorderedList } from "./common";
 import Headings from "./headings";
-import CodeBlock from "./codeBlock";
 
 const MDXComponents = {
   h1: (props) => <Headings as="h1" fontSize="36px" {...props} />,
@@ -12,7 +11,6 @@ const MDXComponents = {
   h5: (props) => <Headings as="h5" fontSize="16px" {...props} />,
   h6: (props) => <Headings as="h6" fontSize="14px" {...props} />,
 
-  code: CodeBlock,
   a: CustomLink,
   ul: UnorderedList,
   ol: OrderedList,
