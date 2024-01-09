@@ -22,7 +22,7 @@ const options = {
 const Recipe = ({ posts }) => {
   const router = useRouter();
   const color = useColorModeValue("telegram.500", "telegram.400");
-
+  const searchColor = useColorModeValue("gray.400", "gray.500")
   const fuse = new Fuse(posts, options);
 
   const [recipePost, setrecipePost] = useState(posts);
@@ -120,12 +120,15 @@ const Recipe = ({ posts }) => {
         >
           <Flex justify="center">
             <Input
+              isInvalid
+              errorBorderColor={searchColor}
               onChange={(e) => {
                 setSearchValue(e.target.value);
               }}
               value={searchValue}
               variant="outline"
               placeholder="Search..."
+              _placeholder={{ color: searchColor }}
               maxWidth="400px"
             />
           </Flex>
