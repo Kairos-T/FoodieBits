@@ -1,7 +1,7 @@
 // Tags for Recipes
 // By: Kairos
 export const tagColor = {
-  Easy: { bgColor: "#86c34c", hover: "#5a8d33" }, // Greenish
+  Easy: { bgColor: "#86c34c", hover: "#5a8d33" },
   Medium: { bgColor: "#f48d07", hover: "#da7009" },
   Hard: { bgColor: "#E8265EE2", hover: "#ce0840E2" },
   Italian: { bgColor: "#865DCAE2", hover: "#784cc4E2" },
@@ -10,6 +10,6 @@ export const tagColor = {
   Western: { bgColor: "#ff7bacE2", hover: "#f7659aE2" },
   Chinese: { bgColor: "#f96624", hover: "#e45218" },
   Vegetarian: { bgColor: "#77aa7bE2", hover: "#609363E2" },
-  Vegan: { bgColor: "#86c34c", hover: "#5a8d33" }, // Greenish
+  Vegan: { bgColor: "#86c34c", hover: "#5a8d33" },
   Keto: { bgColor: "#05afa0E2", hover: "#0ce5d2E2" }
 };
