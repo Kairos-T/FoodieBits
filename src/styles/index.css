@@ -47,3 +47,8 @@ blockquote p:first-of-type:before {
 blockquote p:last-of-type:after {
     content: close-quote;
 }
+
+footer {
+    margin-top: 50px;
+    padding-top: 20px;
+}
