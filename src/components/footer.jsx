@@ -27,7 +27,7 @@ const Footer = () => {
           justifyContent="space-between"
         >
           {footerData.map((data, index) => (
-            <Flex key={index} direction="column" mb="3">
+            <Flex key={index} direction="column" mb="3" gap={1}>
               <Link
                 fontWeight="500"
                 href={data.href}
