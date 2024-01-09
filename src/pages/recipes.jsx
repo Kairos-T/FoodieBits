@@ -10,7 +10,7 @@ import { seo } from "config";
 import TagComponent from "@/components/UI/tag";
 import RecipePost from "@/components/recipePost";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const options = {
   includeScore: true,
@@ -86,11 +86,6 @@ const Recipe = ({ posts }) => {
 
   return (
     <>
-      <motion.main
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4 }}
-      >
         <NextSeo
           title={title}
           description={description}
@@ -155,7 +150,6 @@ const Recipe = ({ posts }) => {
             })}
           </Flex>
 
-          <AnimatePresence exitBeforeEnter>
             <motion.div
               id="recipeContainer"
               key={searchValue}
@@ -180,9 +174,7 @@ const Recipe = ({ posts }) => {
                 </Alert>
               )}
             </motion.div>
-          </AnimatePresence>
         </Box>
-      </motion.main>
     </>
   );
 };
