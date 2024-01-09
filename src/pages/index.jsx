@@ -47,15 +47,17 @@ const Home = () => {
           textAlign="center"
           py="4"
         >
-          <NextImage
-            src="/images/logo.svg"
-            width="350"
-            height="350"
-            alt="FoodieBits Logo"
-            placeholder="blur"
-            blurDataURL="L5I~of#i004mgjw]-4XA00?wL#xu"
-            priority
-          />
+          <Box paddingBottom={5}>
+            <NextImage
+              src="/images/logo.svg"
+              width="350"
+              height="350"
+              alt="FoodieBits Logo"
+              placeholder="blur"
+              blurDataURL="L5I~of#i004mgjw]-4XA00?wL#xu"
+              priority
+            />
+          </Box>
           <Box>
             <Heading as="h1" fontSize="4xl" fontWeight="700" py="2">
               Welcome to FoodieBits!{" "}
