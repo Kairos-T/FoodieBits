@@ -41,7 +41,7 @@ const Footer = () => {
                     key={index}
                     py={1}
                     fontSize={{ base: "sm", sm: "md" }}
-                    href="#"
+                    href={data.href}
                     mr={{ base: 1, sm: 2, md: 0 }}
                     color="gray.500"
                     _hover={{ color: "blue.600" }}

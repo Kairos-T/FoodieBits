@@ -13,9 +13,9 @@ export const footerData = [
   },
   {
     label: "Recipes",
-    href: "#",
+    href: "/recipes",
     links: [
-      { label: "Browse", href: "#" },
+      { label: "Browse", href: "/recipes" },
       { label: "Create", href: "#" },
       { label: "Share", href: "#" }
     ]
