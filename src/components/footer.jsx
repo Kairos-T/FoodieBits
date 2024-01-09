@@ -39,7 +39,7 @@ const Footer = () => {
                 {data.links.map((link, index) => (
                   <Link
                     key={index}
-                    padding={1}
+                    py={1}
                     fontSize={{ base: "sm", sm: "md" }}
                     href="#"
                     mr={{ base: 1, sm: 2, md: 0 }}
