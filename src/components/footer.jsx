@@ -56,7 +56,7 @@ const Footer = () => {
           ))}
         </Flex>
         <Flex alignItems="center">
-          <Text color="gray.500" fontSize="0.875rem" pl="0.5rem">
+          <Text color="gray.500" fontSize="0.875rem" pl="0.5rem" mx="auto">
             &copy; 2024 FoodieBits. All rights reserved.
           </Text>
         </Flex>
