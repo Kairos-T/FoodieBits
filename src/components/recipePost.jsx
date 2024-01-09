@@ -1,6 +1,6 @@
 // Structure for rendering recipes posts
 // By: Kairos
-import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Heading, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
 import dayjs from "dayjs";
@@ -9,16 +9,39 @@ import { tagColor } from "./UI/tagColor";
 import TagComponent from "./UI/tag";
 
 import styles from "../styles/recipePost.module.css";
+import { useEffect, useState } from "react";
 
 const RecipePost = ({ posts }) => {
   const router = useRouter();
 
-  const titleColor = useColorModeValue("gray.100", "gray.100");
-  const summaryColor = useColorModeValue("gray.200", "gray.200");
-  const dateColor = useColorModeValue("gray.300", "gray.300");
+  const { colorMode } = useColorMode();
+  const titleColor = useColorModeValue("gray.900", "gray.100");
+  const summaryColor = useColorModeValue("gray.900", "gray.200");
+  const dateColor = useColorModeValue("gray.800", "gray.300");
   const yearColor = useColorModeValue("telegram.500", "telegram.400");
 
   let year = 0;
+  const [scrollY, setScrollY] = useState(0);
+
+  const handleScroll = () => {
+    setScrollY(window.scrollY);
+  };
+
+  const lightModeGradient = colorMode === "light"
+    ? "linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.3)),"
+    : "";
+
+  const darkModeGradient = `linear-gradient(rgba(0, 0, 0, ${colorMode === "dark" ? 0.8 : 0.5}), rgba(0, 0, 0, ${colorMode === "dark" ? 0.7 : 0.4})),`;
+
+  const gradient = lightModeGradient + darkModeGradient;
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -38,18 +61,24 @@ const RecipePost = ({ posts }) => {
         return (
           <Box my="3" py="2" px="4" rounded="md" key={slug}>
             {/*{YearComponent}*/}
+            <Box
+              className={styles.postBox}
+              style={{
+                backgroundImage: `${gradient} url(${image})`,
+              }}
+            >
 
             <NextLink href={`/recipes/${slug}`}>
+                <a>
+                  <Heading as="h3" fontSize="2xl" fontWeight="700">
+                    <Text color={titleColor}>{title}</Text>
+                  </Heading>
+                  <Text fontSize="17px" fontWeight="400" color={summaryColor} py="1">
+                    {summary}
+                  </Text>
+                </a>
 
-            <Box className={styles.postBox} style={{
-              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url(${image})`,
-            }}> <Heading as="h3" fontSize="2xl" fontWeight="700">
-                <Text color={titleColor}>{title}</Text>
-            </Heading>
-
-              <Text fontSize="17px" fontWeight="400" color={summaryColor} py="1">
-                {summary}
-              </Text>
+              </NextLink>
 
               {tags.map((tag) => {
                 const color = tagColor[tag];
@@ -73,8 +102,6 @@ const RecipePost = ({ posts }) => {
                 {dayjs(publishedAt).format("DD MMMM, YYYY")}
               </Text>
             </Box>
-            </NextLink>
-
           </Box>
         );
       })}
