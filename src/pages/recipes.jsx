@@ -64,10 +64,14 @@ const Recipe = ({ posts }) => {
     const recipeContainer = document.getElementById("recipeContainer");
     if (recipeContainer) {
       recipeContainer.style.opacity = 0;
+      recipeContainer.style.transform = 'translateY(20px)';
       let opacity = 0;
+      let position = 20;
       const smoothFade = () => {
-        opacity += 0.02;
+        opacity += 0.04;
+        position -= 0.4; 
         recipeContainer.style.opacity = opacity;
+        recipeContainer.style.transform = `translateY(${position}px)`;
         if (opacity < 1) {
           requestAnimationFrame(smoothFade);
         }
@@ -75,6 +79,7 @@ const Recipe = ({ posts }) => {
       requestAnimationFrame(smoothFade);
     }
   }, [recipePost]);
+
   const title = "Recipes";
   const description = seo.description;
   const url = `${seo.canonical}recipes`;
