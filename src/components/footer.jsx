@@ -33,7 +33,9 @@ const Footer = () => {
                 href={data.href}
                 color={useColorModeValue("gray.800", "gray.300")}
               >
-                {data.label}
+                <Text as="b">
+                  {data.label}
+                </Text>
               </Link>
               <Flex direction={{ base: "row", md: "column" }}>
                 {data.links.map((link, index) => (
