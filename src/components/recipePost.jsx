@@ -15,9 +15,9 @@ const RecipePost = ({ posts }) => {
   const router = useRouter();
 
   const { colorMode } = useColorMode();
-  const titleColor = useColorModeValue("gray.900", "gray.100");
-  const summaryColor = useColorModeValue("gray.900", "gray.200");
-  const dateColor = useColorModeValue("gray.800", "gray.300");
+  const titleColor = useColorModeValue("gray.100", "gray.100");
+  const summaryColor = useColorModeValue("gray.200", "gray.200");
+  const dateColor = useColorModeValue("gray.300", "gray.300");
   const yearColor = useColorModeValue("telegram.500", "telegram.400");
 
   let year = 0;
@@ -28,10 +28,10 @@ const RecipePost = ({ posts }) => {
   };
 
   const lightModeGradient = colorMode === "light"
-    ? "linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.3)),"
+    ? "linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.2)),"
     : "";
 
-  const darkModeGradient = `linear-gradient(rgba(0, 0, 0, ${colorMode === "dark" ? 0.8 : 0.5}), rgba(0, 0, 0, ${colorMode === "dark" ? 0.7 : 0.4})),`;
+  const darkModeGradient = `linear-gradient(rgba(0, 0, 0, ${colorMode === "dark" ? 0.7 : 0.5}), rgba(0, 0, 0, ${colorMode === "dark" ? 0.7 : 0.4})),`;
 
   const gradient = lightModeGradient + darkModeGradient;
 
