@@ -49,8 +49,7 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
       // Change MDX to PlainText file
       const fileName = `${frontMatter.slug}.txt`;
       const downloadLink = document.createElement("a");
-      downloadLink.href = `${filePath}?download=${fileName}`;
-      downloadLink.pathname = filePath;
+      downloadLink.href = filePath;
       downloadLink.download = fileName;
       document.body.appendChild(downloadLink);
       downloadLink.click();
