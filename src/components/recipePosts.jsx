@@ -8,7 +8,7 @@ import dayjs from "dayjs";
 import { tagColor } from "./UI/tagColor";
 import TagComponent from "./UI/tag";
 
-import styles from "../styles/recipePost.module.css";
+import styles from "@/styles/recipePosts.module.css";
 import { useEffect, useState } from "react";
 
 const RecipePosts = ({ posts }) => {
