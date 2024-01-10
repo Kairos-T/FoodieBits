@@ -1,12 +1,12 @@
-import { Box, Image, Skeleton, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Text, useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import TagComponent from "@/components/UI/tag";
 import { locationTagColor } from "@/components/UI/locationTagColor";
 import styles from "../styles/restaurantPosts.module.css";
 import Rating from "react-rating";
 import "font-awesome/css/font-awesome.min.css";
+import ImageCarousel from "@/components/UI/carousel";
 
 const RestaurantPosts = ({ restaurants, responses }) => {
   const router = useRouter();
@@ -31,25 +31,11 @@ const RestaurantPosts = ({ restaurants, responses }) => {
             flexGrow={1}
             key={title}
           >
-            <Carousel
+            <ImageCarousel
               className={styles.imgCarousel}
-              arrows
-              infinite
-              responsive={{
-                anything: {
-                  breakpoint: {
-                    max: 3000, min: 0
-                  },
-                  items: 1
-                }
-              }}>
-              {
-                images.map(image => {
-                  return <Image key={image} src={image} alt={image} width="full" height={350} objectFit="cover"
-                                backgroundPosition="center" fallback={<Skeleton width="full" height={350} />} />;
-                })
-              }
-            </Carousel>
+              images={images}
+              imageHeight={350}
+            />
             <Box
               display="flex"
               flexDir="column"
