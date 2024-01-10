@@ -18,6 +18,7 @@ import { seo } from "config";
 import { tagColor } from "@/components/UI/tagColor";
 import MDXComponents from "@/components/MDXComponents";
 import TagComponent from "@/components/UI/tag";
+import { siteUrl } from "../../../next-sitemap";
 
 const RecipePost = ({ mdxSource, frontMatter }) => {
   const { push } = useRouter();
@@ -34,52 +35,48 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
   const url = `${seo.canonical}recipes/${frontMatter.slug}`;
   const img = frontMatter.image;
 
+  const recipeUrl = `${siteUrl}recipes/${frontMatter.slug}`;
+  const filePath = `/recipes/${frontMatter.slug}.mdx`;
+
   const [scrollY, setScrollY] = useState(0);
 
   const handleScroll = () => {
     setScrollY(window.scrollY);
   };
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     try {
-      const contentString =
-        typeof mdxSource === 'object' && mdxSource.compiledSource
-          ? mdxSource.compiledSource
-          : mdxSource;
+      const fileName = `${frontMatter.slug}.txt`;
 
-      const blob = new Blob([contentString], { type: 'text/plain' });
+      const response = await fetch(filePath);
+      const mdxContent = await response.text();
 
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
+      const downloadLink = document.createElement("a");
+      downloadLink.href = `data:text/plain;charset=utf-8,${encodeURIComponent(mdxContent)}`;
+      downloadLink.download = fileName;
 
-      link.download = 'downloaded-content.txt';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
 
-      document.body.appendChild(link);
-      link.click();
+      document.body.removeChild(downloadLink);
 
-      // Remove the link from the document
-      document.body.removeChild(link);
-
-      setIsCopied(true);
       toast({
-        title: 'Content Downloaded!',
-        status: 'success',
+        title: "Content Downloaded!",
+        status: "success",
         duration: 2000,
-        isClosable: true,
+        isClosable: true
       });
-      setTimeout(() => {
-        setIsCopied(false);
-      }, 2000);
     } catch (err) {
-      console.error('Error while initiating download:', err);
+      console.error("Error while initiating download:", err);
     }
   };
+
 
   const [isCopied, setIsCopied] = useState(false);
   const toast = useToast();
   const copyToClipboard = async () => {
     try {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(recipeUrl);
       setIsCopied(true);
       toast({
         title: "Link Copied!",
