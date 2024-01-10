@@ -50,6 +50,7 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
       const fileName = `${frontMatter.slug}.txt`;
       const downloadLink = document.createElement("a");
       downloadLink.href = `${filePath}?download=${fileName}`;
+      downloadLink.pathname = filePath;
       downloadLink.download = fileName;
       document.body.appendChild(downloadLink);
       downloadLink.click();
@@ -59,7 +60,7 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
         title: "Content Downloaded!",
         status: "success",
         duration: 2000,
-        isClosable: true
+        isClosable: true,
       });
     } catch (err) {
       console.error("Error while initiating download:", err);
