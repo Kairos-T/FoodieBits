@@ -1,3 +1,7 @@
+// Renders individual recipe posts using MDX.
+// SSG to convert from MDX to be able to render content like regular React components.
+// By: Kairos
+
 import React, { useEffect, useState } from "react";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
@@ -134,7 +138,7 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
               textAlign="center"
               style={{
                 position: "relative",
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url(${img})`,
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url(${img})`,
                 backgroundSize: `calc(100% + ${scrollY * 0.4}px)`,
                 backgroundPosition: `center`,
                 borderRadius: "10px",
@@ -182,7 +186,7 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
             </Box>
             <Box as="article" mb="8">{content}</Box>
             <Flex mt="4" align="center" justify="center" backdropFilter="blur(3px)"
-                  backgroundColor="rgba(255, 255, 255, 0.15)" borderRadius="10px"
+                  backgroundColor="rgba(180, 180, 180, 0.15)" borderRadius="10px"
                   width="fit-content" margin="auto"
             >
               <IconButton

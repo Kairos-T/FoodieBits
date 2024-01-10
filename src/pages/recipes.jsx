@@ -8,7 +8,7 @@ import { getAllFilesFrontMatter } from "@/lib/posts";
 import { tagColor } from "@/components/UI/tagColor";
 import { seo } from "config";
 import TagComponent from "@/components/UI/tag";
-import RecipePost from "@/components/recipePost";
+import RecipePosts from "@/components/recipePosts";
 
 import { motion } from "framer-motion";
 
@@ -35,14 +35,14 @@ const Recipe = ({ posts }) => {
   };
 
   const filteredPosts = (tag) => {
-    const recipeResultults = posts.filter((post) => post.tags.includes(tag));
-    setrecipePost(recipeResultults);
+    const recipeResults = posts.filter((post) => post.tags.includes(tag));
+    setrecipePost(recipeResults);
   };
 
   const updateSearch = () => {
     const results = fuse.search(searchValue);
-    const recipeResultults = results.map((res) => res.item);
-    setrecipePost(recipeResultults);
+    const recipeResults = results.map((res) => res.item);
+    setrecipePost(recipeResults);
   };
 
   const delayedSearch = useCallback(updateSearch, [searchValue]);
@@ -161,7 +161,7 @@ const Recipe = ({ posts }) => {
           transition={{ duration: 0.5 }}
         >
           {recipePost.length > 0 ? (
-            <RecipePost posts={recipePost} />
+            <RecipePosts posts={recipePost} />
           ) : (
             <Alert
               status="info"
