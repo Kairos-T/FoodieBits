@@ -11,7 +11,7 @@ import TagComponent from "./UI/tag";
 import styles from "../styles/recipePost.module.css";
 import { useEffect, useState } from "react";
 
-const RecipePost = ({ posts }) => {
+const RecipePosts = ({ posts }) => {
   const router = useRouter();
 
   const { colorMode } = useColorMode();
@@ -109,4 +109,4 @@ const RecipePost = ({ posts }) => {
   );
 };
 
-export default RecipePost;
+export default RecipePosts;

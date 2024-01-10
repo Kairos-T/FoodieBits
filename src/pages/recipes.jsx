@@ -8,7 +8,7 @@ import { getAllFilesFrontMatter } from "@/lib/posts";
 import { tagColor } from "@/components/UI/tagColor";
 import { seo } from "config";
 import TagComponent from "@/components/UI/tag";
-import RecipePost from "@/components/recipePost";
+import RecipePosts from "@/components/recipePosts";
 
 import { motion } from "framer-motion";
 
@@ -161,7 +161,7 @@ const Recipe = ({ posts }) => {
           transition={{ duration: 0.5 }}
         >
           {recipePost.length > 0 ? (
-            <RecipePost posts={recipePost} />
+            <RecipePosts posts={recipePost} />
           ) : (
             <Alert
               status="info"
