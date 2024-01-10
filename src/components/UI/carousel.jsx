@@ -2,10 +2,9 @@ import { Image, Skeleton } from "@chakra-ui/react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-export default function ImageCarousel({ images, className, imageHeight }) {
+export default function ImageCarousel({ images, imageHeight, ...props }) {
   return (
     <Carousel
-      className={className}
       arrows
       infinite
       responsive={{
@@ -15,7 +14,9 @@ export default function ImageCarousel({ images, className, imageHeight }) {
           },
           items: 1
         }
-      }}>
+      }}
+      {...props}
+    >
       {
         images.map(image => {
           return <Image key={image} src={image} alt={image} width="full" height={imageHeight} objectFit="cover"

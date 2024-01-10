@@ -2,7 +2,7 @@ import { Box, Text, useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import TagComponent from "@/components/UI/tag";
 import { locationTagColor } from "@/components/UI/locationTagColor";
-import styles from "../styles/restaurantPosts.module.css";
+import styles from "@/styles/restaurantPosts.module.css";
 import Rating from "react-rating";
 import "font-awesome/css/font-awesome.min.css";
 import ImageCarousel from "@/components/UI/carousel";
