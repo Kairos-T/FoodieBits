@@ -33,6 +33,7 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
   const description = frontMatter.summary;
   const url = `${seo.canonical}recipes/${frontMatter.slug}`;
   const img = frontMatter.image;
+  const filePath = `/recipes/${frontMatter.slug}.mdx`;
 
   const [scrollY, setScrollY] = useState(0);
 
@@ -42,38 +43,18 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
 
   const handleDownload = () => {
     try {
-      const contentString =
-        typeof mdxSource === 'object' && mdxSource.compiledSource
-          ? mdxSource.compiledSource
-          : mdxSource;
-
-      const blob = new Blob([contentString], { type: 'text/plain' });
-
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-
-      link.download = 'downloaded-content.txt';
-
-      document.body.appendChild(link);
-      link.click();
-
-      // Remove the link from the document
-      document.body.removeChild(link);
-
-      setIsCopied(true);
+      window.location.href = filePath;
       toast({
         title: 'Content Downloaded!',
         status: 'success',
         duration: 2000,
         isClosable: true,
       });
-      setTimeout(() => {
-        setIsCopied(false);
-      }, 2000);
     } catch (err) {
       console.error('Error while initiating download:', err);
     }
   };
+
 
   const [isCopied, setIsCopied] = useState(false);
   const toast = useToast();
