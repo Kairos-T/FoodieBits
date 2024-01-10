@@ -45,6 +45,7 @@ const RestaurantPosts = ({ restaurants, responses }) => {
             flexGrow={1}
             key={title}
             onClick={onOpen}
+            cursor="pointer"
           >
             <ImageCarousel
               images={images}
