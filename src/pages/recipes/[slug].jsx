@@ -44,27 +44,37 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
     setScrollY(window.scrollY);
   };
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     try {
-      // Change MDX to PlainText file
       const fileName = `${frontMatter.slug}.txt`;
+
+      // Fetch the MDX content from the server
+      const response = await fetch(filePath);
+      const mdxContent = await response.text();
+
+      // Create a download link
       const downloadLink = document.createElement("a");
-      downloadLink.href = `${window.location.origin}${filePath}?download=${fileName}`;
+      downloadLink.href = `data:text/plain;charset=utf-8,${encodeURIComponent(mdxContent)}`;
       downloadLink.download = fileName;
+
+      // Append the link to the document and trigger the click event
       document.body.appendChild(downloadLink);
       downloadLink.click();
+
+      // Remove the link from the document
       document.body.removeChild(downloadLink);
 
       toast({
         title: "Content Downloaded!",
         status: "success",
         duration: 2000,
-        isClosable: true,
+        isClosable: true
       });
     } catch (err) {
       console.error("Error while initiating download:", err);
     }
   };
+
 
   const [isCopied, setIsCopied] = useState(false);
   const toast = useToast();
