@@ -48,20 +48,16 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
     try {
       const fileName = `${frontMatter.slug}.txt`;
 
-      // Fetch the MDX content from the server
       const response = await fetch(filePath);
       const mdxContent = await response.text();
 
-      // Create a download link
       const downloadLink = document.createElement("a");
       downloadLink.href = `data:text/plain;charset=utf-8,${encodeURIComponent(mdxContent)}`;
       downloadLink.download = fileName;
 
-      // Append the link to the document and trigger the click event
       document.body.appendChild(downloadLink);
       downloadLink.click();
 
-      // Remove the link from the document
       document.body.removeChild(downloadLink);
 
       toast({
