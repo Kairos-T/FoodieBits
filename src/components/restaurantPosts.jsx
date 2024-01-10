@@ -43,17 +43,7 @@ const RestaurantPosts = ({ restaurants, responses }) => {
               px="4"
             >
               <Text as="b" fontSize="2xl">{title}</Text>
-              <Box display="flex" alignItems="center" gap={3}>
-                <Rating
-                  emptySymbol="fa fa-star-o fa-2x"
-                  placeholderSymbol="fa fa-star fa-2x"
-                  fullSymbol="fa fa-star fa-2x"
-                  fractions={2}
-                  placeholderRating={responses[placeId].rating}
-                  readonly
-                />
-                <Text as="b">{responses[placeId].rating}</Text>
-              </Box>
+              <RestaurantRating rating={responses[placeId].rating} />
               <TagComponent
                 marginTop={1}
                 width="max-content"
