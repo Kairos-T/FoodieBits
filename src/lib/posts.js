@@ -1,3 +1,6 @@
+// Processing MDX files to be passed to individual pages
+// By: Kairos
+
 import { join } from "path";
 import { readdirSync, readFileSync } from "fs";
 import matter from "gray-matter";
@@ -29,7 +32,6 @@ export async function getFileBySlug(type, slug) {
   return {
     mdxSource,
     frontMatter: {
-      wordCount: content.split(/\s+/gu).length,
       readingTime: readingTime(content),
       slug: slug || null,
       ...data
