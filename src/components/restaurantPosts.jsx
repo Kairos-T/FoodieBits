@@ -43,7 +43,7 @@ const RestaurantPosts = ({ restaurants, responses }) => {
               }}>
               {
                 images.map(image => {
-                  return <Image src={image} alt={image} width="full" height={350} objectFit="cover"
+                  return <Image key={image} src={image} alt={image} width="full" height={350} objectFit="cover"
                                 backgroundPosition="center" fallback={<Skeleton width="full" height={350} />} />;
                 })
               }
