@@ -18,6 +18,7 @@ import { seo } from "config";
 import { tagColor } from "@/components/UI/tagColor";
 import MDXComponents from "@/components/MDXComponents";
 import TagComponent from "@/components/UI/tag";
+import { siteUrl } from "../../../next-sitemap";
 
 const RecipePost = ({ mdxSource, frontMatter }) => {
   const { push } = useRouter();
@@ -33,6 +34,8 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
   const description = frontMatter.summary;
   const url = `${seo.canonical}recipes/${frontMatter.slug}`;
   const img = frontMatter.image;
+
+  const recipeUrl = `${siteUrl}recipes/${frontMatter.slug}`;
   const filePath = `/recipes/${frontMatter.slug}.mdx`;
 
   const [scrollY, setScrollY] = useState(0);
@@ -67,7 +70,7 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
   const toast = useToast();
   const copyToClipboard = async () => {
     try {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(recipeUrl);
       setIsCopied(true);
       toast({
         title: "Link Copied!",
