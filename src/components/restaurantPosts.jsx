@@ -13,7 +13,7 @@ const RestaurantPosts = ({ restaurants, responses }) => {
   const bgColor = useColorModeValue("gray.100", "gray.700");
 
   return (
-    <>
+    <Box display="flex" gap={5} flexDir={{ base: "column", xl: "row" }}>
       {restaurants.map((restaurant) => {
         const { title, location, description, images, placeId } = restaurant;
 
@@ -27,6 +27,8 @@ const RestaurantPosts = ({ restaurants, responses }) => {
             rounded="md"
             maxWidth="xl"
             bgColor={bgColor}
+            width={{ base: "xs", sm: "sm", md: "md", lg: "lg", xl: 0 }}
+            flexGrow={1}
             key={title}
           >
             <Carousel
@@ -86,7 +88,7 @@ const RestaurantPosts = ({ restaurants, responses }) => {
         );
       })
       }
-    </>
+    </Box>
   );
 };
 
