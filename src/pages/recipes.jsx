@@ -35,14 +35,14 @@ const Recipe = ({ posts }) => {
   };
 
   const filteredPosts = (tag) => {
-    const recipeResultults = posts.filter((post) => post.tags.includes(tag));
-    setrecipePost(recipeResultults);
+    const recipeResults = posts.filter((post) => post.tags.includes(tag));
+    setrecipePost(recipeResults);
   };
 
   const updateSearch = () => {
     const results = fuse.search(searchValue);
-    const recipeResultults = results.map((res) => res.item);
-    setrecipePost(recipeResultults);
+    const recipeResults = results.map((res) => res.item);
+    setrecipePost(recipeResults);
   };
 
   const delayedSearch = useCallback(updateSearch, [searchValue]);
