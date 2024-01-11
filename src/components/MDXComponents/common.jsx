@@ -1,4 +1,7 @@
-import { chakra, Code, Link as ChakraLink } from "@chakra-ui/react";
+// Styling for MDX components (ul, ol, li, etc)
+// By: Kairos
+
+import { chakra, Link as ChakraLink } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 export const CustomLink = (props) => {
@@ -27,5 +30,3 @@ export const OrderedList = (props) => (
 export const ListItem = (props) => (
   <chakra.li style={{ paddingBottom: "0.25rem" }} {...props} />
 );
-
-export const InlineCode = (props) => <Code {...props} />;
