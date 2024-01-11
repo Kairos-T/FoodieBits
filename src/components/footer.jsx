@@ -2,7 +2,7 @@
 import { Box, Flex, Link, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import { MAX_WIDTH } from "../../config";
 
-import { footerData } from "../data/constants/footer";
+import { footerData } from "../data/constants";
 
 
 const Footer = () => {
@@ -43,7 +43,7 @@ const Footer = () => {
                     key={index}
                     py={1}
                     fontSize={{ base: "sm", sm: "md" }}
-                    href={data.href}
+                    href={link.href}
                     mr={{ base: 1, sm: 2, md: 0 }}
                     color="gray.500"
                     _hover={{ color: "blue.600" }}
