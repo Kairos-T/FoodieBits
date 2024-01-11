@@ -1,6 +1,9 @@
+// MDX components used in the MDX files to render content like regular React components.
+// By: Kairos
+
 import Image from "next/image";
 
-import { CustomLink, InlineCode, ListItem, OrderedList, UnorderedList } from "./common";
+import { CustomLink, ListItem, OrderedList, UnorderedList } from "./common";
 import Headings from "./headings";
 
 const MDXComponents = {
@@ -15,7 +18,6 @@ const MDXComponents = {
   ul: UnorderedList,
   ol: OrderedList,
   li: ListItem,
-  inlineCode: InlineCode,
   Image
 };
 

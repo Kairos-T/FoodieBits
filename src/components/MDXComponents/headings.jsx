@@ -1,3 +1,6 @@
+// Defining custom heading styles for the MDX components
+// By: Kairos
+
 import { Box, chakra, Heading, VisuallyHidden } from "@chakra-ui/react";
 
 const Headings = (props) => {
@@ -19,7 +22,7 @@ const Headings = (props) => {
             _hover={{ opacity: 0.75 }}
             aria-label="anchor"
           >
-            #
+            (๑ᵔ⤙ᵔ๑)
           </chakra.a>
         )}
       </Box>
