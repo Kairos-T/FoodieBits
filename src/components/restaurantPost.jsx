@@ -1,12 +1,10 @@
 import {
   AspectRatio,
   Box,
-  Button,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalOverlay,
   Text,
   useColorModeValue,
@@ -121,9 +119,6 @@ export default function RestaurantPost({ responses, restaurant }) {
               </AspectRatio>
             </Box>
           </ModalBody>
-          <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
