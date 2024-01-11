@@ -1,9 +1,15 @@
+// Code for rendering the navbar component
+// Contains dark/light mode toggle and links to other pages
+// By: Kairos
+
 import { useState } from "react";
 import { Box, chakra, useColorModeValue } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 import HamburgerMenu from "../UI/hamburgerMenu";
 import ColorModeToggle from "../UI/colorModeToggle";
+
+import { navbarLinks } from "../../data/constants";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,55 +48,13 @@ const Navbar = () => {
         boxShadow={{ base: "xl", lg: "none" }}
         zIndex="2"
       >
-        <chakra.li
-          listStyleType="none"
-          px={{ lg: "8" }}
-          py={{ base: "3", lg: "0" }}
-        >
-          <NextLink href="/">
-            <a onClick={closeMenu}>Home</a>
-          </NextLink>
-        </chakra.li>
-
-        <chakra.li
-          listStyleType="none"
-          px={{ lg: "8" }}
-          py={{ base: "3", lg: "0" }}
-        >
-          <NextLink href="/cuisines">
-            <a onClick={closeMenu}>Cuisines</a>
-          </NextLink>
-        </chakra.li>
-
-        <chakra.li
-          listStyleType="none"
-          px={{ lg: "8" }}
-          py={{ base: "3", lg: "0" }}
-        >
-          <NextLink href="/recipes">
-            <a onClick={closeMenu}>Recipes</a>
-          </NextLink>
-        </chakra.li>
-
-        <chakra.li
-          listStyleType="none"
-          px={{ lg: "8" }}
-          py={{ base: "3", lg: "0" }}
-        >
-          <NextLink href="/restaurants">
-            <a onClick={closeMenu}>Restaurants</a>
-          </NextLink>
-        </chakra.li>
-
-        <chakra.li
-          listStyleType="none"
-          px={{ lg: "8" }}
-          py={{ base: "3", lg: "0" }}
-        >
-          <NextLink href="/contact">
-            <a onClick={closeMenu}>Contact</a>
-          </NextLink>
-        </chakra.li>
+        {navbarLinks.map(({ href, label }) => (
+          <chakra.li key={href} listStyleType="none" px={{ lg: "8" }} py={{ base: "3", lg: "0" }}>
+            <NextLink href={href}>
+              <a onClick={closeMenu}>{label}</a>
+            </NextLink>
+          </chakra.li>
+        ))}
       </chakra.ul>
 
       <ColorModeToggle />
