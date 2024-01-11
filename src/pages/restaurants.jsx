@@ -5,7 +5,7 @@ import { Alert, AlertIcon, Box, Flex, Heading, Input, useColorModeValue } from "
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import TagComponent from "@/components/UI/tag";
-import { restaurantData } from "../data/constants/restaurants";
+import { restaurantData } from "../data/constants";
 import Fuse from "fuse.js";
 import { locationTagColor } from "@/components/UI/locationTagColor";
 import RestaurantPosts from "@/components/restaurantPosts";
