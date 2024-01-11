@@ -31,12 +31,11 @@ export default function RestaurantPost({ responses, restaurant }) {
         position="relative"
         overflow="hidden"
         zIndex={1}
-        my="3"
         mx="auto"
         rounded="md"
         maxWidth="xl"
         bgColor={bgColor}
-        width={{ base: "xs", sm: "sm", md: "md", lg: "lg", xl: 0 }}
+        width={{ base: "xs", sm: "sm", md: "md", lg: "lg", xl: "35%" }}
         flexGrow={1}
         key={title}
         onClick={onOpen}
