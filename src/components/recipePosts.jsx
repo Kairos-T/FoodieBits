@@ -1,6 +1,6 @@
 // Structure for rendering recipes posts
 // By: Kairos
-import { AspectRatio, Box, Heading, Image, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { AspectRatio, Box, Heading, Image, Skeleton, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
 import dayjs from "dayjs";
@@ -113,6 +113,7 @@ const RecipePosts = ({ posts }) => {
                         borderRadius="md"
                         objectFit="cover"
                         boxSize="100%"
+                        fallback={<Skeleton borderRadius="md" boxSize="100%" />}
                       />
                     </AspectRatio>
                   </a>
