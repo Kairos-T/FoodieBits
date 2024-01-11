@@ -1,3 +1,13 @@
+// Navbar Links
+// By: Kairos
+export const navbarLinks = [
+  { href: "/", label: "Home" },
+  { href: "/cuisines", label: "Cuisines" },
+  { href: "/recipes", label: "Recipes" },
+  { href: "/restaurants", label: "Restaurants" },
+  { href: "/contact", label: "Contact" }
+];
+
 // Home page data (about company content)
 export const data = [
   {
