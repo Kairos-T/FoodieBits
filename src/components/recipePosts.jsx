@@ -1,6 +1,6 @@
 // Structure for rendering recipes posts
 // By: Kairos
-import { Box, Heading, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { AspectRatio, Box, Heading, Image, Skeleton, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
 import dayjs from "dayjs";
@@ -15,10 +15,11 @@ const RecipePosts = ({ posts }) => {
   const router = useRouter();
 
   const { colorMode } = useColorMode();
-  const titleColor = useColorModeValue("gray.100", "gray.100");
-  const summaryColor = useColorModeValue("gray.200", "gray.200");
-  const dateColor = useColorModeValue("gray.300", "gray.300");
+  const titleColor = useColorModeValue("gray.900", "gray.100");
+  const summaryColor = useColorModeValue("gray.800", "gray.200");
+  const dateColor = useColorModeValue("gray.800", "gray.300");
   const yearColor = useColorModeValue("telegram.500", "telegram.400");
+  const bgColor = useColorModeValue("gray.100", "gray.700");
 
   let year = 0;
   const [scrollY, setScrollY] = useState(0);
@@ -26,14 +27,6 @@ const RecipePosts = ({ posts }) => {
   const handleScroll = () => {
     setScrollY(window.scrollY);
   };
-
-  const lightModeGradient = colorMode === "light"
-    ? "linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.2)),"
-    : "";
-
-  const darkModeGradient = `linear-gradient(rgba(0, 0, 0, ${colorMode === "dark" ? 0.7 : 0.5}), rgba(0, 0, 0, ${colorMode === "dark" ? 0.7 : 0.4})),`;
-
-  const gradient = lightModeGradient + darkModeGradient;
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -61,46 +54,71 @@ const RecipePosts = ({ posts }) => {
         return (
           <Box my="3" py="2" px="4" rounded="md" key={slug}>
             {/*{YearComponent}*/}
-            <Box
-              className={styles.postBox}
-              style={{
-                backgroundImage: `${gradient} url(${image})`,
-              }}
+            <Box bgColor={bgColor} rounded="md"
+                 className={styles.postBox}
+                 display={{ md: "flex" }}
+                 flexDirection={{ base: "column", md: "row" }}
+                 alignItems={{ md: "center" }}
             >
 
-            <NextLink href={`/recipes/${slug}`}>
-                <a>
-                  <Heading as="h3" fontSize="2xl" fontWeight="700">
-                    <Text color={titleColor}>{title}</Text>
-                  </Heading>
-                  <Text fontSize="17px" fontWeight="400" color={summaryColor} py="1">
-                    {summary}
-                  </Text>
-                </a>
+              {/* Text Section */}
+              <Box
 
-              </NextLink>
+                flex="1" pr={{ md: 8 }} pb={{ base: 4, md: 0 }}>
+                <NextLink href={`/recipes/${slug}`}>
+                  <a>
+                    <Heading as="h3" fontSize="2xl" fontWeight="700">
+                      <Text color={titleColor}>{title}</Text>
+                    </Heading>
+                    <Text fontSize="17px" fontWeight="400" color={summaryColor} py="1">
+                      {summary}
+                    </Text>
+                  </a>
+                </NextLink>
 
-              {tags.map((tag) => {
-                const color = tagColor[tag];
-                return (
-                  <TagComponent
-                    color={color}
-                    onClick={() =>
-                      router.push({
-                        pathname: "/recipes/",
-                        query: { tag }
-                      })
-                    }
-                    key={tag}
-                  >
-                    {tag}
-                  </TagComponent>
-                );
-              })}
+                {tags.map((tag) => {
+                  const color = tagColor[tag];
+                  return (
+                    <TagComponent
+                      color={color}
+                      onClick={() =>
+                        router.push({
+                          pathname: "/recipes/",
+                          query: { tag }
+                        })
+                      }
+                      key={tag}
+                    >
+                      {tag}
+                    </TagComponent>
+                  );
+                })}
 
-              <Text fontSize="16px" fontWeight="500" color={dateColor} py="1">
-                {dayjs(publishedAt).format("DD MMMM, YYYY")}
-              </Text>
+                <Text fontSize="16px" fontWeight="500" color={dateColor} py="1">
+                  {dayjs(publishedAt).format("DD MMMM, YYYY")}
+                </Text>
+              </Box>
+
+              {/* Image Section */}
+              <Box
+                flex="1"
+                minW={{ base: "100%", md: "40%" }}
+              >
+                <NextLink href={`/recipes/${slug}`}>
+                  <a>
+                    <AspectRatio ratio={{ base: 16 / 9, xl: 16 / 9, lg: 10 / 9, md: 3 / 4 }} borderRadius="md">
+                      <Image
+                        src={image}
+                        alt={title}
+                        borderRadius="md"
+                        objectFit="cover"
+                        boxSize="100%"
+                        fallback={<Skeleton borderRadius="md" boxSize="100%" />}
+                      />
+                    </AspectRatio>
+                  </a>
+                </NextLink>
+              </Box>
             </Box>
           </Box>
         );
