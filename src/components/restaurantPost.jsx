@@ -16,13 +16,14 @@ import TagComponent from "@/components/UI/tag";
 import { locationTagColor } from "@/components/UI/locationTagColor";
 import styles from "@/styles/restaurantPosts.module.css";
 import { useRouter } from "next/router";
+import RestaurantReview from "@/components/restaurantReview";
 
 export default function RestaurantPost({ responses, restaurant }) {
   const router = useRouter();
   const bgColor = useColorModeValue("gray.100", "gray.700");
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { title, location, description, images, placeId } = restaurant;
+  const { title, location, descriptions, images, placeId } = restaurant;
 
   return (
     <>
@@ -75,6 +76,7 @@ export default function RestaurantPost({ responses, restaurant }) {
       <Modal
         onClose={onClose}
         isOpen={isOpen}
+        size="xl"
       >
         <ModalOverlay />
         <ModalContent>
@@ -110,7 +112,14 @@ export default function RestaurantPost({ responses, restaurant }) {
               </Box>
 
               <Text as="b">Description</Text>
-              {description}
+              {descriptions.map(description => {
+                return <Text fontSize="sm" marginBottom={1}>{description}</Text>;
+              })}
+
+              <Text as="b">Reviews</Text>
+              {responses[placeId].reviews.slice(3).map(review => {
+                return <RestaurantReview review={review} />;
+              })}
 
               <Text as="b">Location</Text>
               <AspectRatio ratio={16 / 9}>

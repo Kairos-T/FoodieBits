@@ -97,13 +97,13 @@ export const footerData = [
 export const restaurantData = [{
   title: "La Dame de Pic",
   location: "City Hall",
-  description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora dolorem doloribus repudiandae, possimus quod quas. Ipsum culpa repellat dolorem vero odit iste delectus id, sed iure facere, animi suscipit.",
+  descriptions: ["A superlative dining experience by acclaimed chef Anne-Sophie Pic's Asia in Raffles Hotel Singapore with exquisite edible depictions of her hometown in Valence.", "Newly appointed chef de cuisine Alexandre Alves Pereira strings together the locale’s finest Asian flavours and herbs with beautiful florals while remaining rooted in French techniques. And no meal at La Dame de Pic is complete without Chef Anne-Sophie Pic’s signature Les Berlingots where each exquisite pyramid-shaped pasta parcel holds the season’s bounties."],
   images: ["https://axwwgrkdco.cloudimg.io/v7/__gmpics__/ba314b55a2024a71bc41194fd95b3318", "https://axwwgrkdco.cloudimg.io/v7/__gmpics__/a4bb8bb755b741ea861f4cd1660cd515", "https://axwwgrkdco.cloudimg.io/v7/__gmpics__/5f1b08485a1d4a22a41e86635b8ff951", "https://axwwgrkdco.cloudimg.io/v7/__gmpics__/6d2620afc12a4aaa9891c8635ec7bf47"],
   placeId: "ChIJtT96xf4Z2jERiG7wNClHeAY"
 }, {
   title: "Path",
   location: "Marina Bay",
-  description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora dolorem doloribus repudiandae, possimus quod quas. Ipsum culpa repellat dolorem vero odit iste delectus id, sed iure facere, animi suscipit.",
+  descriptions: ["A modern Asian restaurant that serves up comforting yet refined compositions of East Asian flavours expressed through French fine-dining techniques and presentations.", "Dining at Path is a rather transformative culinary experience. Creativity, flavour mastery and decadence – these themes anchor the current series of not-so-small plates that tastefully features luxe ingredients. Know that you won't walk out having to need another stop at a fast food restaurant.", "Don't sleep on an irrefutable order of Marvas' steamed deep-sea fish maw. Each firm yet gelatinous sliver is doused with a velvety beurre blanc perfumed with fermented black bean, garlic and sake."],
   images: ["https://pathrestaurant.com.sg/wp-content/uploads/2023/10/Path-Web_1.jpg", "https://pathrestaurant.com.sg/wp-content/uploads/2023/10/Path-Web_2-1200x800.jpg", "https://pathrestaurant.com.sg/wp-content/uploads/2023/10/Path-Web_3-1200x800.jpg"],
   placeId: "ChIJpXP0eYAZ2jEReM0l4h0xDH4"
 }];
