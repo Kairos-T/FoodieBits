@@ -16,6 +16,7 @@ const Navbar = () => {
 
   const bg = useColorModeValue("gray.100", "gray.700");
   const color = useColorModeValue("black", "white");
+  const hoverColor = useColorModeValue("telegram.600", "telegram.400");
 
   const closeMenu = () => {
     setIsOpen(false);
@@ -49,7 +50,7 @@ const Navbar = () => {
         zIndex="2"
       >
         {navbarLinks.map(({ href, label }) => (
-          <chakra.li key={href} listStyleType="none" px={{ lg: "8" }} py={{ base: "3", lg: "0" }}>
+          <chakra.li key={href} listStyleType="none" px={{ lg: "8" }} py={{ base: "3", lg: "0" }} _hover={{transform: "scale(1.1)", color:hoverColor, transition: "background-color 0.3s ease-in-out"}}>
             <NextLink href={href}>
               <a onClick={closeMenu}>{label}</a>
             </NextLink>
