@@ -88,8 +88,10 @@ export default function RestaurantPost({ responses, restaurant }) {
                 images={images}
                 imageHeight={400}
               />
+
               <Text as="b" fontSize="2xl">{title}</Text>
               <RestaurantRating rating={responses[placeId].rating} />
+
               <Box
               >
                 <TagComponent
@@ -108,8 +110,10 @@ export default function RestaurantPost({ responses, restaurant }) {
                   {location}
                 </TagComponent>
               </Box>
+
               <Text as="b">Description</Text>
               {description}
+
               <Text as="b">Location</Text>
               <AspectRatio ratio={16 / 9}>
                 <iframe
