@@ -17,7 +17,7 @@ const RecipePosts = ({ posts }) => {
   const { colorMode } = useColorMode();
   const titleColor = useColorModeValue("gray.900", "gray.100");
   const summaryColor = useColorModeValue("gray.800", "gray.200");
-  const dateColor = useColorModeValue("gray.800", "gray.300");
+  const dateColor = useColorModeValue("gray.600", "gray.500");
   const yearColor = useColorModeValue("telegram.500", "telegram.400");
   const bgColor = useColorModeValue("gray.100", "gray.700");
 
@@ -58,12 +58,13 @@ const RecipePosts = ({ posts }) => {
                  className={styles.postBox}
                  display={{ md: "flex" }}
                  flexDirection={{ base: "column", md: "row" }}
-                 alignItems={{ md: "center" }}
+              // alignItems={{ md: "center" }}
+                 p={{ base: 4, md: 6 }}
+
             >
 
               {/* Text Section */}
               <Box
-
                 flex="1" pr={{ md: 8 }} pb={{ base: 4, md: 0 }}>
                 <NextLink href={`/recipes/${slug}`}>
                   <a>
@@ -80,6 +81,7 @@ const RecipePosts = ({ posts }) => {
                   const color = tagColor[tag];
                   return (
                     <TagComponent
+                      mt="2"
                       color={color}
                       onClick={() =>
                         router.push({
@@ -114,7 +116,7 @@ const RecipePosts = ({ posts }) => {
                         objectFit="cover"
                         boxSize="100%"
                         fallback={<Skeleton borderRadius="md" boxSize="100%" />}
-                      />
+                        alignItems={{ md: "center" }} />
                     </AspectRatio>
                   </a>
                 </NextLink>

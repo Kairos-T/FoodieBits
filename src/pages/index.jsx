@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, chakra, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import NextImage from "next/image";
 import Faq from "../components/faq";
@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 
 import { seo } from "config";
 import { data } from "../data/constants";
+
+import Hero from "../components/hero";
 
 const Home = () => {
   const color = useColorModeValue("telegram.500", "telegram.400");
@@ -38,53 +40,7 @@ const Home = () => {
           ]
         }}
       />
-
-        <Box
-          as="section"
-          display="flex"
-          alignItems="center"
-          flexDir="column"
-          textAlign="center"
-          py="4"
-        >
-          <Box paddingBottom={5}>
-            <NextImage
-              src="/images/logo.svg"
-              width="350"
-              height="350"
-              alt="FoodieBits Logo"
-              placeholder="blur"
-              blurDataURL="L5I~of#i004mgjw]-4XA00?wL#xu"
-              priority
-            />
-          </Box>
-          <Box>
-            <Heading as="h1" fontSize="4xl" fontWeight="700" py="2">
-              Welcome to FoodieBits!{" "}
-            </Heading>
-            <Heading as="h2" fontSize="2xl" fontWeight="300">
-
-              <Text as="span" color={color}>
-                Food Choices
-              </Text>{" "}
-              Made Easy
-            </Heading>
-            <Text py="4">
-              Your one-stop destination for all things food. Dive into the world
-              of culinary delights, explore a myriad of food choices, and
-              unravel the stories behind your favourite dishes! FoodieBits -
-              Where every bite is an adventure waiting to be savoured!
-            </Text>
-            <Button
-              colorScheme="telegram"
-              variant="ghost"
-              size="lg"
-              fontSize="20px"
-            >
-              Get in touch
-            </Button>
-          </Box>
-        </Box>
+        <Hero />
 
         <Box
           as="section"
@@ -126,6 +82,7 @@ const Home = () => {
           ))}
         </Box>
 
+
         {/*FAQ Section*/}
         {/*By: Kairos*/}
         <Box
@@ -139,7 +96,17 @@ const Home = () => {
           {" "}
           <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2">
             Frequently Asked Questions{" "}
+            <chakra.a
+              href={`#FAQ`}
+              pl="2px"
+              fontWeight="500"
+              outline="none"
+              opacity="0"
+              aria-label="anchor"
+            >
+            </chakra.a>
           </Heading>
+
         </Box>
         <Faq />
 
