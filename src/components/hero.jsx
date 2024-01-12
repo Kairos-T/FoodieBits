@@ -1,15 +1,27 @@
 // Hero section of landing page
 // By: Kairos
 import { Box, Heading, Link, Text, useColorModeValue } from "@chakra-ui/react";
+import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion"
 import NextImage from "next/image";
 import styles from "@/styles/hero.module.css";
 import { FaChevronDown } from "react-icons/fa";
-
+import { init } from 'ityped'
 
 const Hero = () => {
   const color = useColorModeValue("telegram.500", "telegram.400");
-
+  const textRef = useRef();
+  useEffect(() => {
+    init(textRef.current, {
+      showCursor: true,
+      strings: [
+        "Food Choices Made Easy",
+        "High Quality Recipes",
+        "Tailored Recommendations",
+        "Designed With You In Mind",
+      ],
+    });
+  }, []);
   return (
     <Box
       as="section"
@@ -40,11 +52,11 @@ const Hero = () => {
       </Box>
 
       <Box>
-        <Heading as="h2" fontSize="2xl" fontWeight="300">
-          <Text as="span" color={color}>
-            Food Choices
-          </Text>{" "}
-          Made Easy
+        <Heading as="h2" fontSize="2xl" fontWeight="300"
+        minH={8}>
+           <span
+             ref={textRef}
+           ></span>
         </Heading>
         <Text py="4">
           Your one-stop destination for all things food. Dive into the world
@@ -53,12 +65,12 @@ const Hero = () => {
           Where every bite is an adventure waiting to be savoured!
         </Text>
       </Box>
-      <Link href="/#FAQ" passHref mt={7}>
+      <Link href="#FAQ" passHref mt={7}>
         <motion.div
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           animate={{ y: [0, -5, 0, 5, 0] }}
-          transition={{ duration: 0.8, repeat: Infinity }} // Adjust duration and repeat as needed
+          transition={{ duration: 0.8, repeat: Infinity }}
           borderRadius="full"
           px="4"
           py="2"

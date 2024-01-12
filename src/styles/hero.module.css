@@ -1,4 +1,20 @@
+/* Styles for Hero Section
+By: Kairos */
+
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+
+.ityped-cursor {
+    animation: blink 2s infinite;
+}
+@keyframes blink {
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
 
 .content h1 {
     color: #fff;
