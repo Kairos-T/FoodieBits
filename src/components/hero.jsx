@@ -22,6 +22,17 @@ const Hero = () => {
       ],
     });
   }, []);
+  const handleClickScroll = () => {
+    const element = document.getElementById("FAQ");
+    element.scrollIntoView({ behavior: "smooth" });
+  }
+
+  const variants = {
+    active: {
+      backgroundColor: "#B4B4B4"
+    }
+  }
+
   return (
     <Box
       as="section"
@@ -58,32 +69,44 @@ const Hero = () => {
              ref={textRef}
            ></span>
         </Heading>
-        <Text py="4">
+        <Text py="4" px={{ base: "2", md: "4", lg: "6" }}
+        maxW="4xl"
+        >
           Your one-stop destination for all things food. Dive into the world
           of culinary delights, explore a myriad of food choices, and
           unravel the stories behind your favourite dishes! FoodieBits -
           Where every bite is an adventure waiting to be savoured!
         </Text>
       </Box>
-      <Link href="#FAQ" passHref mt={7}>
+
+      <Box onClick={handleClickScroll} mt={7}
+            cursor="pointer"
+           borderRadius={"50%"}
+           padding={2}
+      >
         <motion.div
+          variants={variants}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          animate={{ y: [0, -5, 0, 5, 0] }}
-          transition={{ duration: 0.8, repeat: Infinity }}
-          borderRadius="full"
+          animate={{ y: [0, -5, 0, 5, 0]
+          }}
+          transition={{ duration:0.8, repeat: Infinity }}
           px="4"
           py="2"
-          color="white"
           fontWeight="semibold"
-          cursor="pointer"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
+
+
         >
-          <FaChevronDown />
+          <Box
+            backgroundColor="rgba(180, 180, 180, 0.2)"
+            borderRadius={"50%"}
+            padding={2}
+          >
+            <FaChevronDown />
+
+          </Box>
         </motion.div>
-      </Link>
+      </Box>
     </Box>
 
 

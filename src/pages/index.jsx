@@ -94,17 +94,10 @@ const Home = () => {
           py="4"
         >
           {" "}
-          <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2">
+          <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2"
+          id="FAQ"
+          >
             Frequently Asked Questions{" "}
-            <chakra.a
-              href={`#FAQ`}
-              pl="2px"
-              fontWeight="500"
-              outline="none"
-              opacity="0"
-              aria-label="anchor"
-            >
-            </chakra.a>
           </Heading>
 
         </Box>
