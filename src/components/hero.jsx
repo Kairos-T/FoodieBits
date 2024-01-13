@@ -35,10 +35,10 @@ const Hero = () => {
       setScrollY(window.scrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -52,7 +52,6 @@ const Hero = () => {
     const element = document.getElementById("FAQ");
     element.scrollIntoView({ behavior: "smooth" });
   };
-
 
 
   return (
@@ -119,7 +118,7 @@ const Hero = () => {
         </Text>
       </Box>
 
-      <Box onClick={handleClickScroll}  cursor="pointer" borderRadius={"50%"} padding={2}>
+      <Box onClick={handleClickScroll} cursor="pointer" borderRadius={"50%"} padding={2}>
         <motion.div
           variants={variants}
           whileHover={{ scale: 1.1 }}
