@@ -36,41 +36,51 @@ const Hero = () => {
   return (
     <Box
       as="section"
+      position="relative"
       display="flex"
       alignItems="center"
       flexDir="column"
       textAlign="center"
-      py="4"
-      height={{ base: "calc(100vh - 4rem)" }}
-    >
-      <Box paddingBottom={5}>
+      minHeight={{ base: "auto", md: "calc(100vh - 4rem)" }}    >
+      <Box  paddingBottom={{ base: 3, md: 5 }}>
         <NextImage
           src="/images/logo.svg"
-          width="350"
-          height="350"
+          width="350px"
+          height="350px"
           alt="FoodieBits Logo"
           priority
         />
         <Box
           className={styles.content}
-          fontSize={{ base: "6xl" }}
+          fontSize={{ base: "5xl", lg: "5xl", xl: "6xl" }}
           py={{ base: "4" }}
-          paddingBottom="100"
+          mt={{ base: "4", md: "4" }}
+          mb={{ base: "4", md: "4" }}
         >
-          <h1>FoodieBits</h1>
-          <h1>FoodieBits</h1>
+          <h1
+            style={{
+              left: "49.5%",
+              transform: "translate(-50%,-50%)"
+
+            }}
+          >FoodieBits</h1>
+          <h1
+            style={{
+              left: "49.5%",
+              transform: "translate(-50%,-50%)"
+            }}>FoodieBits</h1>
         </Box>
       </Box>
 
       <Box>
         <Heading as="h2" fontSize="2xl" fontWeight="300"
-        minH={8}>
+        minH={10}>
            <span
              ref={textRef}
            ></span>
         </Heading>
-        <Text py="4" px={{ base: "2", md: "4", lg: "6" }}
-        maxW="4xl"
+        <Text py={{ base: "2", md: "4" }} px={{ base: "2", md: "4", lg: "6" }} maxW="4xl"
+              fontSize={{ base: "sm", md: "md", lg: "lg" }}
         >
           Your one-stop destination for all things food. Dive into the world
           of culinary delights, explore a myriad of food choices, and
@@ -79,11 +89,7 @@ const Hero = () => {
         </Text>
       </Box>
 
-      <Box onClick={handleClickScroll} mt={7}
-            cursor="pointer"
-           borderRadius={"50%"}
-           padding={2}
-      >
+      <Box onClick={handleClickScroll} mt={{ base: 5, md: 7 }} cursor="pointer" borderRadius={"50%"} padding={2}>
         <motion.div
           variants={variants}
           whileHover={{ scale: 1.1 }}
@@ -94,8 +100,6 @@ const Hero = () => {
           px="4"
           py="2"
           fontWeight="semibold"
-
-
         >
           <Box
             backgroundColor="rgba(180, 180, 180, 0.2)"
