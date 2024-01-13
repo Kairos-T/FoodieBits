@@ -1,8 +1,8 @@
 // Hero section of landing page
 // By: Kairos
 import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
-import React, { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 import NextImage from "next/image";
 import styles from "@/styles/hero.module.css";
 import { FaChevronDown } from "react-icons/fa";
@@ -22,10 +22,25 @@ const Hero = () => {
       ]
     });
   }, []);
-  const handleClickScroll = () => {
-    const element = document.getElementById("FAQ");
-    element.scrollIntoView({ behavior: "smooth" });
-  };
+
+  const controls = useAnimation();
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    controls.start({ opacity: 1, y: 0 });
+  }, [controls]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const variants = {
     // Background color for scroll down button
@@ -33,6 +48,12 @@ const Hero = () => {
       backgroundColor: "#B4B4B4"
     }
   };
+  const handleClickScroll = () => {
+    const element = document.getElementById("FAQ");
+    element.scrollIntoView({ behavior: "smooth" });
+  };
+
+
 
   return (
     <Box
@@ -44,25 +65,33 @@ const Hero = () => {
       textAlign="center"
       minHeight={{ base: "auto", md: "calc(100vh - 4rem)" }}>
       <Box paddingBottom={{ base: 3, md: 5 }}>
-        <NextImage
-          src="/images/logo.svg"
-          width="300px"
-          height="300px"
-          alt="FoodieBits Logo"
-          priority
-        />
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={controls}
+          exit={{ opacity: 0, y: -50 }}
+          transition={{ duration: 1 }}
+          style={{ translateY: `+${scrollY * 0.15}px` }}
+          whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+        >
+          <NextImage
+            src="/images/logo.svg"
+            width="300px"
+            height="300px"
+            alt="FoodieBits Logo"
+            priority
+          />
+        </motion.div>
         <Box
           className={styles.content}
           fontSize={{ base: "5xl", lg: "5xl", xl: "6xl" }}
           py={{ base: "4" }}
-          mt={{ base: "4"}}
-          mb={{ base: "4"}}
+          mt={{ base: "4" }}
+          mb={{ base: "4" }}
         >
           <h1
             style={{
               left: "49.5%",
               transform: "translate(-50%,-50%)"
-
             }}
           >FoodieBits</h1>
           <h1
@@ -74,8 +103,8 @@ const Hero = () => {
       </Box>
 
       <Box>
-        <Heading as="h2" fontSize={{base: "2xl", sm:"xl"}} fontWeight="300"
-                 minH={{ base: "8", sm:"10" }}>
+        <Heading as="h2" fontSize={{ base: "2xl", sm: "xl" }} fontWeight="300"
+                 minH={{ base: "8", sm: "10" }}>
            <span
              ref={textRef}
            ></span>
