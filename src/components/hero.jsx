@@ -89,13 +89,13 @@ const Hero = () => {
         >
           <h1
             style={{
-              left: "49.5%",
+              left: "50%",
               transform: "translate(-50%,-50%)"
             }}
           >FoodieBits</h1>
           <h1
             style={{
-              left: "49.5%",
+              left: "50%",
               transform: "translate(-50%,-50%)"
             }}>FoodieBits</h1>
         </Box>
