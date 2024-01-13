@@ -1,12 +1,12 @@
 // Hero section of landing page
 // By: Kairos
-import { Box, Heading, Link, Text, useColorModeValue } from "@chakra-ui/react";
-import React, { useRef, useEffect } from "react";
-import { motion } from "framer-motion"
+import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
+import React, { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import NextImage from "next/image";
 import styles from "@/styles/hero.module.css";
 import { FaChevronDown } from "react-icons/fa";
-import { init } from 'ityped'
+import { init } from "ityped";
 
 const Hero = () => {
   const color = useColorModeValue("telegram.500", "telegram.400");
@@ -18,20 +18,21 @@ const Hero = () => {
         "Food Choices Made Easy",
         "High Quality Recipes",
         "Tailored Recommendations",
-        "Designed With You In Mind",
-      ],
+        "Designed With You In Mind"
+      ]
     });
   }, []);
   const handleClickScroll = () => {
     const element = document.getElementById("FAQ");
     element.scrollIntoView({ behavior: "smooth" });
-  }
+  };
 
   const variants = {
+    // Background color for scroll down button
     active: {
       backgroundColor: "#B4B4B4"
     }
-  }
+  };
 
   return (
     <Box
@@ -41,12 +42,12 @@ const Hero = () => {
       alignItems="center"
       flexDir="column"
       textAlign="center"
-      minHeight={{ base: "auto", md: "calc(100vh - 4rem)" }}    >
-      <Box  paddingBottom={{ base: 3, md: 5 }}>
+      minHeight={{ base: "auto", md: "calc(100vh - 4rem)" }}>
+      <Box paddingBottom={{ base: 3, md: 5 }}>
         <NextImage
           src="/images/logo.svg"
-          width="350px"
-          height="350px"
+          width="300px"
+          height="300px"
           alt="FoodieBits Logo"
           priority
         />
@@ -54,8 +55,8 @@ const Hero = () => {
           className={styles.content}
           fontSize={{ base: "5xl", lg: "5xl", xl: "6xl" }}
           py={{ base: "4" }}
-          mt={{ base: "4", md: "4" }}
-          mb={{ base: "4", md: "4" }}
+          mt={{ base: "4"}}
+          mb={{ base: "4"}}
         >
           <h1
             style={{
@@ -73,8 +74,8 @@ const Hero = () => {
       </Box>
 
       <Box>
-        <Heading as="h2" fontSize="2xl" fontWeight="300"
-        minH={10}>
+        <Heading as="h2" fontSize={{base: "2xl", sm:"xl"}} fontWeight="300"
+                 minH={{ base: "8", sm:"10" }}>
            <span
              ref={textRef}
            ></span>
@@ -89,14 +90,15 @@ const Hero = () => {
         </Text>
       </Box>
 
-      <Box onClick={handleClickScroll} mt={{ base: 5, md: 7 }} cursor="pointer" borderRadius={"50%"} padding={2}>
+      <Box onClick={handleClickScroll}  cursor="pointer" borderRadius={"50%"} padding={2}>
         <motion.div
           variants={variants}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          animate={{ y: [0, -5, 0, 5, 0]
+          animate={{
+            y: [0, -5, 0, 5, 0]
           }}
-          transition={{ duration:0.8, repeat: Infinity }}
+          transition={{ duration: 0.8, repeat: Infinity }}
           px="4"
           py="2"
           fontWeight="semibold"
