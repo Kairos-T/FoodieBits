@@ -3,7 +3,6 @@ By: Kairos */
 
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
 
-
 .ityped-cursor {
     animation: blink 2s infinite;
 }
@@ -15,6 +14,7 @@ By: Kairos */
         opacity: 0;
     }
 }
+/* Logo Animation: https://codepen.io/drowkid-1/pen/KKroMrJ */
 
 .content h1 {
     color: #fff;
