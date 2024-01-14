@@ -1,6 +1,7 @@
 // Hu Bowen
-import { Box, Flex, Link, Text, useColorModeValue, VStack } from "@chakra-ui/react";
+import { Box, Flex, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import { MAX_WIDTH } from "../../config";
+import NextLink from "next/link";
 
 import { footerData } from "../data/constants";
 
@@ -28,28 +29,35 @@ const Footer = () => {
         >
           {footerData.map((data, index) => (
             <Flex key={index} direction="column" mb="3" gap={1}>
-              <Link
-                fontWeight="500"
+              <NextLink
                 href={data.href}
-                color={useColorModeValue("gray.800", "gray.300")}
               >
-                <Text as="b">
+                <Text as="b"
+                      fontWeight="500"
+                      color={useColorModeValue("gray.800", "gray.300")}
+                      _hover={{ textDecoration: "underline" }}
+                      cursor={"pointer"}
+                >
                   {data.label}
                 </Text>
-              </Link>
+              </NextLink>
               <Flex direction={{ base: "row", md: "column" }}>
                 {data.links.map((link, index) => (
-                  <Link
+                  <NextLink
                     key={index}
-                    py={1}
-                    fontSize={{ base: "sm", sm: "md" }}
                     href={link.href}
-                    mr={{ base: 1, sm: 2, md: 0 }}
-                    color="gray.500"
-                    _hover={{ color: "blue.600" }}
                   >
-                    {link.label}
-                  </Link>
+                    <Text
+                      py={1}
+                      color="gray.500"
+                      _hover={{ color: "blue.600" }}
+                      cursor={"pointer"}
+                      mr={{ base: 1, sm: 2, md: 0 }}
+                      fontSize={{ base: "sm", sm: "md" }}
+                    >
+                      {link.label}
+                    </Text>
+                  </NextLink>
                 ))}
               </Flex>
             </Flex>
