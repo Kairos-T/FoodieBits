@@ -9,29 +9,30 @@ export const navbarLinks = [
 ];
 
 // Home page data (about company content)
+// By: Ruby
 export const data = [
   {
-    title: "Your title",
+    title: "Our History",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora dolorem doloribus repudiandae, possimus quod quas. Ipsum culpa repellat dolorem vero odit iste delectus id, sed iure facere, animi suscipit.",
-    image: "/images/code-review-bro.png"
+      "Fueled by their love for cooking and savoring diverse cuisines, FoodieBits in the brainchild of 2 brothers in 2007 who transformed their humble kitchen experiments into an online sensation. What began as a simple desire to share their gastronomic adventures evolved into a vibrant hub for reputable and reliable recipes as well as trustworthy food reviews.",
+    image: "/images/brothers.jpg"
   },
   {
-    title: "Your title",
+    title: "Our Promise",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora dolorem doloribus repudiandae, possimus quod quas. Ipsum culpa repellat dolorem vero odit iste delectus id, sed iure facere, animi suscipit.",
-    image: "/images/code-review-bro.png"
+      "All our recipes are tried and tested in multiple kitchens, by multiple people - from professional chefs to homecooks to ensure YOU get the best. FoodieBits reviews are always authentic and we do not accept monetary compensation for our reviews. In fact, almost 90% of the reviews written are from anonymous visits and we will always declare at the bottom of our articles if it was done undercover, in partnership with or as part of a media tasting.",
+    image: "/images/turtle.jpg"
   },
   {
-    title: "Your title",
+    title: "Our Growth",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora dolorem doloribus repudiandae, possimus quod quas. Ipsum culpa repellat dolorem vero odit iste delectus id, sed iure facere, animi suscipit.",
-    image: "/images/code-review-bro.png"
+      "From those early days of culinary curiosity, FoodieBits has blossomed into a thriving community of food enthusiasts. Our platform has become a go-to destination for those seeking not only delightful recipes but also genuine insights into the local food scene. Over the years, we've expanded our team, welcoming diverse voices and experiences. As we continue to evolve, our commitment remains unchanged – to share the joy of good food, foster culinary exploration, and celebrate the rich tapestry of flavors that bring us all together.",
+    image: "/images/staff.jpg"
   }
 ];
 
 // FAQs
-// By: Kairos
+// By: Kairos & Ruby
 const faqData = [
   {
     question: "What is FoodieBits?",
@@ -39,33 +40,42 @@ const faqData = [
   },
   {
     question: "Are the recipes on FoodieBits tested and verified?",
-    answer: "Yes, our team ensures that recipes undergo testing before being featured. However, individual preferences may vary, so feel free to adjust ingredients and cooking times to suit your taste."
+    answer: "Yes, our team ensures that recipes undergo testing before being featured. Each recipe is tested in multiple kitchens, and by multiple people - from professionals to homecooks to ensure their quality. However, individual preferences may vary, so feel free to adjust ingredients and cooking times to suit your taste."
   },
   {
     question: "Do you have a mobile app?",
-    answer: "Currently, we do not have a dedicated mobile app, but our website is designed to be mobile-friendly. You can access FoodieBits from your mobile browser for a seamless experience."
+    answer: "Currently, we do not have a dedicated mobile app. However, our website is designed to be mobile-friendly and accessible from your mobile browser."
   },
   {
     question: "How can I report a problem or provide feedback?",
-    answer: "If you encounter any issues or have suggestions for improvement, please use the contact form below to get in touch with us. We appreciate your feedback!"
+    answer: "If you encounter any issues or have suggestions for improvement, please use the contact form under Contact tab to get in-touch with us. We appreciate your feedback and look forward to improving FoodieBits!"
   },
   {
     question: "Can I request specific types of recipes or cuisines?",
-    answer: "Yes, you can! We are always looking to expand our recipe collection, so feel free to let us know what you would like to see through the contact form below."
+    answer: "Certainly! We want FoodieBits to be able to cater to all types of people with a diverse array of tastes. Please submit your requests via the Contact tab's form to get in-touch with us!"
+  },
+  {
+    question: "Can I submit my own recipes to be added to FoodieBits?",
+    answer: "Yes, you can! We are always looking to expand our recipe collection, you can do via the contact under the Contact tab or at our recipe development team's email at FoodieBits_Development@gmail.com."
+  },
+  {
+    question: "Where else can we see more content?",
+    answer: "Apart from our website, FoodieBits has an Instagram - @FoodieBitsSG where we post behind-the-scenes shots from our office and test kitchen. Furthermore, we have a Youtube Channel - FoodieTube, where we have more in-depth guides to various culinary techniques, cuisines as well as taped tutorials on our most popular dishes!",
   }
 ];
 
 export default faqData;
 
 // Footer data (links)
-// By: Bowen
+// By: Bowen & Ruby
 export const footerData = [
   {
     label: "About",
     href: "/",
     links: [
-      { label: "Story", href: "/#About" },
-      { label: "Projects", href: "#" },
+      { label: "Our History", href: "/#About" },
+      { label: "Our Promise", href: "/#About" },
+      { label: "Our Growth", href: "/#About" },
       { label: "FAQ", href: "/#FAQ" }
     ]
   },
@@ -83,20 +93,17 @@ export const footerData = [
     href: "/restaurants",
     links: [
       { label: "Find", href: "/restaurants" },
-      { label: "Rate", href: "#" },
-      { label: "Order", href: "#" },
-      { label: "Talk", href: "#" }
+      { label: "Recommend", href: "/contact" },
+      { label: "Talk", href: "/contact" }
     ]
   },
   {
     label: "Social",
     href: "/contact",
     links: [
-      { label: "Email", href: "#" },
-      { label: "Twitter", href: "#" },
+      { label: "Yotube", href: "#" },
+      { label: "Instagram", href: "#" },
       { label: "Github", href: "#" },
-      { label: "Linkedin", href: "#" },
-      { label: "RSS", href: "#" }
     ]
   }
 ];
