@@ -64,7 +64,7 @@ export const footerData = [
     label: "About",
     href: "/",
     links: [
-      { label: "Story", href: "#" },
+      { label: "Story", href: "/#About" },
       { label: "Projects", href: "#" },
       { label: "FAQ", href: "/#FAQ" }
     ]

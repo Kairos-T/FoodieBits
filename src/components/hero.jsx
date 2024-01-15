@@ -63,7 +63,9 @@ const Hero = () => {
       flexDir="column"
       textAlign="center"
       minHeight={{ base: "auto", md: "calc(100vh - 4rem)" }}>
-      <Box paddingBottom={{ base: 3, md: 5 }}>
+      <Box paddingBottom={{ base: 3, md: 5 }}
+           id={"About"}
+      >
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={controls}
