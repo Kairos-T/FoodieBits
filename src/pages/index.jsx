@@ -39,8 +39,25 @@ const Home = () => {
         }}
       />
         <Hero />
-        <About/>
+        {/*About Section*/}
+        {/*By: Ruby*/}
+        <Box
+          as="section"
+          display="flex"
+          alignItems="center"
+          flexDir="column"
+          textAlign="center"
+          py="4"
+        >
+          {" "}
+          <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2"
+                   id="About"
+          >
+            Our Profile{" "}
+          </Heading>
 
+        </Box>
+        <About/>
 
         {/*FAQ Section*/}
         {/*By: Kairos*/}
