@@ -52,7 +52,7 @@ const faqData = [
   },
   {
     question: "Can I request specific types of recipes or cuisines?",
-    answer: "Certainly! We want FoodieBits to be able to cater to all types of people with a diverse array of tastes. Please submit your requests via the Contact tab's form to get in-touch with us!"
+    answer: "Certainly! We want FoodieBits to be able to cater to all types of people with a diverse array of tastes. Please submit your requests via the contact tab's form to get in-touch with us!"
   },
   {
     question: "Can I submit my own recipes to be added to FoodieBits?",
@@ -73,9 +73,7 @@ export const footerData = [
     label: "About",
     href: "/",
     links: [
-      { label: "Our History", href: "/#About" },
-      { label: "Our Promise", href: "/#About" },
-      { label: "Our Growth", href: "/#About" },
+      { label: "Our Profile", href: "/#About" },
       { label: "FAQ", href: "/#FAQ" }
     ]
   },
