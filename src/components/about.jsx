@@ -1,12 +1,14 @@
-// Hero section of landing page
-// By: Kairos
-import { Box, Heading, Text } from "@chakra-ui/react";
+// About section of landing page
+// By: Ruby
+import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import NextImage from "next/image";
 import { data } from "../data/constants";
 
 const About = () => {
   const isOdd = (num) => num % 2;
+  const textColor = useColorModeValue("gray.700", "gray.200");
+
 
   return (
     <Box
@@ -33,15 +35,21 @@ const About = () => {
           >
             <NextImage
               src={item.image}
-              width="500"
-              height="500"
+              width="350"
+              height="350"
+              layout="responsive"
+              objectFit={"cover"}
+              overflow={"hidden"}
               alt={item.title}
+              style={{ borderRadius: '10px' }}
             />
           </Box>
 
           <Box w={{ lg: "50%" }}>
-            <Heading as="h1">{item.title}</Heading>
-            <Text py="4">{item.description}</Text>
+            <Heading as="h3" fontSize="3xl" >{item.title}</Heading>
+            <Text py="4"
+                  color={textColor}
+            >{item.description}</Text>
           </Box>
         </Box>
       ))}

@@ -49,7 +49,7 @@ const Hero = () => {
     }
   };
   const handleClickScroll = () => {
-    const element = document.getElementById("FAQ");
+    const element = document.getElementById("About");
     element.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -64,7 +64,7 @@ const Hero = () => {
       textAlign="center"
       minHeight={{ base: "auto", md: "calc(100vh - 4rem)" }}>
       <Box paddingBottom={{ base: 3, md: 5 }}
-           id={"About"}
+           id={"Hero"}
       >
         <motion.div
           initial={{ opacity: 0, y: -50 }}
