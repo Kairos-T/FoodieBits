@@ -15,19 +15,19 @@ export const data = [
     title: "Our History",
     description:
       "Fueled by their love for cooking and savoring diverse cuisines, FoodieBits in the brainchild of 2 brothers in 2007 who transformed their humble kitchen experiments into an online sensation. What began as a simple desire to share their gastronomic adventures evolved into a vibrant hub for reputable and reliable recipes as well as trustworthy food reviews.",
-    image: "/images/brothers.jpg"
+    image: "/images/about/brothers.jpg"
   },
   {
     title: "Our Promise",
     description:
       "All our recipes are tried and tested in multiple kitchens, by multiple people - from professional chefs to homecooks to ensure YOU get the best. FoodieBits reviews are always authentic and we do not accept monetary compensation for our reviews. In fact, almost 90% of the reviews written are from anonymous visits and we will always declare at the bottom of our articles if it was done undercover, in partnership with or as part of a media tasting.",
-    image: "/images/turtle.jpg"
+    image: "/images/about/turtle.jpg"
   },
   {
     title: "Our Growth",
     description:
       "From those early days of culinary curiosity, FoodieBits has blossomed into a thriving community of food enthusiasts. Our platform has become a go-to destination for those seeking not only delightful recipes but also genuine insights into the local food scene. Over the years, we've expanded our team, welcoming diverse voices and experiences. As we continue to evolve, our commitment remains unchanged – to share the joy of good food, foster culinary exploration, and celebrate the rich tapestry of flavors that bring us all together.",
-    image: "/images/staff.jpg"
+    image: "/images/about/staff.jpg"
   }
 ];
 
