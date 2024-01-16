@@ -91,15 +91,15 @@ export const footerData = [
     href: "/restaurants",
     links: [
       { label: "Find", href: "/restaurants" },
-      { label: "Recommend", href: "/contact" },
-      { label: "Talk", href: "/contact" }
+      { label: "Recommend", href: "/restaurants" },
+      { label: "Talk", href: "/restaurants" }
     ]
   },
   {
     label: "Social",
     href: "/contact",
     links: [
-      { label: "Yotube", href: "#" },
+      { label: "Youtube", href: "#" },
       { label: "Instagram", href: "#" },
       { label: "Github", href: "#" },
     ]
