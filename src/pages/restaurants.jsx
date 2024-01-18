@@ -18,7 +18,6 @@ const options = {
   keys: ["title"]
 };
 
-
 const Restaurants = ({ responseObject }) => {
   const router = useRouter();
   const color = useColorModeValue("telegram.500", "telegram.400");
@@ -59,6 +58,25 @@ const Restaurants = ({ responseObject }) => {
       filteredPosts(router.query?.location);
     }
   }, [router]);
+
+  useEffect(() => {
+    const restaurantContainer = document.getElementById("restaurantContainer");
+    if (restaurantContainer) {
+      restaurantContainer.style.transform = "translateY(20px)";
+      let opacity = 0;
+      let position = 20;
+      const smoothFade = () => {
+        opacity += 0.04;
+        position -= 0.4;
+        restaurantContainer.style.opacity = opacity;
+        restaurantContainer.style.transform = `translateY(${position}px)`;
+        if (opacity < 1) {
+          requestAnimationFrame(smoothFade);
+        }
+      };
+      requestAnimationFrame(smoothFade);
+    }
+  }, [restaurants]);
 
   const title = "Restaurants";
   const description = seo.description;
@@ -134,6 +152,7 @@ const Restaurants = ({ responseObject }) => {
         </Flex>
 
         <motion.div
+          id={"restaurantContainer"}
           key={searchValue}
           initial={{ y: 20 }}
           animate={{ y: 0 }}
