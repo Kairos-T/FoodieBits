@@ -41,12 +41,12 @@ const About = () => {
               objectFit={"cover"}
               overflow={"hidden"}
               alt={item.title}
-              style={{ borderRadius: '10px' }}
+              style={{ borderRadius: "10px" }}
             />
           </Box>
 
           <Box w={{ lg: "50%" }}>
-            <Heading as="h3" fontSize="3xl" >{item.title}</Heading>
+            <Heading as="h3" fontSize="3xl">{item.title}</Heading>
             <Text py="4"
                   color={textColor}
             >{item.description}</Text>

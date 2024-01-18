@@ -6,6 +6,7 @@ By: Kairos */
 .ityped-cursor {
     animation: blink 2s infinite;
 }
+
 @keyframes blink {
     50% {
         opacity: 1;
@@ -14,6 +15,7 @@ By: Kairos */
         opacity: 0;
     }
 }
+
 /* Logo Animation: https://codepen.io/drowkid-1/pen/KKroMrJ */
 
 .content h1 {

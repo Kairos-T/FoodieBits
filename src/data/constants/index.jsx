@@ -60,7 +60,7 @@ const faqData = [
   },
   {
     question: "Where else can we see more content?",
-    answer: "Apart from our website, FoodieBits has an Instagram - @FoodieBitsSG where we post behind-the-scenes shots from our office and test kitchen. Furthermore, we have a Youtube Channel - FoodieTube, where we have more in-depth guides to various culinary techniques, cuisines as well as taped tutorials on our most popular dishes!",
+    answer: "Apart from our website, FoodieBits has an Instagram - @FoodieBitsSG where we post behind-the-scenes shots from our office and test kitchen. Furthermore, we have a Youtube Channel - FoodieTube, where we have more in-depth guides to various culinary techniques, cuisines as well as taped tutorials on our most popular dishes!"
   }
 ];
 
@@ -101,7 +101,7 @@ export const footerData = [
     links: [
       { label: "Youtube", href: "#" },
       { label: "Instagram", href: "#" },
-      { label: "Github", href: "#" },
+      { label: "Github", href: "#" }
     ]
   }
 ];

@@ -46,7 +46,8 @@ export default function RestaurantReview({ review }) {
   return (
     <Box display="flex" flexDir="column" bgColor={bgColor} rounded={5} p={5} gap={3} marginBottom={3}>
       <Box display="flex" height="min-content" gap={5}>
-        <Image src={review.profile_photo_url} alt="Profile picture" height="64px" fallbackSrc="/images/restaurants/default_pfp.png" />
+        <Image src={review.profile_photo_url} alt="Profile picture" height="64px"
+               fallbackSrc="/images/restaurants/default_pfp.png" />
         <Box display="flex" flexDir="column" justifyContent="center">
           <Text as="b">{review.author_name}</Text>
           <RestaurantRating rating={review.rating} size={1} />

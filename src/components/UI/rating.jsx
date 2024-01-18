@@ -1,7 +1,7 @@
 import { Box, Text } from "@chakra-ui/react";
 import Rating from "react-rating";
 
-export default function RestaurantRating({ rating, size=2 }) {
+export default function RestaurantRating({ rating, size = 2 }) {
   return (
     <Box display="flex" alignItems="center" gap={3}>
       <Rating
