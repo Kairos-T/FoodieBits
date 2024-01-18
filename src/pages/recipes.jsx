@@ -63,7 +63,6 @@ const Recipe = ({ posts }) => {
   useEffect(() => {
     const recipeContainer = document.getElementById("recipeContainer");
     if (recipeContainer) {
-      recipeContainer.style.opacity = 0;
       recipeContainer.style.transform = "translateY(20px)";
       let opacity = 0;
       let position = 20;

@@ -1,4 +1,4 @@
-import { Box, Button, chakra, Heading, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Heading, useColorModeValue } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import Faq from "../components/faq";
 import { motion } from "framer-motion";
@@ -57,7 +57,7 @@ const Home = () => {
           </Heading>
 
         </Box>
-        <About/>
+        <About />
 
         {/*FAQ Section*/}
         {/*By: Kairos*/}
@@ -71,7 +71,7 @@ const Home = () => {
         >
           {" "}
           <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2"
-          id="FAQ"
+                   id="FAQ"
           >
             Frequently Asked Questions{" "}
           </Heading>

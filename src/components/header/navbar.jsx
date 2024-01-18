@@ -50,7 +50,8 @@ const Navbar = () => {
         zIndex="2"
       >
         {navbarLinks.map(({ href, label }) => (
-          <chakra.li key={href} listStyleType="none" px={{ lg: "8" }} py={{ base: "3", lg: "0" }} _hover={{color:hoverColor, transition: "background-color 0.3s ease-in-out"}}>
+          <chakra.li key={href} listStyleType="none" px={{ lg: "8" }} py={{ base: "3", lg: "0" }}
+                     _hover={{ color: hoverColor, transition: "background-color 0.3s ease-in-out" }}>
             <NextLink href={href}>
               <a onClick={closeMenu}>{label}</a>
             </NextLink>

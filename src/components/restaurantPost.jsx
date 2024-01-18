@@ -40,6 +40,8 @@ export default function RestaurantPost({ responses, restaurant }) {
         key={title}
         onClick={onOpen}
         cursor="pointer"
+        _hover={{ transform: "scale(1.05)" }}
+        transition="transform 0.3s ease-in-out"
       >
         <ImageCarousel
           images={images}
