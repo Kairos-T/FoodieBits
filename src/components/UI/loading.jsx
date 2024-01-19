@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Spinner, Text } from "@chakra-ui/react";
 
 const Loading = ({ messages = ["Synthesizing the best recipes...", "Preparing ingredients...", "Chopping up garlic...", "Cooking up your dish...", "Plating your dish..."] }) => {
-  const [messageIndex, setMessageIndex] = useState(0);
+  const [messageIndex, setMessageIndex] = useState(() => Math.floor(Math.random() * messages.length));
 
   useEffect(() => {
     const interval = setInterval(() => {
