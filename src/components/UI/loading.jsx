@@ -2,10 +2,12 @@
 // By: Kairos
 
 import React, { useEffect, useState } from "react";
-import { Box, Spinner, Text } from "@chakra-ui/react";
+import { Box, Spinner, Text, useColorModeValue } from "@chakra-ui/react";
 
 const Loading = ({ messages = ["Synthesizing the best recipes...", "Preparing ingredients...", "Chopping up garlic...", "Cooking up your dish...", "Plating your dish..."] }) => {
   const [messageIndex, setMessageIndex] = useState(() => Math.floor(Math.random() * messages.length));
+  const messageColor = useColorModeValue("gray.800", "gray.200");
+  const backgroundColor = useColorModeValue("rgba(245, 245, 245, 0.9)", "rgba(10, 10, 10, 0.9)");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -28,12 +30,12 @@ const Loading = ({ messages = ["Synthesizing the best recipes...", "Preparing in
       display="flex"
       alignItems="center"
       justifyContent="center"
-      background="rgba(255, 255, 255, 0.9)"
+      background={backgroundColor}
       zIndex="1000"
     >
       <Box textAlign="center">
         <Spinner size="xl" color="blue.500" thickness="4px" role="status" aria-hidden="true" />
-        <Text mt="4" tabIndex={0}>{messages[messageIndex]}</Text>
+        <Text mt="4" color={messageColor} tabIndex={0}>{messages[messageIndex]}</Text>
       </Box>
     </Box>
   );
