@@ -139,7 +139,7 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
                 backgroundSize: `calc(100% + ${scrollY * 0.4}px)`,
                 backgroundPosition: `center`,
                 borderRadius: "10px",
-                overflow: "hidden",
+                overflow: "hidden"
               }}
             >
               <Box
