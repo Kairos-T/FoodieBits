@@ -135,11 +135,11 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
               textAlign="center"
               style={{
                 position: "relative",
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url(${img})`,
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.5)), url(${img})`,
                 backgroundSize: `calc(100% + ${scrollY * 0.4}px)`,
                 backgroundPosition: `center`,
                 borderRadius: "10px",
-                overflow: "hidden"
+                overflow: "hidden",
               }}
             >
               <Box
@@ -152,7 +152,8 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
                 </Heading>
 
                 <Flex direction="column">
-                  <Text fontSize="16px" color={color} py="1">
+                  <Text size="md" color={color} py="1" fontWeight="semibold"
+                  >
                     {frontMatter.author} /{" "}
                     {dayjs(frontMatter.publishedAt).format("DD MMMM, YYYY")} /{" "}
                     {frontMatter.readingTime.text}
