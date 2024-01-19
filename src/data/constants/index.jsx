@@ -32,7 +32,7 @@ export const data = [
 ];
 
 // FAQs
-// By: Kairos & Ruby
+// By: Kairos
 const faqData = [
   {
     question: "What is FoodieBits?",
@@ -52,22 +52,18 @@ const faqData = [
   },
   {
     question: "Can I request specific types of recipes or cuisines?",
-    answer: "Certainly! We want FoodieBits to be able to cater to all types of people with a diverse array of tastes. Please submit your requests via the contact tab's form to get in-touch with us!"
+    answer: "Certainly! We want FoodieBits to be able to cater to all types of people with a diverse array of tastes. Please submit your requests via the contact form in the contact tab, or email us at info@foodiebits.com!"
   },
   {
     question: "Can I submit my own recipes to be added to FoodieBits?",
-    answer: "Yes, you can! We are always looking to expand our recipe collection, you can do via the contact under the Contact tab or at our recipe development team's email at FoodieBits_Development@gmail.com."
-  },
-  {
-    question: "Where else can we see more content?",
-    answer: "Apart from our website, FoodieBits has an Instagram - @FoodieBitsSG where we post behind-the-scenes shots from our office and test kitchen. Furthermore, we have a Youtube Channel - FoodieTube, where we have more in-depth guides to various culinary techniques, cuisines as well as taped tutorials on our most popular dishes!"
+    answer: "Yes, you can! We are always looking to expand our recipe collection, you can reach us via the contact form in the contact tab, or email us at info@foodiebits.com!"
   }
 ];
 
 export default faqData;
 
 // Footer data (links)
-// By: Bowen & Ruby
+// By: Bowen
 export const footerData = [
   {
     label: "About",
