@@ -18,8 +18,7 @@ const DarkModeToggle = () => {
       _hover={{
         color: hoverColor,
         bgColor: "rgba(180, 180, 180, 0.2)",
-        transform: "scale(1.1)",
-        transition: "background-color 0.3s ease-in-out"
+        transition: "color 0.3s ease-in-out"
       }}
       onClick={toggleColorMode}
     >
