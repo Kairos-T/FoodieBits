@@ -41,7 +41,7 @@ const NotFoundData = () => [
     heading: "A Dog Ate This Page",
     message: "Your dog is cute but honestly a menace. Where are my shoes? Where is my graduation certificate? Where is the chocolate cake I baked for my Aunt’s birthday? And why did you take your dog to the vet on that same Thursday?!",
     image: "/images/404/dog.png"
-  },
+  }
 ];
 
 const NotFound = ({}) => {
@@ -58,7 +58,7 @@ const NotFound = ({}) => {
 
   if (!notFoundData) {
     return (
-      <Skeleton height="20rem" width="100%" />
+      <Skeleton height="300px" width="100%" />
     );
   }
 
@@ -96,7 +96,8 @@ const NotFound = ({}) => {
             {heading}
           </Heading>
           <Image
-            src={image} _hover={{ transform: "scale(1.1)" }} transition="all 0.2s ease-in-out"  alt="404 Img" maxH="300px" mb="4" fallback={<Skeleton borderRadius="md" boxSize="100%" />}
+            src={image} _hover={{ transform: "scale(1.1)" }} transition="all 0.2s ease-in-out" alt="404 Img"
+            maxH="300px" mb="4" fallback={<Skeleton borderRadius="md" height="300px" />}
           />
           <Text>{message}</Text>
           <Button mt="4">
