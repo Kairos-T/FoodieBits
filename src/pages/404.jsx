@@ -97,7 +97,7 @@ const NotFound = ({}) => {
           </Heading>
           <Image
             src={image} _hover={{ transform: "scale(1.1)" }} transition="all 0.2s ease-in-out" alt="404 Img"
-            maxH="300px" mb="4" fallback={<Skeleton borderRadius="md" height="300px" />}
+            height="300px" mb="4" fallback={<Skeleton borderRadius="md" height="300px" />}
           />
           <Text>{message}</Text>
           <Button mt="4">
