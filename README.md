@@ -29,7 +29,7 @@ This website is built by: Kairos Tay, Hu Bowen, Wayne Chia and Ruby Lee as part 
 
 ### Libraries Used & Reasoning
 
-UI:
+**UI:**
 
 - [Chakra UI](https://chakra-ui.com/docs/getting-started)
     - Chakra UI is a component library that provides a set of accessible, reusable, and composable React components that
@@ -46,12 +46,14 @@ UI:
     - ityped is a library that allows for typing animations. We decided to use it to add a typing animation to the
       landing page to make it more interesting, giving the users ample information without overwhelming them with too
       much text at once.
-      Utilities:
-      Recipe Page:
-    - [dayjs](https://day.js.org/)
-        - dayjs is a library that allows for manipulation of dates and times. It was used to format the publish date of
-          the recipes in the recipe search page. We decided to use it as opposed to the native JavaScript Date object as
-          it can be more easily manipulated and formatted.
+
+**Utilities:**
+Recipe Page:
+
+- [dayjs](https://day.js.org/)
+    - dayjs is a library that allows for manipulation of dates and times. It was used to format the publish date of
+      the recipes in the recipe search page. We decided to use it as opposed to the native JavaScript Date object as
+      it can be more easily manipulated and formatted.
     - [fuse.js](https://fusejs.io/)
         - fuse.js is a library that allows for fuzzy-searching, which is a type of search that will find results even
           when there are typos or spelling mistakes. It was used to implement the search function in the recipe search
