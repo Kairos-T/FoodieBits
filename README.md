@@ -2,6 +2,7 @@
 
 FoodieBits is a website that acts as a one-stop platform for all food lovers. It is packed with various features, such
 as a learning platform for cuisines, a recipe search engine, and a restaurant finder.
+
 This website is built by: Kairos Tay, Hu Bowen, Wayne Chia and Ruby Lee as part of our CSS final project.
 
 ## Table of Contents
@@ -48,10 +49,11 @@ This website is built by: Kairos Tay, Hu Bowen, Wayne Chia and Ruby Lee as part 
       much text at once.
 
 **Utilities:**
+
 Recipe Page:
 
 - [dayjs](https://day.js.org/)
-    - dayjs is a library that allows for manipulation of dates and times. It was used to format the publish date of
+    - dayjs is a library that allows for manipulation of dates and times. It was used to format the published date of
       the recipes in the recipe search page. We decided to use it as opposed to the native JavaScript Date object as
       it can be more easily manipulated and formatted.
     - [fuse.js](https://fusejs.io/)
