@@ -69,6 +69,19 @@ Recipe Page:
       markdown file. It was used to extract the metadata from the recipes in MDX format to be used for utilities
       like sorting and tagging.
 
+Restaurants Page:
+
+- [react-multi-carousel](https://www.npmjs.com/package/react-multi-carousel)
+    - react-multi-carousel is a library that provides a responsive and customizable carousel component for React
+      applications. It allows one to display multiple items in a slide, with the ability to customize the number of
+      items per slide based on the viewport size. This library is used to create a interactive display of images to
+      showcase restaurants.
+
+- [react-rating](https://www.npmjs.com/package/react-rating)
+    - react-rating is a library that allows for the easy creation and manipulation of rating components, such as stars
+      or hearts, in a React application. It provides both read-only and interactive modes, making it versatile for
+      different use cases. This library is used to display the rating of a restaurant taken from the Google Maps API.
+
 ### Project Structure
 
 - [Chakra UI](https://chakra-ui.com/docs/getting-started)
