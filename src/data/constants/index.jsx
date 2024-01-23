@@ -154,3 +154,22 @@ export const restaurantData = [{
   images: ["https://media.timeout.com/images/103687060/1372/772/image.webp", "https://media.timeout.com/images/103687057/1372/772/image.webp", "https://media.timeout.com/images/103687056/1372/772/image.webp"],
   placeId: "ChIJhyAGsKkZ2jERMy2EGAnyv4k"
 }];
+
+// Wayne Constants Section
+export const entries = [
+  { color: 0xcc8b3a, height: 1 },
+  { color: 0x563071, height: 2 },
+  { color: 0x3c4b6e, height: 4 },
+  { color: 0x8f221f, height: 8 }
+];
+export const latlng = [
+  ["1.3521", "103.8198"],
+  ["4.2105", "101.9758"],
+  ["22.3193", "114.1694"]
+];
+
+export const sceneColor = {
+  // Background, Material
+  light: ["#edf2f7", "#1a202c"],
+  dark: ["#1a202c", "#ffffff"]
+};
