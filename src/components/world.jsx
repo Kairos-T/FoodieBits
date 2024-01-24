@@ -1,40 +1,86 @@
 // Wayne
-const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-const latLngToVector = ({ lat, lng, radius, height }) => {
-  const phi = lat * Math.PI / 180;
-  const theta = (lng - 180) * Math.PI / 180;
-  const x = -(radius + height) * Math.cos(phi) * Math.cos(theta);
-  const y = (radius + height) * Math.sin(phi);
-  const z = (radius + height) * Math.cos(phi) * Math.sin(theta);
-  return { x, y, z };
-};
+// Import usages
+import { useState, useEffect } from "react";
+import * as Three from "three";
+import { gsap } from "gsap";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { entries, cuisineCoords } from "../data/constants";
 
 // Initialise Globe Scene for ThreeJS
-
 // Export default
+const ThreeGlobeScene = (windowSize, color) => {
+  const cleanUp = (globe) => {
+    if (globe) {
+      console.log(`Before ${globe.globeContainer.childNodes.length}`);
+      if (globe.globeContainer.childNodes.length > 0) {
+        globe.globeContainer.removeChild(globe.renderer.domElement);
+      }
+      console.log(`After ${globe.globeContainer.childNodes.length}`);
+    }
+  };
 
-export default class earth {
+  const [globe, setGlobe] = useState(null);
+
+  useEffect(() => {
+    const initGlobeScene = () => {
+      console.log("Start Init");
+      // Three.js code to set up your 3D scene
+      const sphere = new SphereGlobe(windowSize, 8, color[0], color[1]).initSphere();
+      setGlobe(sphere);
+    };
+    initGlobeScene();
+    return () => {
+      cleanUp(globe);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Three.js code to set up your 3D scene
+    if (globe) {
+      globe.updateSize(windowSize);
+      console.log(`Globe.jsx: ${windowSize}`);
+      // Already rendered in
+      // globe.globeContainer.appendChild(globe.renderer.domElement);
+      // return () => { if (globe.globeContainer.childNodes.length > 0) { globe.globeContainer.removeChild(globe.renderer.domElement); } };
+    }
+  }, [windowSize]);
+
+  useEffect(() => {
+    if (globe) {
+      globe.updateColor(color);
+      console.log(`Globe.jsx: ${color}`);
+      // Already rendered in
+      // globe.globeContainer.appendChild(globe.renderer.domElement);
+      // return () => { if (globe.globeContainer.childNodes.length > 0) { globe.globeContainer.removeChild(globe.renderer.domElement); } };
+    }
+  }, [color]);
+
+  useEffect(() => {
+    // Animation Loop
+    const renderGlobeScene = () => {
+      if (globe) {
+        globe.render(1);
+        window.globe = globe;  // Assign to window for debugging
+      }
+      requestAnimationFrame(renderGlobeScene);
+    };
+    renderGlobeScene();
+    // Clean up Three.js resources when component unmounts
+    return () => {
+      cleanUp(globe);
+    };
+  }, [globe]);
+
+  return {};
+};
+export default ThreeGlobeScene;
+
+class SphereGlobe {
   constructor(windowSize, radius, bColor, mColor) {
     // Variables to be set
     this.radius = radius;
     this.size = radius * 0.04;
     this.color = { b: bColor, m: mColor };
-
-    // Earth Group
-    this.group = new Three.Group()
-    this.group.name = "group";
-    this.group.scale.set(0, 0, 0)
-    this.earthGroup = new Three.Group()
-    this.group.add(this.earthGroup)
-    this.earthGroup.name = "earthG";
-
-    // Point markers
-    this.markupPoint = new Group()
-    this.markupPoint.name = "markupPoint"
-    this.waveMeshArr = []
-
-    // Auto Earth Rotation
-    this.isRotation = true;
 
     // Three.js code to set up your 3D scene
     this.scene = new Three.Scene();
@@ -52,6 +98,7 @@ export default class earth {
     this.renderer.setClearColor(this.color.b); // Set the clear color to background color
 
     this.globeContainer = document.getElementById("three-container");
+    this.group = new Three.Group();
     // this.clock = new Three.Clock(false);
     this.shouldRotate = true;
 
@@ -92,6 +139,7 @@ export default class earth {
     this.globe = new Three.Points(this.sphereGeometry, this.pointMaterial);
     console.log(this.globe.material);
     this.globe.name = "earth";
+    this.group.add(this.globe);
   };
   /*
   // .init Function 2 Render data points
@@ -318,3 +366,43 @@ export default class earth {
     }
   }
 }
+
+/*
+  useEffect(() => {
+    // Three.js code to set up your 3D scene
+    const camera = new Three.PerspectiveCamera(45, windowSize[0] / windowSize[1], 0.1, 100);
+    camera.position.set(0, 0, 100);
+
+    const scene = new Three.Scene();
+    scene.background = new Three.Color(color[0]);
+
+    const geometry = new Three.SphereGeometry(8, 64, 64);
+    const material = new Three.MeshBasicMaterial({ color: color[1] });
+    const mesh = new Three.Mesh(geometry, material);
+    scene.add(mesh);
+
+    const renderer = new Three.WebGLRenderer({ antialias: true });
+    renderer.setSize(windowSize[0], windowSize[1]);
+
+    const container = document.getElementById("three-container");
+    container.appendChild(renderer.domElement);
+
+    // Animation
+    let t = 1
+    const animate = (time) => {
+      // Update Three.js scene here
+      mesh.rotation.x = time/1000;
+      mesh.rotation.y = time/1000;
+      mesh.rotation.z = time/2000;
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+      time++
+    };
+    animate(t);
+
+    // Clean up Three.js resources when component unmounts
+    return () => {
+      container.removeChild(renderer.domElement);
+    };
+  })
+*/

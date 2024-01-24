@@ -6,7 +6,7 @@ import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { sceneColor } from "../data/constants";
 
 import React, { useEffect, useState } from "react";
-import ThreeGlobeScene from "@/components/globe.jsx";
+import ThreeGlobeScene from "@/components/world.jsx";
 
 const Cuisines = () => {
   const title = "Cuisines";

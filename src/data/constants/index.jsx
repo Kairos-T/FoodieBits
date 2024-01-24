@@ -162,11 +162,64 @@ export const entries = [
   { color: 0x3c4b6e, height: 4 },
   { color: 0x8f221f, height: 8 }
 ];
-export const latlng = [
-  ["1.3521", "103.8198"],
-  ["4.2105", "101.9758"],
-  ["22.3193", "114.1694"]
-];
+export const cuisineCoords = {
+  china: [
+    { name: "China 中国",
+      N: 35.8617,
+      E: 104.1954 },
+    [
+      { name: "Guangdong 广东",
+        N: 23.379032,
+        E: 113.763283,
+        sz:
+          { name: "Shenzhen 深圳",
+          N: 22.542883,
+          E: 114.062996}
+      },
+      { name: "Fujian 福建",
+        N: 25.924480,
+        E: 118.278992 },
+      { name: "Hunan",
+        N: 28.228001,
+        E: 112.939003 },
+      { name: "Jiangsu",
+        N: 33.140171,
+        E: 119.788925},
+      { name: "Shandong",
+        N: 37.80060640,
+        E: 122.26999180 },
+      { name: "Sichuan",
+        N: 31.456781,
+        E: 102.843018},
+      { name: "Zhejiang",
+        N: 29.14164320,
+        E: 119.78892480,
+        hz:
+          { name: "Hangzhou 杭州",
+          N: 30.274084,
+          E: 120.155067 },},
+      { name: "Hong Kong 香港",
+        N: 22.396427,
+        E: 114.109497, }
+    ]
+  ],
+  sea: [
+    { name: "Singapore 新加坡",
+      N: 1.3521,
+      E: 103.8198 },
+    { name: "Malaysia 马拉西亚",
+      N: 4.2105,
+      E: 101.9758, }
+  ],
+  west: [
+    { name: "USA",
+      N: 37.0902,
+      E: 275.7129},
+    { name: "England",
+      N: 52.3555,
+      E: 359.82421875}
+  ]
+}
 
 export const sceneColor = {
   // Background, Material
