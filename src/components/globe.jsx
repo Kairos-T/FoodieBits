@@ -1,10 +1,11 @@
 // Wayne
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import * as Three from "three";
 import { gsap } from "gsap";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 import { entries, latlng } from "../data/constants";
+
 const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 const latLngToVector = ({ lat, lng, radius, height }) => {
   const phi = lat * Math.PI / 180;
@@ -16,22 +17,29 @@ const latLngToVector = ({ lat, lng, radius, height }) => {
 };
 
 // Initialise Globe Scene for ThreeJS
-let globe;
 
 // Export default
 const ThreeGlobeScene = (windowSize, color) => {
   const cleanUp = (globe) => {
-    console.log(`Before ${globe.globeContainer.childNodes.length}`);
-    if (globe.globeContainer.childNodes.length > 0) {
-      globe.globeContainer.removeChild(globe.renderer.domElement);
+    if (globe) {
+      console.log(`Before ${globe.globeContainer.childNodes.length}`);
+      if (globe.globeContainer.childNodes.length > 0) {
+        globe.globeContainer.removeChild(globe.renderer.domElement);
+      }
+      console.log(`After ${globe.globeContainer.childNodes.length}`);
     }
-    console.log(`After ${globe.globeContainer.childNodes.length}`);
   };
+
+  const [globe, setGlobe] = useState(null);
+
   useEffect(() => {
-    console.log("Start Init");
-    // Three.js code to set up your 3D scene
-    globe = new SphereGlobe(windowSize, 1000, color[0], color[1]);
-    globe.initSphere();
+    const initGlobeScene = () => {
+      console.log("Start Init");
+      // Three.js code to set up your 3D scene
+      const sphere = new SphereGlobe(windowSize, 8, color[0], color[1]).initSphere();
+      setGlobe(sphere);
+    };
+    initGlobeScene();
     return () => {
       cleanUp(globe);
     };
@@ -40,7 +48,7 @@ const ThreeGlobeScene = (windowSize, color) => {
   useEffect(() => {
     // Three.js code to set up your 3D scene
     if (globe) {
-      globe.renderer.setSize(windowSize[0], windowSize[1]);
+      globe.updateSize(windowSize);
       console.log(`Globe.jsx: ${windowSize}`);
       // Already rendered in
       // globe.globeContainer.appendChild(globe.renderer.domElement);
@@ -50,7 +58,7 @@ const ThreeGlobeScene = (windowSize, color) => {
 
   useEffect(() => {
     if (globe) {
-      globe.scene.background = new Three.Color(color[0]);
+      globe.updateColor(color);
       console.log(`Globe.jsx: ${color}`);
       // Already rendered in
       // globe.globeContainer.appendChild(globe.renderer.domElement);
@@ -60,13 +68,21 @@ const ThreeGlobeScene = (windowSize, color) => {
 
   useEffect(() => {
     // Animation Loop
-    globe.render(1);
-
+    const renderGlobeScene = () => {
+      if (globe) {
+        globe.render(1);
+        window.globe = globe;  // Assign to window for debugging
+      }
+      requestAnimationFrame(renderGlobeScene);
+    };
+    renderGlobeScene();
     // Clean up Three.js resources when component unmounts
     return () => {
       cleanUp(globe);
     };
   }, [globe]);
+
+  return {};
 };
 export default ThreeGlobeScene;
 
@@ -75,47 +91,50 @@ class SphereGlobe {
     // Variables to be set
     this.radius = radius;
     this.size = radius * 0.04;
-    this.color = {
-      b: { bColor },
-      m: { mColor }
-    };
-    this.shouldRotate = true;
+    this.color = { b: bColor, m: mColor };
 
     // Three.js code to set up your 3D scene
     this.scene = new Three.Scene();
 
     // Set up perspective camera
-    this.camera = new Three.PerspectiveCamera(70, windowSize[0] / windowSize[1], 1, radius * 5);
-    this.mouse = new Three.Vector2();
-    this.camera.position.z = radius * 2.5;
+    this.camera = new Three.PerspectiveCamera(45, windowSize[0] / windowSize[1], 0.1, radius * 100);
+    // this.mouse = new Three.Vector2();
+    // this.camera.position.z = radius * 2.5;
     // this.camera.rotation.z *= 0.2;
-
-    this.group = new Three.Group();
-    this.clock = new Three.Clock(true);
 
     // Set up renderer
     this.renderer = new Three.WebGLRenderer({ antialiasing: true });
     this.renderer.setSize(windowSize[0], windowSize[1]);
     this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.setClearColor(this.color.b); // Set the clear color to background color
 
-    // Append the renderer's DOM element to the component's container
-    const container = document.getElementById("three-container");
-    this.globeContainer = container;
-    container.appendChild(this.renderer.domElement);
+    this.globeContainer = document.getElementById("three-container");
+    this.group = new Three.Group();
+    // this.clock = new Three.Clock(false);
+    this.shouldRotate = true;
 
     // Create Data Points for Sphere
-    this.cubeGeometry = new Three.BoxGeometry(1, 1, 10);
+    // this.cubeGeometry = new Three.BoxGeometry(1, 1, 10);
     this.center = new Three.Vector3(0, 0, 0);
   }
 
   initSphere() {
-    this.renderSphere();
-    this.renderDataPoints();
-    this.bindEvents();
-    this.setupLights();
+    // Append the renderer's DOM element to the component's container
+    this.globeContainer.appendChild(this.renderer.domElement);
+    console.log(this.color.b);
+    console.log("where");
+    this.scene.background = new Three.Color(this.color.b);
 
+    this.renderSphere();
+    // this.renderDataPoints();
+    // this.setupLights();
+    // this.bindEvents();
+
+    this.camera.position.set(0, 0, 28);
+    this.camera.lookAt(this.center);
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.update();
+    console.log(this.scene);
     return this;
   }
 
@@ -123,13 +142,17 @@ class SphereGlobe {
   // .init Function 1 Render sphere
   renderSphere = () => {
     // // Create Sphere and Add sphere to group
-    this.scene.background = new Three.Color(this.color.b);
-    const material = new Three.MeshBasicMaterial({ color: this.color.m, vertexColors: Three.FaceColors });
-    const geometry = new Three.SphereGeometry(this.radius, 32, 32);
-    const sphere = new Three.Mesh(geometry, material);
-    this.group.add(sphere);
-  };
+    // this.meshMaterial = new Three.MeshBasicMaterial({ color: new Three.Color(this.color.m) });
+    this.pointMaterial = new Three.PointsMaterial({ color: new Three.Color(this.color.m), size: 0.2 });
+    this.sphereGeometry = new Three.SphereGeometry(this.radius, 64, 64);
 
+    // this.globe = new Three.Mesh(this.sphereGeometry, this.meshMaterial);
+    this.globe = new Three.Points(this.sphereGeometry, this.pointMaterial);
+    console.log(this.globe.material);
+    this.globe.name = "earth";
+    this.group.add(this.globe);
+  };
+  /*
   // .init Function 2 Render data points
   renderDataPoints = () => {
     this.points = this.getDistribution(200).map(({ x, y, z }, index) => {
@@ -184,6 +207,7 @@ class SphereGlobe {
         };
       });
   };
+  */
 
   // .init Function 3 Add lights
   setupLights() {
@@ -205,17 +229,17 @@ class SphereGlobe {
     this.scene.add(this.light);
   }
 
+  /*
   // .init Function 4 Bind handleEvents to make it reactive
   bindEvents() {
     this.globeContainer.addEventListener("mouseenter", this.onHover);
-    this.globeContainer.addEventListener("mouseout", this.onExit)
+    this.globeContainer.addEventListener("mouseout", this.onExit);
   }
 
   // 4A Mouse enter
   onHover = () => {
-    console.log("Over")
+    console.log("Over");
     this.addLocalPoint(latlng);
-    this.shouldFetch = false;
   };
   // Add Data Point
   addLocalPoint = (latlng) => {
@@ -308,9 +332,9 @@ class SphereGlobe {
   };
   // 4B Mouse exit
   onExit = () => {
-    console.log("Exit")
-  }
-
+    console.log("Exit");
+  };
+  */
 
   // 5 Render Scene
   render = (timestamp) => {
@@ -322,28 +346,49 @@ class SphereGlobe {
       this.group.rotation.z = progress * 0.000025;
     }
 
-    this.lightHolder.quaternion.copy(this.camera.quaternion);
-    this.light.position.copy(this.camera.position);
-
-    //this.controls.update();
+    // this.lightHolder.quaternion.copy(this.camera.quaternion);
+    // this.light.position.copy(this.camera.position);
     // console.log("Rendering...");
-    this.globeContainer.appendChild(this.renderer.domElement);
+    this.scene.add(this.globe);
+    this.renderer.setClearColor(this.color.b); // Set the clear color to background color
     this.renderer.render(this.scene, this.camera);
-    requestAnimationFrame(this.render);
   };
+
+  // 6 Clean Up Dom Element
+  cleanUp = () => {
+    if (this.globeContainer && this.renderer.domElement) {
+      this.globeContainer.removeChild(this.renderer.domElement);
+    }
+  };
+
+  // 7 Receive Updates
+  updateSize(windowSize) {
+    if (this.renderer) {
+      this.renderer.setSize(windowSize[0], windowSize[1]);
+      this.camera.aspect = windowSize[0] / windowSize[1];
+      this.camera.updateProjectionMatrix();
+    }
+  }
+
+  updateColor(color) {
+    if (this.scene && this.globe) {
+      this.scene.background = new Three.Color(color[0]);
+      this.globe.material.color.set(color[1]);
+    }
+  }
 }
 
 /*
-useEffect(() => {
+  useEffect(() => {
     // Three.js code to set up your 3D scene
-    const camera = new Three.PerspectiveCamera(70, windowSize[0] / windowSize[0], 0.01, 10);
-    camera.position.z = 1;
+    const camera = new Three.PerspectiveCamera(45, windowSize[0] / windowSize[1], 0.1, 100);
+    camera.position.set(0, 0, 100);
 
     const scene = new Three.Scene();
-    scene.background = new Three.Color(backgroundColor);
+    scene.background = new Three.Color(color[0]);
 
-    const geometry = new Three.BoxGeometry(0.2, 0.2, 0.2);
-    const material = new Three.MeshBasicMaterial({ color: materialColor });
+    const geometry = new Three.SphereGeometry(8, 64, 64);
+    const material = new Three.MeshBasicMaterial({ color: color[1] });
     const mesh = new Three.Mesh(geometry, material);
     scene.add(mesh);
 
@@ -354,6 +399,7 @@ useEffect(() => {
     container.appendChild(renderer.domElement);
 
     // Animation
+    let t = 1
     const animate = (time) => {
       // Update Three.js scene here
       mesh.rotation.x = time/1000;
@@ -361,12 +407,13 @@ useEffect(() => {
       mesh.rotation.z = time/2000;
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
+      time++
     };
-    animate();
+    animate(t);
 
     // Clean up Three.js resources when component unmounts
     return () => {
       container.removeChild(renderer.domElement);
     };
-})
- */
+  })
+*/
