@@ -9,11 +9,32 @@ const latLngToVector = ({ lat, lng, radius, height }) => {
   return { x, y, z };
 };
 
-// Initialise Globe Scene for ThreeJS
+// Initialise data structure
+type options = {
+  data: {
+    startArray: {
+      name: string,
+      E: number, // 经度
+      N: number, // 维度
+    },
+    endArray: {
+      name: string,
+      E: number, // 经度
+      N: number, // 维度
+    }[]
+  }[]
+  dom: HTMLElement,
+  textures: Record<string, Texture>, // 贴图
+  earth: {
+    radius: number, // 地球半径
+    rotateSpeed: number, // 地球旋转速度
+    isRotation: boolean // 地球组是否自转
+  }
+}
 
-// Export default
 
-export default class earth {
+// Export default class
+export default class Earth {
   constructor(windowSize, radius, bColor, mColor) {
     // Variables to be set
     this.radius = radius;

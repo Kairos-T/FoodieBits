@@ -39,9 +39,6 @@ const ThreeGlobeScene = (windowSize, color) => {
     if (globe) {
       globe.updateSize(windowSize);
       console.log(`Globe.jsx: ${windowSize}`);
-      // Already rendered in
-      // globe.globeContainer.appendChild(globe.renderer.domElement);
-      // return () => { if (globe.globeContainer.childNodes.length > 0) { globe.globeContainer.removeChild(globe.renderer.domElement); } };
     }
   }, [windowSize]);
 
@@ -49,9 +46,6 @@ const ThreeGlobeScene = (windowSize, color) => {
     if (globe) {
       globe.updateColor(color);
       console.log(`Globe.jsx: ${color}`);
-      // Already rendered in
-      // globe.globeContainer.appendChild(globe.renderer.domElement);
-      // return () => { if (globe.globeContainer.childNodes.length > 0) { globe.globeContainer.removeChild(globe.renderer.domElement); } };
     }
   }, [color]);
 
@@ -70,8 +64,6 @@ const ThreeGlobeScene = (windowSize, color) => {
       cleanUp(globe);
     };
   }, [globe]);
-
-  return {};
 };
 export default ThreeGlobeScene;
 
@@ -119,7 +111,7 @@ class SphereGlobe {
     // this.setupLights();
     // this.bindEvents();
 
-    this.camera.position.set(0, 0, 28);
+    this.camera.position.set(0, 0, 22);
     this.camera.lookAt(this.center);
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.update();
@@ -133,10 +125,11 @@ class SphereGlobe {
     // // Create Sphere and Add sphere to group
     // this.meshMaterial = new Three.MeshBasicMaterial({ color: new Three.Color(this.color.m) });
     this.pointMaterial = new Three.PointsMaterial({ color: new Three.Color(this.color.m), size: 0.2 });
-    this.sphereGeometry = new Three.SphereGeometry(this.radius, 64, 64);
+    // this.sphereGeometry = new Three.SphereGeometry(this.radius, 64, 64);
+    this.isoGeometry = new Three.IcosahedronGeometry(this.radius, 10)
 
     // this.globe = new Three.Mesh(this.sphereGeometry, this.meshMaterial);
-    this.globe = new Three.Points(this.sphereGeometry, this.pointMaterial);
+    this.globe = new Three.Points(this.isoGeometry, this.pointMaterial);
     console.log(this.globe.material);
     this.globe.name = "earth";
     this.group.add(this.globe);
