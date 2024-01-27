@@ -26,7 +26,7 @@ export const data = [
   {
     title: "Growth",
     description:
-      "From those early days of culinary curiosity, FoodieBits has blossomed into a thriving community of food enthusiasts. Our platform has become a go-to destination for those seeking not only delightful recipes but also genuine insights into the local food scene. Over the years, we've expanded our team, welcoming diverse voices and experiences. As we continue to evolve, our commitment remains unchanged – to share the joy of good food, foster culinary exploration, and celebrate the rich tapestry of flavors that bring us all together.",
+      "From those early days of culinary curiosity, FoodieBits has blossomed into a thriving community of food enthusiasts - becoming a go-to destination for those seeking delightful recipes and genuine insights into the local food scene. Over the years, we've expanded our team, welcoming diverse voices and experiences. As we continue to evolve, our commitment remains unchanged to share the joy of good food and foster culinary exploration.",
     image: "/images/about/staff.jpg"
   }
 ];
@@ -63,7 +63,10 @@ const faqData = [
 export default faqData;
 
 // Footer data (links)
-// By: Bowen
+// By: Bowen & Ruby
+
+//I didn't push the pop-up yet since I haven't added all the requisites and it's kinda wonky atm 
+
 export const footerData = [
   {
     label: "About",
@@ -78,8 +81,8 @@ export const footerData = [
     href: "/recipes",
     links: [
       { label: "Browse", href: "/recipes" },
-      { label: "Create", href: "#" },
-      { label: "Share", href: "#" }
+      { label: "Suggest", href: "/contact" },
+      { label: "Share", href: "#"}
     ]
   },
   {
@@ -87,20 +90,20 @@ export const footerData = [
     href: "/restaurants",
     links: [
       { label: "Find", href: "/restaurants" },
-      { label: "Recommend", href: "/restaurants" },
-      { label: "Talk", href: "/restaurants" }
+      { label: "Recommend", href: "/contact" },
     ]
   },
   {
     label: "Social",
     href: "/contact",
     links: [
-      { label: "Youtube", href: "#" },
-      { label: "Instagram", href: "#" },
-      { label: "Github", href: "#" }
+      { label: "Youtube", href: "https://www.youtube.com/@buzzfeedtasty" },
+      { label: "Instagram", href: "https://www.instagram.com/dennistheprescott/" },
+      { label: "Github", href: "https://github.com/Kairos-T/FoodieBits" }
     ]
   }
 ];
+
 
 // Restaurant data
 // By: Bowen
