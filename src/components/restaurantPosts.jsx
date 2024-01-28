@@ -1,3 +1,5 @@
+// Structure for rendering the various restaurant posts
+// By: Bowen
 import { Box } from "@chakra-ui/react";
 import "font-awesome/css/font-awesome.min.css";
 import RestaurantPost from "@/components/restaurantPost";

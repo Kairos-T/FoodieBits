@@ -1,3 +1,6 @@
+// Root component that wraps all the pages
+// Routing/Loading logic by: Kairos and Bowen
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 

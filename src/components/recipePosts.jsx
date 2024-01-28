@@ -1,5 +1,6 @@
 // Structure for rendering recipes posts
 // By: Kairos
+
 import { AspectRatio, Box, Heading, Image, Skeleton, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
