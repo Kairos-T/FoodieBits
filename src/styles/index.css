@@ -1,32 +1,7 @@
+/* Global Styles */
+/* By: Wayne */
+
 .chakra-ui-light {
     color: #1a202c;
     background-color: #edf2f7;
-}
-
-pre {
-    padding: 10px 0;
-}
-
-blockquote {
-    margin: 1em 0;
-    padding-left: 1em;
-
-    font-weight: 400;
-    font-style: italic;
-    border-left-width: 0.25rem;
-    border-left-color: #ced4da;
-    quotes: "\201C" "\201D" "\2018" "\2019";
-}
-
-blockquote p:first-of-type:before {
-    content: open-quote;
-}
-
-blockquote p:last-of-type:after {
-    content: close-quote;
-}
-
-footer {
-    margin-top: 50px;
-    padding-top: 20px;
 }
