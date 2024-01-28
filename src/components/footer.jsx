@@ -7,7 +7,7 @@ import { footerData } from "../data/constants";
 
 
 const Footer = () => {
-  const footerColor = useColorModeValue("gray.100", "gray.900");
+  const footerColor = useColorModeValue("gray.200", "gray.900");
 
   return (
     <Box

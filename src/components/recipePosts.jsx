@@ -19,7 +19,7 @@ const RecipePosts = ({ posts }) => {
   const summaryColor = useColorModeValue("gray.800", "gray.200");
   const dateColor = useColorModeValue("gray.600", "gray.500");
   const yearColor = useColorModeValue("telegram.500", "telegram.400");
-  const bgColor = useColorModeValue("gray.100", "gray.700");
+  const bgColor = useColorModeValue("gray.200", "gray.700");
 
   let year = 0;
   const [scrollY, setScrollY] = useState(0);
