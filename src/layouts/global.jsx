@@ -1,3 +1,5 @@
+// Global layout component
+
 import { Box } from "@chakra-ui/react";
 
 import { MAX_WIDTH } from "config";

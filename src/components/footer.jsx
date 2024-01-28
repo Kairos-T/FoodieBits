@@ -1,4 +1,6 @@
-//By: Hu Bowen
+// App footer component
+// By: Hu Bowen
+
 import { Box, Flex, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import { MAX_WIDTH } from "../../config";
 import NextLink from "next/link";

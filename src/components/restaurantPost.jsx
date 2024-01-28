@@ -1,3 +1,6 @@
+// Structure for rendering individual restaurant posts
+// By: Bowen
+
 import {
   AspectRatio,
   Box,
