@@ -1,3 +1,5 @@
+// Tags for filtering
+// By: Kairos
 import { Tag } from "@chakra-ui/react";
 
 const TagComponent = ({ children, color, ...props }) => {

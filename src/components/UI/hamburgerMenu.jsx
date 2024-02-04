@@ -1,3 +1,5 @@
+// Configuration for the hamburger menu icon and state
+// By: Kairos
 import { Box } from "@chakra-ui/react";
 import { Turn as Hamburger } from "hamburger-react";
 

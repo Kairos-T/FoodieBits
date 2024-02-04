@@ -1,3 +1,5 @@
+// Rating component to display the rating of the restaurant
+// By: Bowen
 import { Box, Text } from "@chakra-ui/react";
 import Rating from "react-rating";
 

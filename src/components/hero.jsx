@@ -1,5 +1,5 @@
 // Hero section of landing page
-// By: Kairos
+// By: Kairos and Wayne
 import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
