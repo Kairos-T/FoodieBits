@@ -1,5 +1,5 @@
 // FAQ component using Chakra UI's Accordion
-// By: Kairos
+// By: Kairos and Wayne
 
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Text } from "@chakra-ui/react";
 import faqData from "../data/constants";
