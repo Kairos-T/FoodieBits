@@ -1,107 +1,21 @@
 // By: Ruby
 // ContactForm.jsx
 
-/* import React, { useEffect } from 'react';
-import emailjs from '@emailjs/browser';
-import styles from '../styles/ContactForm.module.css';
-
-const ContactForm = () => {
-  const sendEmail = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-
-    const templateParams = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      message: formData.get('message'),
-      category: 'General Enquiries',
-    };
-
-    emailjs
-      .send('service_1dy6a7a', 'template_trpvjsu', templateParams)
-      .then((response) => {
-        console.log('Email sent successfully:', response);
-      })
-      .catch((error) => {
-        console.error('Email sending failed:', error);
-      });
-
-    e.target.reset();
-  };
-
-  useEffect(() => {
-    // You can add any additional logic or side effects here
-  }, []); 
-
-  return (
-    <div className={styles.formContainer}>
-      <h1 className={styles.heading}>Contact Form</h1>
-      <form name="myForm" onSubmit={sendEmail} method="post">
-        <table className={styles.formTable}>
-          <tbody>
-            <tr>
-              <td>
-                <label>
-                  Your Name <span className={styles.required}>*</span>
-                </label>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  name="name"
-                  className={`${styles.sharedInput} ${styles.long}`}
-                />
-                <span className={styles.error} id="errorname"></span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>
-                  Your Email Address <span className={styles.required}>*</span>
-                </label>
-              </td>
-              <td>
-                <input
-                  type="email"
-                  name="email"
-                  className={`${styles.sharedInput} ${styles.long}`}
-                />
-                <span className={styles.error} id="erroremail"></span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>
-                  Message <span className={styles.required}>*</span>
-                </label>
-              </td>
-              <td>
-                <textarea
-                  name="message"
-                  className={`${styles.sharedInput} ${styles.fieldTextarea}`}
-                ></textarea>
-                <span className={styles.error} id="errormsg"></span>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>
-                <input type="submit" value="Send" className={styles.formButton} />
-                <input type="reset" value="Reset" className={styles.formButton} />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-    </div>
-  );
-};
-
-export default ContactForm; */
-
-
 import React, { useState, useRef } from 'react';
 import emailjs from 'emailjs-com';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Heading,
+  Input,
+  Select,
+  Text,
+  Textarea,
+} from '@chakra-ui/react';
+
 emailjs.init('vB5Ojf6X0YBHrjcdn');
 
 function ContactForm() {
@@ -167,177 +81,70 @@ function ContactForm() {
   };
 
   return (
-    <div>
-      <style>
-        {`
-          h1 {
-            text-align: center;
-            font-size: 72px;
-          }
-
-          h2 {
-            text-align: center;
-            font-size: 30px;
-          }
-
-          .form-style {
-            margin: 10px auto;
-            width: 400px;
-            padding: 20px 12px 10px 20px;
-            font: 14px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-          }
-
-          .form-style td {
-            padding: 0;
-            display: block;
-            list-style: none;
-            margin: 10px 0 0 0;
-          }
-
-          .form-style label {
-            margin: 0 0 3px 0;
-            padding: 0px;
-            display: block;
-            font-weight: bold;
-          }
-
-          .form-style .required {
-            color: red;
-          }
-
-          .form-style input[type=submit],
-          .form-style input[type=reset] {
-            background: #4eb5f1;
-            padding: 8px 15px 8px 15px;
-            border: none;
-            color: #fff;
-          }
-
-          .form-style input[type=submit]:hover,
-          .form-style input[type=reset]:hover {
-            background: #4eb5f1;
-            box-shadow: none;
-            -moz-box-shadow: none;
-            -webkit-box-shadow: none;
-          }
-
-          .form-style .field-textarea {
-            height: 100px;
-          }
-
-          .form-style input[type=text],
-          .form-style input[type=email],
-          textarea {
-            box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            border: 1px solid #BEBEBE;
-            padding: 7px;
-            margin: 0px;
-            -webkit-transition: all 0.30s ease-in-out;
-            -moz-transition: all 0.30s ease-in-out;
-            -ms-transition: all 0.30s ease-in-out;
-            -o-transition: all 0.30s ease-in-out;
-            outline: none;
-          }
-
-          .form-style .long {
-            width: 100%;
-          }
-
-          .form-style input[type=text]:focus,
-          .form-style input[type=email]:focus,
-          .form-style textarea:focus {
-            -moz-box-shadow: 0 0 8px #88D5E9;
-            -webkit-box-shadow: 0 0 8px #88D5E9;
-            box-shadow: 0 0 8px #88D5E9;
-            border: 1px solid #88D5E9;
-          }
-
-          .error {
-            color: #D8000C;
-            background-color: #FFBABA;
-          }
-        `}
-      </style>
-
-      <h1>Get in Touch!</h1>
-      <h2>Contact Form</h2>
+    <Box>
+      <Heading textAlign="center" fontSize="72px">
+        Get in Touch!
+      </Heading>
+      <Heading textAlign="center" fontSize="30px">
+        Contact Form
+      </Heading>
       <form ref={form} onSubmit={validateForm} method="post">
-        <table className="form-style">
-          <tr>
-            <td>
-              <label>
-                Your name <span className="required">*</span>
-              </label>
-            </td>
-            <td>
-              <input type="text" name="name" className="long" />
-              <span className="error" id="errorname">{errors.name}</span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label>
-                Your email address <span className="required">*</span>
-              </label>
-            </td>
-            <td>
-              <input type="email" name="email" className="long" />
-              <span className="error" id="erroremail">{errors.email}</span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label>
-                Category <span className="required">*</span>
-              </label>
-            </td>
-            <td>
-              <select name="category" className="long">
-                <option value="">Select a category</option>
-                <option value="Recipe Suggestion">Suggest Recipe</option>
-                <option value="Restaurant Suggestion">Suggest Restaurant</option>
-                <option value="Ideas">Suggest Ideas</option>
-                <option value="Enquiries">General Enquiries</option>
-                <option value="Feedback">Feedback</option>
-              </select>
-              <span className="error" id="errorcategory">{errors.category}</span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label>
-                Message <span className="required">*</span>
-              </label>
-            </td>
-            <td>
-              <textarea name="message" className="long field-textarea"></textarea>
-              <span className="error" id="errormsg">{errors.message}</span>
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>
-              <input type="submit" value="Send" className="submit-button" />
-              <span>&nbsp;&nbsp;</span>
-              <input type="reset" value="Reset" className="reset-button" />
-            </td>
-          </tr>
-        </table>
+        <Box maxW="400px" m="10px auto" p="20px 12px 10px 20px">
+          <FormControl isInvalid={errors.name !== ''}>
+            <FormLabel>
+              Your name <Text color="red">*</Text>
+            </FormLabel>
+            <Input type="text" name="name" className="long" />
+            <FormErrorMessage>{errors.name}</FormErrorMessage>
+          </FormControl>
+          <FormControl isInvalid={errors.email !== ''}>
+            <FormLabel>
+              Your email address <Text color="red">*</Text>
+            </FormLabel>
+            <Input type="email" name="email" className="long" />
+            <FormErrorMessage>{errors.email}</FormErrorMessage>
+          </FormControl>
+          <FormControl isInvalid={errors.category !== ''}>
+            <FormLabel>
+              Category <Text color="red">*</Text>
+            </FormLabel>
+            <Select name="category" className="long">
+              <option value="">Select a category</option>
+              <option value="Recipe Suggestion">Suggest Recipe</option>
+              <option value="Restaurant Suggestion">Suggest Restaurant</option>
+              <option value="Ideas">Suggest Ideas</option>
+              <option value="Enquiries">General Enquiries</option>
+              <option value="Feedback">Feedback</option>
+            </Select>
+            <FormErrorMessage>{errors.category}</FormErrorMessage>
+          </FormControl>
+          <FormControl isInvalid={errors.message !== ''}>
+            <FormLabel>
+              Message <Text color="red">*</Text>
+            </FormLabel>
+            <Textarea name="message" className="long field-textarea"></Textarea>
+            <FormErrorMessage>{errors.message}</FormErrorMessage>
+          </FormControl>
+          <Button type="submit" variant="submit-button">
+            Send
+          </Button>
+          <Button type="reset" variant="reset-button" ml="2">
+            Reset
+          </Button>
+        </Box>
       </form>
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
         <h2>Find Out More?</h2>
         <p>
           We are on Instagram (@FoodieBits), Youtube (FoodieTube), and Github (FoodieBits) with more content than ever!
 
-          Drop us an email at info@FoodieBits.com or a letter to office at 219 Henderson Road #09-03
-Singapore 159556 for other related enquiries or partnerships.
+          Drop us an email at info@FoodieBits.com for other related enquiries or partnerships.
         </p>
       </div>
       {/* Google Map Embed */}
       <div style={{ marginTop: '20px', textAlign: 'center'  }}>
-        <h2>Our Location</h2>
+        <h2>Our Office</h2>
+        <p>Feel free to send us fan or corporate mail to office at 219 Henderson Road #09-03 Singapore 159556</p>
         <div style={{ width: '80%', margin: 'auto' }}>
         <iframe
           title="Google Map"
@@ -355,7 +162,7 @@ Singapore 159556 for other related enquiries or partnerships.
           Here are some of the wonderful companies and events we've been honoured to be apart of!
         </p>
       </div>
-    </div>
+    </Box>
   );
 }
 
