@@ -1,4 +1,6 @@
-//By: Hu Bowen
+// App footer component
+// By: Hu Bowen
+
 import { Box, Flex, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import { MAX_WIDTH } from "../../config";
 import NextLink from "next/link";
@@ -7,7 +9,7 @@ import { footerData } from "../data/constants";
 
 
 const Footer = () => {
-  const footerColor = useColorModeValue("gray.100", "gray.900");
+  const footerColor = useColorModeValue("gray.200", "gray.900");
 
   return (
     <Box

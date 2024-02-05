@@ -1,3 +1,6 @@
+// Structure for rendering individual restaurant posts
+// By: Bowen
+
 import {
   AspectRatio,
   Box,
@@ -20,7 +23,7 @@ import RestaurantReview from "@/components/restaurantReview";
 
 export default function RestaurantPost({ responses, restaurant }) {
   const router = useRouter();
-  const bgColor = useColorModeValue("gray.100", "gray.700");
+  const bgColor = useColorModeValue("gray.200", "gray.700");
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { title, location, descriptions, images, placeId } = restaurant;

@@ -1,3 +1,6 @@
+// Configurations using Chakra UI (Dark Mode, Light Mode, etc.)
+// By: Kairos
+
 import { extendTheme } from "@chakra-ui/react";
 
 const config = {

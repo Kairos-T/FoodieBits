@@ -1,3 +1,6 @@
+// Restaurant review part of each restaurant post
+// By: Bowen
+
 import { Box, Button, Image, Text, useColorModeValue } from "@chakra-ui/react";
 import RestaurantRating from "@/components/UI/rating";
 import { forwardRef, useEffect, useRef, useState } from "react";

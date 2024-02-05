@@ -1,15 +1,46 @@
+// Wayne
 import { NextSeo } from "next-seo";
 import { motion } from "framer-motion";
 import { seo } from "config";
 import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
-import React, { useEffect } from "react";
-import * as Three from "three";
+import { sceneColor } from "../data/constants";
 
-const Cuisines = ({}) => {
+import React, { useEffect, useState } from "react";
+import ThreeGlobeScene from "@/components/world.jsx";
+
+const Cuisines = () => {
   const title = "Cuisines";
   const description = seo.description;
   const url = `${seo.canonical}cuisines`;
   const color = useColorModeValue("telegram.500", "telegram.400");
+
+  // Initialise
+  const [windowSize, setWindowSize] = useState([0, 0]);
+  const changeColor = useColorModeValue(sceneColor.light, sceneColor.dark);
+  const [changeRequest, setChangeRequest] = useState(changeColor);
+  useEffect(() => {
+    const handleWindowResize = () => {
+      const width = document.getElementById("three-container").offsetWidth;
+      setWindowSize([width, width * 9 / 16]);
+      console.log(`Cuisines.jsx: ${windowSize}`);
+    };
+    handleWindowResize();
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      // Dispose remove event listeners
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [windowSize[0], windowSize[1]]);
+
+  useEffect(() => {
+    const handleColorChange = () => {
+      setChangeRequest(changeColor);
+      console.log(`Cuisines.jsx: ${changeRequest}`);
+    };
+    handleColorChange();
+  }, [color]);
+
+  ThreeGlobeScene(windowSize, changeRequest);
 
   return (
     <>
@@ -39,33 +70,20 @@ const Cuisines = ({}) => {
           <Heading as="h1" color={color} fontSize="4xl" fontWeight="700" py="2">
             Cuisines{" "}
           </Heading>
-          <Text py="4">
-
+        </Box>
+        <Box
+          id="three-container"
+          style={{ width: "100%", height: "100vh" }}
+          display="flex"
+        >
+        </Box>
+        <Box>
+          <Text fontSize="2xl" py="10">
+            Country Cuisine of the Day
           </Text>
         </Box>
       </motion.main>
-      <div>
-        {GlobeScene}
-      </div>
     </>
-  );
-};
-
-const GlobeScene = () => {
-  useEffect(() => {
-      // Create a scene
-      const scene = new Three.Scene();
-      // Create a camera
-      const camera = new Three.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 100);
-      // Create a renderer
-      const renderer = new Three.WebGL1Renderer();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(renderer.domElement);
-
-      // Create a globe (sphere)
-      const globe = new Three.Sphere();
-      const material = new Three.ParticleBasicMaterial({ color: 0x00ff00 });
-    }
   );
 };
 
