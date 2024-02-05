@@ -8,17 +8,27 @@ import World from "./world.jsx";
 const ThreeGlobeScene = (windowSize, color) => {
 
   const [world, setWorld] = useState(null);
-
+  const cleanUp = (world) => {
+    if (world) {
+      console.log(`Before ${world.container.childNodes.length}`);
+      if (world.container.childNodes.length > 0) {
+        world.container.removeChild(world.renderer.domElement);
+      }
+      console.log(`After ${world.container.childNodes.length}`);
+    }
+  };
   useEffect(() => {
     const initGlobeScene = () => {
       console.log("Start Init");
       // Three.js code to set up your 3D scene
-      const globe = new World(windowSize, color[0], color[1]);
+      const globe = new World(windowSize, color);
       setWorld(globe);
+      console.log(color)
+      globe.updateColor(color)
     };
     initGlobeScene();
     return () => {
-
+      cleanUp(world)
     };
   }, []);
 
@@ -44,14 +54,14 @@ const ThreeGlobeScene = (windowSize, color) => {
         world.render();
         window.world = world;  // Assign to window for debugging
       }
+      requestAnimationFrame(renderGlobeScene);
     };
     renderGlobeScene();
     // Clean up Three.js resources when component unmounts
     return () => {
-
+      cleanUp(world);
     };
   }, [world]);
-
 };
 export default ThreeGlobeScene;
 

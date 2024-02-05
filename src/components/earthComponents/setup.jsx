@@ -19,7 +19,7 @@ export default class Basic {
   initScenes() {
     // Three.js code to set up your 3D scene
     this.scene = new Three.Scene();
-    this.scene.background = new Three.Color(this.color.b)
+    this.scene.background = new Three.Color(this.color[0])
 
     // Set up perspective camera
     this.camera = new Three.PerspectiveCamera(45, this.windowSize[0] / this.windowSize[1], 0.1, 100000);

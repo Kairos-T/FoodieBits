@@ -9,9 +9,9 @@ import Earth from "./earthComponents/earth.jsx";
 import { cuisineCoords } from "/src/data/constants";
 
 export default class World {
-  constructor(windowSize, bColor, mColor) {
+  constructor(windowSize, color) {
     this.container = document.getElementById("three-container");
-    this.color = { b: bColor, m: mColor };
+    this.color = color;
     // Initialise Scene, Camera, Renderer
     this.basic = new Basic(windowSize, this.color);
     this.scene = this.basic.scene;
@@ -23,6 +23,7 @@ export default class World {
 
     this.resources = new Resource(async () => {
       await this.createEarth();
+      console.log("Done")
       // Render process
       this.render();
     });
@@ -37,7 +38,14 @@ export default class World {
         radius: 50,
         rotateSpeed: 0.002,
         isRotation: true
-      }
+      },
+      punctuation: {
+        circleColor: 0x3892ff,
+        lightColumn: {
+          startColor: 0xe4007f, // 起点颜色
+          endColor: 0xffffff, // 终点颜色
+        },
+      },
     });
     this.scene.add(this.earth.group);
     await this.earth.initEarth();
@@ -47,8 +55,8 @@ export default class World {
    * Render
    */
   render() {
-    console.log(1);
     requestAnimationFrame(this.render.bind(this));
+    this.scene.background = new Three.Color(this.color.b);
     this.renderer.render(this.scene, this.camera);
     this.controls && this.controls.update();
     this.earth && this.earth.render();
@@ -60,8 +68,9 @@ export default class World {
     this.camera.updateProjectionMatrix();
   }
 
-  updateColor(bColor, mColor) {
-    this.scene.background = new Three.Color(bColor);
-    // this.earth.material.color.set(mColor);
+  updateColor(color) {
+    this.color.b = color[0];
+    this.color.m = color[1];
+    this.scene.background = new Three.Color(this.color.b);
   }
 }

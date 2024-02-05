@@ -35,11 +35,11 @@ const Cuisines = () => {
 
   useEffect(() => {
     const handleColorChange = () => {
-      setChangeRequest(changeColor);
       console.log(`Cuisines.jsx: ${changeRequest}`);
+      setChangeRequest(changeColor);
     };
     handleColorChange();
-  }, [color]);
+  }, [changeColor, changeRequest]);
 
   ThreeGlobeScene(windowSize, changeRequest);
 

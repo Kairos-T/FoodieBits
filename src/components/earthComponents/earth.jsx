@@ -1,18 +1,9 @@
 // Wayne
 import * as Three from "three";
 import { gsap } from "gsap";
-import earthVertex from '/public/shaders/vertex';
-import earthFragment from '/public/shaders/fragment';
-
-const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-const latLngToVector = ({ lat, lng, radius, height }) => {
-  const phi = lat * Math.PI / 180;
-  const theta = (lng - 180) * Math.PI / 180;
-  const x = -(radius + height) * Math.cos(phi) * Math.cos(theta);
-  const y = (radius + height) * Math.sin(phi);
-  const z = (radius + height) * Math.cos(phi) * Math.sin(theta);
-  return { x, y, z };
-};
+import earthVertex from "/public/shaders/vertex";
+import earthFragment from "/public/shaders/fragment";
+import { createLightPillar, createPointMesh, createWaveMesh, getCirclePoints, lon2xyz } from "./utils.jsx";
 
 // Export default class
 export default class Earth {
@@ -21,61 +12,61 @@ export default class Earth {
 
     this.group = new Three.Group();
     this.group.name = "group";
-    this.group.scale.set(0, 0, 0)
-    this.earthGroup = new Three.Group()
-    this.group.add(this.earthGroup)
+    this.group.scale.set(0, 0, 0);
+    this.earthGroup = new Three.Group();
+    this.group.add(this.earthGroup);
     this.earthGroup.name = "EarthGroup";
 
     // Light Point
-    this.markupPoint = new Three.Group()
-    this.markupPoint.name = "markupPoint"
-    this.waveMeshArr = []
+    this.markupPoint = new Three.Group();
+    this.markupPoint.name = "markupPoint";
+    this.waveMeshArr = [];
 
-    this.isRotation = this.options.earth.isRotation
+    this.isRotation = this.options.earth.isRotation;
 
-    this.timeValue = 100
+    this.timeValue = 100;
     this.uniforms = {
       glowColor: {
-        value: new Three.Color(0x0cd1eb),
+        value: new Three.Color(0x0cd1eb)
       },
       scale: {
         type: "f",
-        value: -1.0,
+        value: -1.0
       },
       bias: {
         type: "f",
-        value: 1.0,
+        value: 1.0
       },
       power: {
         type: "f",
-        value: 3.3,
+        value: 3.3
       },
       time: {
         type: "f",
-        value: this.timeValue,
+        value: this.timeValue
       },
       isHover: {
-        value: false,
+        value: false
       },
       map: {
-        value: null,
-      },
+        value: null
+      }
     };
   }
+
   async initEarth() {
     return (async (resolve) => {
 
       this.createEarth(); // 创建地球
       this.createStars(); // 添加星星
-      this.createEarthGlow() // 创建地球辉光
-      this.createEarthAperture() // 创建地球的大气层
-      // await this.createMarkupPoint() // 创建柱状点位
-      // await this.createSpriteLabel() // 创建标签
-      // this.createAnimateCircle() // 创建环绕卫星
+      this.createEarthGlow(); // 创建地球辉光
+      this.createEarthAperture(); // 创建地球的大气层
+      await this.createMarkupPoint(); // 创建柱状点位
+      await this.createSpriteLabel(); // 创建标签
 
-      this.show()
-      resolve()
-    })
+      this.show();
+      resolve();
+    });
   }
 
   // 1: Create Earth
@@ -83,13 +74,13 @@ export default class Earth {
     // Shield
     const earthBorder = new Three.IcosahedronGeometry(this.options.earth.radius + 10, 60, 60);
     const pointMaterial = new Three.PointsMaterial({
-      color: this.options.color.m, //Material Color (Changes)
+      color: this.options.color[1], //Material Color (Changes)
       transparent: true,
       sizeAttenuation: true,
       opacity: 0.1,
       vertexColors: false, //定义材料是否使用顶点颜色，默认false ---如果该选项设置为true，则color属性失效
-      size: 0.01, //定义粒子的大小。默认为1.0
-    })
+      size: 0.01 //定义粒子的大小。默认为1.0
+    });
     const points = new Three.Points(earthBorder, pointMaterial); //将模型添加到场景
     this.earthGroup.add(points); // Add Earth Shield
 
@@ -109,8 +100,8 @@ export default class Earth {
   // 2. Create Stars
   createStars() {
 
-    const vertices = []
-    const colors = []
+    const vertices = [];
+    const colors = [];
     for (let i = 0; i < 500; i++) {
       const vertex = new Three.Vector3();
       vertex.x = 800 * Math.random() - 300;
@@ -121,7 +112,7 @@ export default class Earth {
     }
 
     // Starry Sky Effect
-    this.around = new Three.BufferGeometry()
+    this.around = new Three.BufferGeometry();
     this.around.setAttribute("position", new Three.BufferAttribute(new Float32Array(vertices), 3));
     this.around.setAttribute("color", new Three.BufferAttribute(new Float32Array(colors), 3));
 
@@ -131,7 +122,7 @@ export default class Earth {
       color: 0x4d76cf,
       transparent: true,
       opacity: 1,
-      map: this.options.textures.gradient,
+      map: this.options.textures.gradient
     });
 
     this.aroundPoints = new Three.Points(this.around, aroundMaterial);
@@ -153,7 +144,7 @@ export default class Earth {
       color: 0x4390d1,
       transparent: true, //开启透明
       opacity: 0.7, // 可以通过透明度整体调节光圈
-      depthWrite: false, //禁止写入深度缓冲区数据
+      depthWrite: false //禁止写入深度缓冲区数据
     });
 
     // 创建表示地球光圈的精灵模型
@@ -174,7 +165,7 @@ export default class Earth {
       "	vVertexWorldPosition	= (modelMatrix * vec4(position, 1.0)).xyz;", //将顶点转换到世界坐标系中
       "	// set gl_Position",
       "	gl_Position	= projectionMatrix * modelViewMatrix * vec4(position, 1.0);",
-      "}",
+      "}"
     ].join("\n");
 
     //大气层效果
@@ -182,16 +173,16 @@ export default class Earth {
       uniforms: {
         coefficient: {
           type: "f",
-          value: 1.0,
+          value: 1.0
         },
         power: {
           type: "f",
-          value: 3,
+          value: 3
         },
         glowColor: {
           type: "c",
-          value: new Three.Color(0x4390d1),
-        },
+          value: new Three.Color(0x4390d1)
+        }
       },
       vertexShader: vertexShader,
       fragmentShader: [
@@ -210,8 +201,8 @@ export default class Earth {
         "	viewCameraToVertex= normalize(viewCameraToVertex);", //规一化
         "	float intensity	= pow(coefficient + dot(vVertexNormal, viewCameraToVertex), power);",
         "	gl_FragColor = vec4(glowColor, intensity);",
-        "}",
-      ].join("\n"),
+        "}"
+      ].join("\n")
     };
     //Globe Glow Atmosphere
     const material1 = new Three.ShaderMaterial({
@@ -220,7 +211,7 @@ export default class Earth {
       fragmentShader: AeroSphere.fragmentShader,
       blending: Three.NormalBlending,
       transparent: true,
-      depthWrite: false,
+      depthWrite: false
     });
     const sphere = new Three.SphereBufferGeometry(this.options.earth.radius, 50, 50);
     const mesh = new Three.Mesh(sphere, material1);
@@ -232,14 +223,14 @@ export default class Earth {
     await Promise.all(this.options.data.map(async (item) => {
 
       const radius = this.options.earth.radius;
-      const lon = item.startArray.E; //经度
-      const lat = item.startArray.N; //纬度
+      const lon = item.china.E; //经度
+      const lat = item.china.N; //纬度
 
-      this.punctuationMaterial = new MeshBasicMaterial({
-        color: this.options.punctuation.circleColor,
+      this.punctuationMaterial = new Three.MeshBasicMaterial({
+        color: new Three.Color(this.options.punctuation.circleColor),
         map: this.options.textures.label,
         transparent: true, //使用背景透明的png贴图，注意开启透明计算
-        depthWrite: false, //禁止写入深度缓冲区数据
+        depthWrite: false //禁止写入深度缓冲区数据
       });
 
       const mesh = createPointMesh({ radius, lon, lat, material: this.punctuationMaterial }); //光柱底座矩形平面
@@ -250,14 +241,14 @@ export default class Earth {
         lat,
         index: 0,
         textures: this.options.textures,
-        punctuation: this.options.punctuation,
+        punctuation: this.options.punctuation
       }); //光柱
       this.markupPoint.add(LightPillar);
       const WaveMesh = createWaveMesh({ radius, lon, lat, textures: this.options.textures }); //波动光圈
       this.markupPoint.add(WaveMesh);
       this.waveMeshArr.push(WaveMesh);
 
-      await Promise.all(item.endArray.map((obj) => {
+      await (item.endArray.map((obj) => {
         const lon = obj.E; //经度
         const lat = obj.N; //纬度
         const mesh = createPointMesh({ radius, lon, lat, material: this.punctuationMaterial }); //光柱底座矩形平面
@@ -274,9 +265,40 @@ export default class Earth {
         const WaveMesh = createWaveMesh({ radius, lon, lat, textures: this.options.textures }); //波动光圈
         this.markupPoint.add(WaveMesh);
         this.waveMeshArr.push(WaveMesh);
-      }))
-      this.earthGroup.add(this.markupPoint)
-    }))
+      }));
+      this.earthGroup.add(this.markupPoint);
+    }));
+  }
+
+  async createSpriteLabel() {
+    await (this.options.data.map(async item => {
+      let cityArry = [];
+      cityArry.push(item.china);
+      cityArry = cityArry.concat(...item.endArray);
+      await Promise.all(cityArry.map(async e => {
+        const p = lon2xyz(this.options.earth.radius * 1.001, e.E, e.N);
+        const div = `<div class="fire-div">${e.name}</div>`;
+        const shareContent = document.getElementById("three-container");
+        shareContent.innerHTML = div;
+        const opts = {
+          backgroundColor: null, // 背景透明
+          scale: 6,
+          dpi: window.devicePixelRatio
+        };
+        const canvas = await (document.getElementById("three-container"), opts);
+        const dataURL = canvas.toDataURL("image/png");
+        const map = new Three.TextureLoader().load(dataURL);
+        const material = new Three.SpriteMaterial({
+          map: map,
+          transparent: true
+        });
+        const sprite = new Three.Sprite(material);
+        const len = 5 + (e.name.length - 2) * 2;
+        sprite.scale.set(len, 3, 1);
+        sprite.position.set(p.x * 1.1, p.y * 1.1, p.z * 1.1);
+        this.earth.add(sprite);
+      }));
+    }));
   }
 
 
@@ -286,12 +308,11 @@ export default class Earth {
       y: 1,
       z: 1,
       duration: 2,
-      ease: "Quadratic",
-    })
+      ease: "Quadratic"
+    });
   }
 
   render() {
-
     if (this.isRotation) {
       this.earthGroup.rotation.y += this.options.earth.rotateSpeed;
     }
