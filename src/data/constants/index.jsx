@@ -62,10 +62,8 @@ const faqData = [
 
 export default faqData;
 
-// Footer data (links)
+// Footer data
 // By: Bowen & Ruby
-
-//I didn't push the pop-up yet since I haven't added all the requisites and it's kinda wonky atm 
 
 export const footerData = [
   {
@@ -82,7 +80,6 @@ export const footerData = [
     links: [
       { label: "Browse", href: "/recipes" },
       { label: "Suggest", href: "/contact" },
-      { label: "Share", href: "#"}
     ]
   },
   {

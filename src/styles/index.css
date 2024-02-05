@@ -5,3 +5,7 @@
     color: #1a202c;
     background-color: #edf2f7;
 }
+
+.chakra-popover__content {
+    z-index: 9999; /* Adjust the z-index as needed */
+  }
