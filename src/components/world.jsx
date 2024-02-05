@@ -1,7 +1,6 @@
 // Wayne
 
 import * as Three from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 import Basic from "./earthComponents/setup.jsx";
 import Resource from "./earthComponents/resource.jsx";
@@ -21,15 +20,14 @@ export default class World {
 
     this.container.appendChild(this.renderer.domElement);
 
-    this.resources = new Resource(async () => {
+    this.resources = new Resource(async() => {
       await this.createEarth();
       console.log("Done")
-      // Render process
-      this.render();
+      this.renderWorld();
     });
   }
 
-  async createEarth() {
+ async createEarth() {
     this.earth = new Earth({
       color: this.color,
       data: cuisineCoords,
@@ -47,19 +45,18 @@ export default class World {
         },
       },
     });
-    this.scene.add(this.earth.group);
-    await this.earth.initEarth();
+   this.scene.add(this.earth.group);
+   await this.earth.initEarth();
   }
 
   /**
    * Render
    */
-  render() {
-    requestAnimationFrame(this.render.bind(this));
+  renderWorld() {
     this.scene.background = new Three.Color(this.color.b);
-    this.renderer.render(this.scene, this.camera);
     this.controls && this.controls.update();
-    this.earth && this.earth.render();
+    this.earth && this.earth.renderEarth();
+    this.renderer.render(this.scene, this.camera);
   }
 
   updateSize(windowSize) {

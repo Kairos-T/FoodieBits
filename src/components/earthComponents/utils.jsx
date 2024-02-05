@@ -46,7 +46,7 @@ export const createLightPillar = (options) => {
         ? options.punctuation.lightColumn.startColor
         : options.punctuation.lightColumn.endColor,
     transparent: true,
-    side: DoubleSide,
+    side: Three.DoubleSide,
     depthWrite: false, //是否对深度缓冲区有任何的影响
   });
   const mesh = new Three.Mesh(geometry, material);

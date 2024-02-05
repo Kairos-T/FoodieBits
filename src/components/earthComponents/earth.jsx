@@ -1,9 +1,10 @@
 // Wayne
 import * as Three from "three";
 import { gsap } from "gsap";
-import earthVertex from "/public/shaders/vertex";
-import earthFragment from "/public/shaders/fragment";
 import { createLightPillar, createPointMesh, createWaveMesh, getCirclePoints, lon2xyz } from "./utils.jsx";
+
+import Vertex from "/public/shaders/vertex";
+import Fragment from "/public/shaders/fragment";
 
 // Export default class
 export default class Earth {
@@ -55,18 +56,18 @@ export default class Earth {
   }
 
   async initEarth() {
-    return (async (resolve) => {
-
+    return (async () => {
+      console.log("Start");
       this.createEarth(); // 创建地球
       this.createStars(); // 添加星星
       this.createEarthGlow(); // 创建地球辉光
       this.createEarthAperture(); // 创建地球的大气层
       await this.createMarkupPoint(); // 创建柱状点位
-      await this.createSpriteLabel(); // 创建标签
+      // await this.createSpriteLabel(); // 创建标签
 
       this.show();
-      resolve();
-    });
+      console.log(this);
+    })();
   }
 
   // 1: Create Earth
@@ -88,13 +89,14 @@ export default class Earth {
     const earthGeometry = new Three.SphereBufferGeometry(this.options.earth.radius, 50, 50);
     const earthMaterial = new Three.ShaderMaterial({
       uniforms: this.uniforms,
-      vertexShader: earthVertex,
-      fragmentShader: earthFragment
+      vertexShader: Vertex.vertexShader,
+      fragmentShader: Fragment.fragmentShader
     });
     earthMaterial.needsUpdate = true;
     this.earth = new Three.Mesh(earthGeometry, earthMaterial);
     this.earth.name = "earth";
     this.earthGroup.add(this.earth); // Add Earth Globe
+    console.log(this.earth);
   }
 
   // 2. Create Stars
@@ -108,7 +110,7 @@ export default class Earth {
       vertex.y = 800 * Math.random() - 300;
       vertex.z = 800 * Math.random() - 300;
       vertices.push(vertex.x, vertex.y, vertex.z);
-      colors.push(new Color(1, 1, 1));
+      colors.push(new Three.Color(1, 1, 1));
     }
 
     // Starry Sky Effect
@@ -220,11 +222,11 @@ export default class Earth {
 
   async createMarkupPoint() {
 
-    await Promise.all(this.options.data.map(async (item) => {
+    await (this.options.data.map(async (item) => {
 
       const radius = this.options.earth.radius;
-      const lon = item.china.E; //经度
-      const lat = item.china.N; //纬度
+      const lon = item.region.EW; //经度
+      const lat = item.region.NS; //纬度
 
       this.punctuationMaterial = new Three.MeshBasicMaterial({
         color: new Three.Color(this.options.punctuation.circleColor),
@@ -248,9 +250,9 @@ export default class Earth {
       this.markupPoint.add(WaveMesh);
       this.waveMeshArr.push(WaveMesh);
 
-      await (item.endArray.map((obj) => {
-        const lon = obj.E; //经度
-        const lat = obj.N; //纬度
+      await (item.location.map((obj) => {
+        const lon = obj.EW; //经度
+        const lat = obj.NS; //纬度
         const mesh = createPointMesh({ radius, lon, lat, material: this.punctuationMaterial }); //光柱底座矩形平面
         this.markupPoint.add(mesh);
         const LightPillar = createLightPillar({
@@ -270,38 +272,6 @@ export default class Earth {
     }));
   }
 
-  async createSpriteLabel() {
-    await (this.options.data.map(async item => {
-      let cityArry = [];
-      cityArry.push(item.china);
-      cityArry = cityArry.concat(...item.endArray);
-      await Promise.all(cityArry.map(async e => {
-        const p = lon2xyz(this.options.earth.radius * 1.001, e.E, e.N);
-        const div = `<div class="fire-div">${e.name}</div>`;
-        const shareContent = document.getElementById("three-container");
-        shareContent.innerHTML = div;
-        const opts = {
-          backgroundColor: null, // 背景透明
-          scale: 6,
-          dpi: window.devicePixelRatio
-        };
-        const canvas = await (document.getElementById("three-container"), opts);
-        const dataURL = canvas.toDataURL("image/png");
-        const map = new Three.TextureLoader().load(dataURL);
-        const material = new Three.SpriteMaterial({
-          map: map,
-          transparent: true
-        });
-        const sprite = new Three.Sprite(material);
-        const len = 5 + (e.name.length - 2) * 2;
-        sprite.scale.set(len, 3, 1);
-        sprite.position.set(p.x * 1.1, p.y * 1.1, p.z * 1.1);
-        this.earth.add(sprite);
-      }));
-    }));
-  }
-
-
   show() {
     gsap.to(this.group.scale, {
       x: 1,
@@ -312,7 +282,7 @@ export default class Earth {
     });
   }
 
-  render() {
+  renderEarth() {
     if (this.isRotation) {
       this.earthGroup.rotation.y += this.options.earth.rotateSpeed;
     }
@@ -321,5 +291,23 @@ export default class Earth {
       this.uniforms.time.value < -this.timeValue
         ? this.timeValue
         : this.uniforms.time.value - 1;
+
+    if (this.waveMeshArr.length) {
+      this.waveMeshArr.forEach((mesh) => {
+        mesh.userData["scale"] += 0.007;
+        mesh.scale.set(
+          mesh.userData["size"] * mesh.userData["scale"],
+          mesh.userData["size"] * mesh.userData["scale"],
+          mesh.userData["size"] * mesh.userData["scale"]
+        );
+        if (mesh.userData["scale"] <= 1.5) {
+          mesh.material.opacity = (mesh.userData["scale"] - 1) * 2; //2等于1/(1.5-1.0)，保证透明度在0~1之间变
+        } else if (mesh.userData["scale"] > 1.5 && mesh.userData["scale"] <= 2) {
+          mesh.material.opacity = 1 - (mesh.userData["scale"] - 1.5) * 2; //2等于1/(2.0-1.5) mesh缩放2倍对应0 缩放1.5被对应1
+        } else {
+          mesh.userData["scale"] = 1;
+        }
+      });
+    }
   }
 }
