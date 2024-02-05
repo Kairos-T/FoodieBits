@@ -6,7 +6,7 @@ import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { sceneColor } from "../data/constants";
 
 import React, { useEffect, useState } from "react";
-import ThreeGlobeScene from "@/components/world.jsx";
+import ThreeGlobeScene from "@/components/scene.jsx";
 
 const Cuisines = () => {
   const title = "Cuisines";
@@ -18,6 +18,7 @@ const Cuisines = () => {
   const [windowSize, setWindowSize] = useState([0, 0]);
   const changeColor = useColorModeValue(sceneColor.light, sceneColor.dark);
   const [changeRequest, setChangeRequest] = useState(changeColor);
+
   useEffect(() => {
     const handleWindowResize = () => {
       const width = document.getElementById("three-container").offsetWidth;
@@ -76,6 +77,7 @@ const Cuisines = () => {
           style={{ width: "100%", height: "100vh" }}
           display="flex"
         >
+          <div id="loading"></div>
         </Box>
         <Box>
           <Text fontSize="2xl" py="10">
