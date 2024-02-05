@@ -14,6 +14,8 @@ import {
   Select,
   Text,
   Textarea,
+  Flex,
+  Image,
 } from '@chakra-ui/react';
 
 emailjs.init('vB5Ojf6X0YBHrjcdn');
@@ -161,6 +163,14 @@ function ContactForm() {
         <p>
           Here are some of the wonderful companies and events we've been honoured to be apart of!
         </p>
+        {/* Flex container for logos */}
+        <Flex justify="center" align="center" mt="4">
+          <Image src="/images/contact/ock.png" alt="Old Chang Kee" boxSize="150px" mr="4" />
+          <Image src="/images/contact/eatbook.png" alt="EatBook" boxSize="150px" mr="4" />
+          <Image src="/images/contact/gastrobeats.png" alt="GastroBeats" boxSize="150px" mr="4" />
+          <Image src="/images/contact/singaporefest.png" alt="Singapore Food Festival" boxSize="150px" mr="4" />
+          <Image src="/images/contact/stamford.png" alt="Stamford Catering" boxSize="150px" mr="4" />
+        </Flex>
       </div>
     </Box>
   );
