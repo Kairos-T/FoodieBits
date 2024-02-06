@@ -91,37 +91,49 @@ export default class World {
     return currentTime;
   }
 
-  async mouseUpCheck(windowSize, useRaycast, timeDown) {
+  async mouseUpCheck(windowSize, timeDown) {
+    let useRaycast = false;
     // Get current time mouse released
     const timeUp = performance.now();
-    if (timeUp - timeDown > 0.5) {
+    if (timeUp - timeDown > 2) {
       return;
     }
 
     // Get mouse position in screen space
     const rect = document.getElementById("three-container").getBoundingClientRect();
-    console.log(3, this.mouse);
+    // console.log(3, this.mouse);
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
-    !isNaN(mouseX) && !isNaN(mouseY)
-      ? this.mouse = new Three.Vector2(mouseX, mouseY)
-      : useRaycast = false;
+    const vec = new Three.Vector3(0, 0, 0); // create once and reuse
+    const pos = new Three.Vector3(); // create once and reuse
+    if (!isNaN(mouseX) && !isNaN(mouseY)){
+      this.mouse = new Three.Vector2(mouseX, mouseY)
+      vec.set(mouseX, mouseY, 0.5)
+      useRaycast = true
+    } else {
+      useRaycast = false;
+    }
+    console.log(useRaycast)
     console.log(2, this.mouse);
 
     // Only raycast if not panning (optimization)
     if (useRaycast) {
+      console.log(100, this.camera)
+
       this.pointer.setFromCamera(this.mouse, this.camera);
       // Raycast to single object
       const light = this.earth.earthGroup.getObjectByName("markupPoint");
-      console.log(1);
-      console.log(light);
+      console.log(1, light);
       const hits = this.pointer.intersectObject(light.getObjectByName("LightPillar"), false);
       // Run if we have intersections
       if (hits.length > 0) {
         hits.forEach(hit => {
           // Hit
           this.intersect = true;
-          console.log("hit");
+          return() => {
+            console.log(123)
+            window.location.href = "/"
+          }
         });
       } else {
         this.intersect = false;
@@ -134,10 +146,10 @@ export default class World {
     this.container.addEventListener("mousedown", this.mouseDownCheck(windowSize, true));
     this.container.addEventListener("mouseup", this.mouseUpCheck);
     const timeDown = await this.mouseDownCheck();
-    const interStatus = await this.mouseUpCheck(windowSize, true, timeDown);
+    const interStatus = await this.mouseUpCheck(windowSize, timeDown);
     if (interStatus)
     {
-        this.mouse.unproject(this.camera)
+        console.log(11)
     }
     return () => {
       this.container.removeEventListener("mouseup", this.mouseDownCheck);

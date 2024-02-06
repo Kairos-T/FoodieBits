@@ -227,9 +227,11 @@ export default class Earth {
 
     await (this.options.data.map(async (item) => {
 
+      const name = item.region.name;
       const radius = this.options.earth.radius;
       const lon = item.region.EW; //经度
       const lat = item.region.NS; //纬度
+      const lightGroup = new Three.Group();
 
       this.punctuationMaterial = new Three.MeshBasicMaterial({
         color: new Three.Color(this.options.punctuation.circleColor),
@@ -239,7 +241,8 @@ export default class Earth {
       });
 
       const mesh = createPointMesh({ radius, lon, lat, material: this.punctuationMaterial }); //光柱底座矩形平面
-      this.markupPoint.add(mesh);
+      lightGroup.add(mesh);
+
       const LightPillar = createLightPillar({
         radius: this.options.earth.radius,
         lon,
@@ -248,17 +251,24 @@ export default class Earth {
         textures: this.options.textures,
         punctuation: this.options.punctuation
       }); //光柱
-      LightPillar.name = "LightPillar"
-      this.markupPoint.add(LightPillar);
+      LightPillar.name = name;
+      lightGroup.add(LightPillar);
+
+      // Create Ripples
       const WaveMesh = createWaveMesh({ radius, lon, lat, textures: this.options.textures }); //波动光圈
-      this.markupPoint.add(WaveMesh);
+      lightGroup.add(WaveMesh);
       this.waveMeshArr.push(WaveMesh);
 
+      lightGroup.name = "LightPillar"
+      this.markupPoint.add(lightGroup)
+      console.log(22, this.earthGroup)
+
       await (item.location.map((obj) => {
+        const lightGroup = new Three.Group();
         const lon = obj.EW; //经度
         const lat = obj.NS; //纬度
         const mesh = createPointMesh({ radius, lon, lat, material: this.punctuationMaterial }); //光柱底座矩形平面
-        this.markupPoint.add(mesh);
+        lightGroup.add(mesh);
         const LightPillar = createLightPillar({
           radius: this.options.earth.radius,
           lon,
@@ -267,15 +277,17 @@ export default class Earth {
           textures: this.options.textures,
           punctuation: this.options.punctuation
         }); //光柱
-        LightPillar.name = "LightPillar"
-        this.markupPoint.add(LightPillar);
+        LightPillar.name = obj.name;
+        lightGroup.add(LightPillar);
         const WaveMesh = createWaveMesh({ radius, lon, lat, textures: this.options.textures }); //波动光圈
-        this.markupPoint.add(WaveMesh);
+        lightGroup.add(WaveMesh);
         this.waveMeshArr.push(WaveMesh);
+        lightGroup.name = "LightPillar"
+        this.markupPoint  .add(lightGroup)
+        console.log(33, lightGroup)
       }));
-      console.log(this.markupPoint);
-      console.log(this.waveMeshArr);
       this.earthGroup.add(this.markupPoint);
+      console.log(44, this.earthGroup)
     }));
   }
 
