@@ -136,7 +136,7 @@ function ContactForm() {
         </Box>
       </form>
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        <h2>Find Out More?</h2>
+        <h1>Find Out More?</h1>
         <p>
           We are on Instagram (@FoodieBits), Youtube (FoodieTube), and Github (FoodieBits) with more content than ever!
 
@@ -144,24 +144,26 @@ function ContactForm() {
         </p>
       </div>
       {/* Google Map Embed */}
-      <div style={{ marginTop: '20px', textAlign: 'center'  }}>
-        <h2>Our Office</h2>
+      <div style={{ marginTop: '20px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h1>Our Office</h1>
         <p>Feel free to send us fan or corporate mail to office at 219 Henderson Road #09-03 Singapore 159556</p>
         <div style={{ width: '80%', margin: 'auto' }}>
         <iframe
-          title="Google Map"
-          width="600"
-          height="450"
-          loading="lazy"
-          allowFullScreen
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.822144597304!2d103.81733707481736!3d1.28037766179553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da11f1aee5dcb3%3A0x39fee500981d0d0a!2sMount%20Hermon%20Bible%20-%20Presbyterian!5e0!3m2!1sen!2ssg!4v1706378229958!5m2!1sen!2ssg" 
+            title="Google Map"
+            width="600"
+            height="450"
+            loading="lazy"
+            allowFullScreen
+            style={{ display: 'block', margin: 'auto' }}
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.822144597304!2d103.81733707481736!3d1.28037766179553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da11f1aee5dcb3%3A0x39fee500981d0d0a!2sMount%20Hermon%20Bible%20-%20Presbyterian!5e0!3m2!1sen!2ssg!4v1706378229958!5m2!1sen!2ssg"
         ></iframe>
-        </div>
       </div>
+    </div>
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
         <h2>Our Past Partners!</h2>
         <p>
           Here are some of the wonderful companies and events we've been honoured to be apart of!
+          Click on them to find out more!
         </p>
         {/* Flex container for logos */}
         <Flex justify="center" align="center" mt="4">
@@ -177,3 +179,5 @@ function ContactForm() {
 }
 
 export default ContactForm;
+
+
