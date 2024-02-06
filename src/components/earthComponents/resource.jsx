@@ -37,7 +37,8 @@ export default class Resource {
       console.log('Start Downloading Documents...')
     }
     // Finish Loading
-    this.manager.onLoad = () => {
+    this.manager.onLoad = (url) => {
+      console.log(`Download Complete: ${url}`)
       this.callback()
     }
     // Downloading

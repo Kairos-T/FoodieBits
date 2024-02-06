@@ -200,14 +200,14 @@ export const cuisineCoords = [
     ]},
   { // SEA
     region: {
-      name: "Asia",
-      NS: 34.0479,
-      EW: 100.6197 },
+      name: "South East Asia",
+      NS: -2.2180,
+      EW: 115.6628 },
     location: [
-      { name: "Singapore 新加坡",
+      { name: "Singapore",
         NS: 1.3521,
         EW: 103.8198 },
-      { name: "Malaysia 马拉西亚",
+      { name: "Malaysia",
         NS: 4.2105,
         EW: 101.9758, }
     ]},
@@ -225,16 +225,20 @@ export const cuisineCoords = [
     region: {
       name: "Europe",
       NS: 54.5260,
-      EW: 315.2551 },
-    location: [{
-      name: "England",
-      NS: 52.3555,
-      EW: 359.82421875 }]
+      EW: 15.2551 },
+    location: [
+      { name: "England",
+        NS: 52.3555,
+        EW: 359.82421875 },
+      { name: "France",
+        NS: 46.2276,
+        EW: 2.2137 }
+    ]
   }
 ]
 
 export const sceneColor = {
   // Background, Material
-  light: ["#edf2f7", "#1a202c"],
-  dark: ["#1a202c", "#ffffff"]
+  light: ["#edf2f7", "#63B3ED"],
+  dark: ["#1a202c", "#4FD1C5"]
 };

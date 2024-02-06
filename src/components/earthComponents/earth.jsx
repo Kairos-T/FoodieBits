@@ -66,7 +66,7 @@ export default class Earth {
       // await this.createSpriteLabel(); // 创建标签
 
       this.show();
-      console.log(this);
+      console.log(this); // Check if Earth up
     })();
   }
 
@@ -83,6 +83,7 @@ export default class Earth {
       size: 0.01 //定义粒子的大小。默认为1.0
     });
     const points = new Three.Points(earthBorder, pointMaterial); //将模型添加到场景
+    points.name = "shield";
     this.earthGroup.add(points); // Add Earth Shield
 
     this.uniforms.map.value = this.options.textures.earth;
@@ -96,6 +97,8 @@ export default class Earth {
     this.earth = new Three.Mesh(earthGeometry, earthMaterial);
     this.earth.name = "earth";
     this.earthGroup.add(this.earth); // Add Earth Globe
+
+    // console.log(this.uniforms);
     console.log(this.earth);
   }
 
@@ -268,6 +271,8 @@ export default class Earth {
         this.markupPoint.add(WaveMesh);
         this.waveMeshArr.push(WaveMesh);
       }));
+      console.log(this.markupPoint);
+      console.log(this.waveMeshArr);
       this.earthGroup.add(this.markupPoint);
     }));
   }

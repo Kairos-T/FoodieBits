@@ -1,12 +1,9 @@
 // Wayne
 
-import { useRef } from 'react';
-
 export default class Vertex {
-  ref = useRef();
 
   // Define the vertex shader code
-  vertexShader = `
+  static vertexShader = `
     varying vec2 vUv;
     varying vec3 vNormal;
     varying vec3 vp;

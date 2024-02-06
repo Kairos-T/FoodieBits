@@ -72,16 +72,17 @@ const Cuisines = () => {
             Cuisines{" "}
           </Heading>
         </Box>
-        <Box id="html2canvas" className="css3d-wapper">
-          <div className="fire-div"></div>
-        </Box>
         <Box
           id="three-container"
           style={{ width: "100%", height: "100vh" }}
           display="flex"
         >
         </Box>
-        <Box>
+        <Box
+        display="flex"
+        flexDir="column"
+        textAlign="center"
+        >
           <Text fontSize="2xl" py="10">
             Country Cuisine of the Day
           </Text>

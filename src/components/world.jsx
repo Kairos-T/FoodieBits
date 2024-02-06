@@ -18,6 +18,12 @@ export default class World {
     this.renderer = this.basic.renderer;
     this.controls = this.basic.controls;
 
+    // Clickable Pointers
+    this.mouse = new Three.Vector2();
+    this.pointer = new Three.Raycaster();
+    this.delay = 200;
+    this.recentTime = performance.now();
+
     this.container.appendChild(this.renderer.domElement);
 
     this.resources = new Resource(async() => {
@@ -69,5 +75,36 @@ export default class World {
     this.color.b = color[0];
     this.color.m = color[1];
     this.scene.background = new Three.Color(this.color.b);
+    if (this.earth){
+      const shieldPoint = this.earth.earthGroup.getChildByName("shield")
+      shieldPoint.material.color = new Three.Color(this.color.m);
+    }
+  }
+
+  positionLock(windowSize, useRaycast) {
+    const currentTime = performance.now();
+    if (currentTime - this.recentTime < this.delay) {
+      return;
+    }
+    this.recentTime = currentTime;
+
+    // Get mouse position in screen space
+    this.mouse.x = (event.clientX / windowSize[0]) * 2 - 1;
+    this.mouse.y = -(event.clientY / windowSize[1]) * 2 + 1;
+    // Only raycast if not panning (optimization)
+    if (useRaycast) {
+      this.pointer.setFromCamera(this.mouse, this.camera);
+
+      // Raycast to single object
+      const hits = this.pointer.intersectObject(this.scene.earthGroup.getObjectByName(""), false);
+
+      // Run if we have intersections
+      if (hits.length > 0) {
+        hits.forEach(hit => {
+          // Change material color of item we clicked on
+          hit.object.material.color.set(0xff0000);
+        });
+      }
+    }
   }
 }

@@ -1,12 +1,8 @@
 // Wayne
 
-import { useRef } from 'react';
-
 export default class Fragment {
-  ref = useRef();
-
   // Define the fragment shader code
-  fragmentShader = `
+  static fragmentShader = `
     uniform vec3 glowColor;
     uniform float bias;
     uniform float power;
