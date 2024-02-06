@@ -21,8 +21,8 @@ export default class World {
     // Clickable Pointers
     this.mouse = new Three.Vector2(0, 0);
     this.pointer = new Three.Raycaster();
-    this.delay = 200;
-    this.recentTime = performance.now();
+    this.interStatus = false;
+    this.timeDown = performance.now()
 
     this.container.appendChild(this.renderer.domElement);
 
@@ -53,6 +53,10 @@ export default class World {
     });
     this.scene.add(this.earth.group);
     await this.earth.initEarth();
+    console.log("Scan")
+    this.container.addEventListener("click", (event)=> this.mouseUpCheck(event));
+    this.container.addEventListener("mousedown", () => this.mouseDownCheck())
+    this.container.addEventListener("mouseup", () => this.earth.isRotation = true)
   }
 
   /**
@@ -69,6 +73,7 @@ export default class World {
     this.renderer.setSize(windowSize[0], windowSize[1]);
     this.camera.aspect = windowSize[0] / windowSize[1];
     this.camera.updateProjectionMatrix();
+    console.log(this.camera);
   }
 
   updateColor(color) {
@@ -81,79 +86,52 @@ export default class World {
     }
   }
 
-  async mouseDownCheck() {
-    // Check current time
-    const currentTime = performance.now();
-    if (currentTime - this.recentTime < this.delay) {
-      return currentTime;
-    }
-    this.recentTime = currentTime;
-    return currentTime;
-  }
-
-  async mouseUpCheck(windowSize, timeDown) {
-    let useRaycast = false;
+  mouseUpCheck(event) {
     // Get current time mouse released
     const timeUp = performance.now();
-    if (timeUp - timeDown > 2) {
+    console.log(timeUp)
+    console.log(this.timeDown)
+    if (timeUp - this.timeDown < 500) {
       return;
     }
+    this.timeDown = timeUp;
 
     // Get mouse position in screen space
     const rect = document.getElementById("three-container").getBoundingClientRect();
     // console.log(3, this.mouse);
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
-    const vec = new Three.Vector3(0, 0, 0); // create once and reuse
-    const pos = new Three.Vector3(); // create once and reuse
-    if (!isNaN(mouseX) && !isNaN(mouseY)){
-      this.mouse = new Three.Vector2(mouseX, mouseY)
-      vec.set(mouseX, mouseY, 0.5)
-      useRaycast = true
+    if (!isNaN(mouseX) && !isNaN(mouseY)) {
+      this.mouse = new Three.Vector2(mouseX, mouseY);
+      this.interStatus = true;
     } else {
-      useRaycast = false;
+      this.interStatus = false;
     }
-    console.log(useRaycast)
+    console.log(this.interStatus);
     console.log(2, this.mouse);
 
-    // Only raycast if not panning (optimization)
-    if (useRaycast) {
-      console.log(100, this.camera)
-
-      this.pointer.setFromCamera(this.mouse, this.camera);
-      // Raycast to single object
-      const light = this.earth.earthGroup.getObjectByName("markupPoint");
-      console.log(1, light);
-      const hits = this.pointer.intersectObject(light.getObjectByName("LightPillar"), false);
-      // Run if we have intersections
-      if (hits.length > 0) {
-        hits.forEach(hit => {
-          // Hit
-          this.intersect = true;
-          return() => {
-            console.log(123)
-            window.location.href = "/"
-          }
-        });
-      } else {
-        this.intersect = false;
-      }
-    }
-    return this.intersect;
+    this.positionLock()
   }
 
-  async positionLock(windowSize) {
-    this.container.addEventListener("mousedown", this.mouseDownCheck(windowSize, true));
-    this.container.addEventListener("mouseup", this.mouseUpCheck);
-    const timeDown = await this.mouseDownCheck();
-    const interStatus = await this.mouseUpCheck(windowSize, timeDown);
-    if (interStatus)
-    {
-        console.log(11)
+  mouseDownCheck() {
+    this.earth.isRotation = false;
+  }
+
+  positionLock() {
+    this.pointer.setFromCamera( this.mouse, this.camera);
+
+    const intersect = this.pointer.intersectObjects(this.earth.markupPoint.children)
+    for ( let i = 0; i < intersect.length; i ++ ) {
+      const groupName = intersect[ i ].object.name;
+      if (groupName !== undefined){
+        cuisineCoords.find(cuisine => {
+          if ("LightPillar" === groupName){
+            window.location.assign("/")
+            console.log(112)
+          }
+        })
+        break;
+      }
     }
-    return () => {
-      this.container.removeEventListener("mouseup", this.mouseDownCheck);
-      this.container.removeEventListener("mousedown", this.mouseUpCheck);
-    };
   }
 }

@@ -171,8 +171,8 @@ export const cuisineCoords = [
     },
     location: [
       { name: "Guangdong",
-        NS: 23.379032,
-        EW: 113.763283, },
+        NS: 22.379032,
+        EW: 110.763283, },
       { name: "Fujian",
         NS: 25.924480,
         EW: 118.278992 },

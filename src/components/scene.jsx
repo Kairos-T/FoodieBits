@@ -7,7 +7,6 @@ import World from "./world.jsx";
 // Export default
 const ThreeGlobeScene = (windowSize, color) => {
   const [world, setWorld] = useState(null);
-  const [click, setClick] = useState(false);
   const cleanUp = (world) => {
     if (world) {
       console.log(`Before ${world.container.childNodes.length}`);
@@ -61,20 +60,5 @@ const ThreeGlobeScene = (windowSize, color) => {
       cleanUp(world);
     };
   }, [world]);
-
-  // Handle Click
-  useEffect(() => {
-    const handleMouseEnter = () => {
-      if (world && world.earth.earthGroup){
-        console.log("Scanned")
-        const found = world.positionLock(windowSize);
-      }
-    };
-    document.getElementById("three-container").addEventListener("mouseenter", handleMouseEnter);
-    return () => {
-      // Dispose remove event listeners
-      document.getElementById("three-container").removeEventListener("mouseenter", handleMouseEnter);
-    };
-  });
 };
 export default ThreeGlobeScene;
