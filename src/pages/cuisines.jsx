@@ -6,7 +6,7 @@ import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { sceneColor } from "../data/constants";
 
 import React, { useEffect, useState } from "react";
-import ThreeGlobeScene from "@/components/world.jsx";
+import ThreeGlobeScene from "@/components/scene.jsx";
 
 const Cuisines = () => {
   const title = "Cuisines";
@@ -18,6 +18,7 @@ const Cuisines = () => {
   const [windowSize, setWindowSize] = useState([0, 0]);
   const changeColor = useColorModeValue(sceneColor.light, sceneColor.dark);
   const [changeRequest, setChangeRequest] = useState(changeColor);
+
   useEffect(() => {
     const handleWindowResize = () => {
       const width = document.getElementById("three-container").offsetWidth;
@@ -34,11 +35,11 @@ const Cuisines = () => {
 
   useEffect(() => {
     const handleColorChange = () => {
-      setChangeRequest(changeColor);
       console.log(`Cuisines.jsx: ${changeRequest}`);
+      setChangeRequest(changeColor);
     };
     handleColorChange();
-  }, [color]);
+  }, [changeColor, changeRequest]);
 
   ThreeGlobeScene(windowSize, changeRequest);
 
@@ -77,7 +78,11 @@ const Cuisines = () => {
           display="flex"
         >
         </Box>
-        <Box>
+        <Box
+        display="flex"
+        flexDir="column"
+        textAlign="center"
+        >
           <Text fontSize="2xl" py="10">
             Country Cuisine of the Day
           </Text>
