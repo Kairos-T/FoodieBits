@@ -19,21 +19,21 @@ export default class World {
     this.controls = this.basic.controls;
 
     // Clickable Pointers
-    this.mouse = new Three.Vector2();
+    this.mouse = new Three.Vector2(0, 0);
     this.pointer = new Three.Raycaster();
     this.delay = 200;
     this.recentTime = performance.now();
 
     this.container.appendChild(this.renderer.domElement);
 
-    this.resources = new Resource(async() => {
+    this.resources = new Resource(async () => {
       await this.createEarth();
-      console.log("Done")
+      console.log("Done");
       this.renderWorld();
     });
   }
 
- async createEarth() {
+  async createEarth() {
     this.earth = new Earth({
       color: this.color,
       data: cuisineCoords,
@@ -47,12 +47,12 @@ export default class World {
         circleColor: 0x3892ff,
         lightColumn: {
           startColor: 0xe4007f, // 起点颜色
-          endColor: 0xffffff, // 终点颜色
-        },
-      },
+          endColor: 0xffffff // 终点颜色
+        }
+      }
     });
-   this.scene.add(this.earth.group);
-   await this.earth.initEarth();
+    this.scene.add(this.earth.group);
+    await this.earth.initEarth();
   }
 
   /**
@@ -75,36 +75,73 @@ export default class World {
     this.color.b = color[0];
     this.color.m = color[1];
     this.scene.background = new Three.Color(this.color.b);
-    if (this.earth){
-      const shieldPoint = this.earth.earthGroup.getChildByName("shield")
+    if (this.earth) {
+      const shieldPoint = this.earth.earthGroup.getChildByName("shield");
       shieldPoint.material.color = new Three.Color(this.color.m);
     }
   }
 
-  positionLock(windowSize, useRaycast) {
+  async mouseDownCheck() {
+    // Check current time
     const currentTime = performance.now();
     if (currentTime - this.recentTime < this.delay) {
-      return;
+      return currentTime;
     }
     this.recentTime = currentTime;
+    return currentTime;
+  }
+
+  async mouseUpCheck(windowSize, useRaycast, timeDown) {
+    // Get current time mouse released
+    const timeUp = performance.now();
+    if (timeUp - timeDown > 0.5) {
+      return;
+    }
 
     // Get mouse position in screen space
-    this.mouse.x = (event.clientX / windowSize[0]) * 2 - 1;
-    this.mouse.y = -(event.clientY / windowSize[1]) * 2 + 1;
+    const rect = document.getElementById("three-container").getBoundingClientRect();
+    console.log(3, this.mouse);
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    !isNaN(mouseX) && !isNaN(mouseY)
+      ? this.mouse = new Three.Vector2(mouseX, mouseY)
+      : useRaycast = false;
+    console.log(2, this.mouse);
+
     // Only raycast if not panning (optimization)
     if (useRaycast) {
       this.pointer.setFromCamera(this.mouse, this.camera);
-
       // Raycast to single object
-      const hits = this.pointer.intersectObject(this.scene.earthGroup.getObjectByName(""), false);
-
+      const light = this.earth.earthGroup.getObjectByName("markupPoint");
+      console.log(1);
+      console.log(light);
+      const hits = this.pointer.intersectObject(light.getObjectByName("LightPillar"), false);
       // Run if we have intersections
       if (hits.length > 0) {
         hits.forEach(hit => {
-          // Change material color of item we clicked on
-          hit.object.material.color.set(0xff0000);
+          // Hit
+          this.intersect = true;
+          console.log("hit");
         });
+      } else {
+        this.intersect = false;
       }
     }
+    return this.intersect;
+  }
+
+  async positionLock(windowSize) {
+    this.container.addEventListener("mousedown", this.mouseDownCheck(windowSize, true));
+    this.container.addEventListener("mouseup", this.mouseUpCheck);
+    const timeDown = await this.mouseDownCheck();
+    const interStatus = await this.mouseUpCheck(windowSize, true, timeDown);
+    if (interStatus)
+    {
+        this.mouse.unproject(this.camera)
+    }
+    return () => {
+      this.container.removeEventListener("mouseup", this.mouseDownCheck);
+      this.container.removeEventListener("mousedown", this.mouseUpCheck);
+    };
   }
 }

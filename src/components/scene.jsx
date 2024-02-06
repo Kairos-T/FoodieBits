@@ -6,7 +6,6 @@ import World from "./world.jsx";
 // Initialise Globe Scene for ThreeJS
 // Export default
 const ThreeGlobeScene = (windowSize, color) => {
-
   const [world, setWorld] = useState(null);
   const [click, setClick] = useState(false);
   const cleanUp = (world) => {
@@ -65,17 +64,17 @@ const ThreeGlobeScene = (windowSize, color) => {
 
   // Handle Click
   useEffect(() => {
-    const handleMouseClick = () => {
-      if (world){
-        const found = world.positionLock();
+    const handleMouseEnter = () => {
+      if (world && world.earth.earthGroup){
+        console.log("Scanned")
+        const found = world.positionLock(windowSize);
       }
     };
-    handleMouseClick();
-    window.addEventListener("mousedown", handleMouseClick);
+    document.getElementById("three-container").addEventListener("mouseenter", handleMouseEnter);
     return () => {
       // Dispose remove event listeners
-      window.removeEventListener("mousedown", handleMouseClick);
+      document.getElementById("three-container").removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, []);
+  });
 };
 export default ThreeGlobeScene;

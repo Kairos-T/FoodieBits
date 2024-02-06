@@ -248,6 +248,7 @@ export default class Earth {
         textures: this.options.textures,
         punctuation: this.options.punctuation
       }); //光柱
+      LightPillar.name = "LightPillar"
       this.markupPoint.add(LightPillar);
       const WaveMesh = createWaveMesh({ radius, lon, lat, textures: this.options.textures }); //波动光圈
       this.markupPoint.add(WaveMesh);
@@ -266,6 +267,7 @@ export default class Earth {
           textures: this.options.textures,
           punctuation: this.options.punctuation
         }); //光柱
+        LightPillar.name = "LightPillar"
         this.markupPoint.add(LightPillar);
         const WaveMesh = createWaveMesh({ radius, lon, lat, textures: this.options.textures }); //波动光圈
         this.markupPoint.add(WaveMesh);
