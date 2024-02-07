@@ -77,6 +77,7 @@ const Cuisines = () => {
           style={{ width: "100%", height: "100vh" }}
           display="flex"
         >
+          <div id="labelCuisine"></div>
         </Box>
         <Box
           display="flex"

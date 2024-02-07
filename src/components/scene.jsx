@@ -1,11 +1,12 @@
 // Wayne
 // Import usages
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import World from "./world.jsx";
 
 // Initialise Globe Scene for ThreeJS
 // Export default
 const ThreeGlobeScene = (windowSize, color) => {
+  const canvasRef = useRef(null);
   const [world, setWorld] = useState(null);
   const cleanUp = (world) => {
     if (world) {

@@ -55,13 +55,12 @@ export default class World {
         flyLineColor: 0xff7714, // 飞行线的颜色
         speed: 0.004, // 拖尾飞线的速度
       },
-      domElement : this.renderer.domElement
     });
     this.scene.add(this.earth.group);
     await this.earth.initEarth();
     console.log("Scan")
-    this.container.addEventListener("click", (event)=> this.mouseUpCheck(event));
-    this.container.addEventListener("mousedown", () => this.mouseDownCheck())
+    this.container.addEventListener("click", (event)=> this.mouseClickCheck(event));
+    this.container.addEventListener("mousedown", () => this.earth.isRotation = false)
     this.container.addEventListener("mouseup", () => this.earth.isRotation = true)
   }
 
@@ -92,7 +91,7 @@ export default class World {
     }
   }
 
-  mouseUpCheck(event) {
+  mouseClickCheck(event) {
     // Get current time mouse released
     const timeUp = performance.now();
     console.log(timeUp)
@@ -119,11 +118,8 @@ export default class World {
     this.positionLock()
   }
 
-  mouseDownCheck() {
-    this.earth.isRotation = false;
-  }
-
   positionLock() {
+    console.log("Debugging...")
     this.pointer.setFromCamera( this.mouse, this.camera);
 
     const intersect = this.pointer.intersectObjects(this.earth.earth.children)

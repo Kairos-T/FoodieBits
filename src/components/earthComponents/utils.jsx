@@ -152,9 +152,9 @@ export const flyArc = (radius, lon1, lat1, lon2, lat2, options) => {
 
   const startEndQua = _3Dto2D(startSphereCoord, endSphereCoord)
   // 调用arcXOY函数绘制一条圆弧飞线轨迹
-  const arcline = arcXOY(radius, startEndQua.startPoint, startEndQua.endPoint,options);
-  arcline.quaternion.multiply(startEndQua.quaternion)
-  return arcline;
+  const arcLine = arcXOY(radius, startEndQua.startPoint, startEndQua.endPoint,options);
+  arcLine.quaternion.multiply(startEndQua.quaternion)
+  return arcLine;
 }
 
 const _3Dto2D = (startSphere, endSphere) => {

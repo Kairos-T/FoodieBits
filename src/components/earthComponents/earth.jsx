@@ -2,6 +2,7 @@
 import * as Three from "three";
 import { gsap } from "gsap";
 import { createLightPillar, createPointMesh, createWaveMesh, lon2xyz, flyArc } from "./utils.jsx";
+import { FontLoader } from "/node_modules/three/examples/jsm/loaders/FontLoader.js"
 
 import Vertex from "/public/shaders/vertex";
 import Fragment from "/public/shaders/fragment";
@@ -10,7 +11,6 @@ import Fragment from "/public/shaders/fragment";
 export default class Earth {
   constructor(options) {
     this.options = options;
-    this.canvas = this.options.domElement
 
     this.group = new Three.Group();
     this.group.name = "group";
@@ -23,6 +23,8 @@ export default class Earth {
     this.markupPoint = new Three.Group();
     this.markupPoint.name = "markupPoint";
     this.waveMeshArr = [];
+
+    this.font = new FontLoader();
 
     this.isRotation = this.options.earth.isRotation;
 
@@ -65,7 +67,7 @@ export default class Earth {
       this.createEarthAperture(); // 创建地球的大气层
       await this.createMarkupPoint(); // 创建柱状点位
       await this.createSpriteLabel(); // 创建标签
-      this.createFlyLine()
+      this.createFlyLine();
 
       this.show();
       console.log(this); // Check if Earth up
@@ -261,9 +263,9 @@ export default class Earth {
       lightGroup.add(WaveMesh);
       this.waveMeshArr.push(WaveMesh);
 
-      lightGroup.name = "LightPillar"
-      this.markupPoint.add(lightGroup)
-      console.log(22, this.earthGroup)
+      lightGroup.name = "LightPillar";
+      this.markupPoint.add(lightGroup);
+      console.log(22, this.earthGroup);
 
       await (item.location.map((obj) => {
         const lightGroup = new Three.Group();
@@ -284,51 +286,89 @@ export default class Earth {
         const WaveMesh = createWaveMesh({ radius, lon, lat, textures: this.options.textures }); //波动光圈
         lightGroup.add(WaveMesh);
         this.waveMeshArr.push(WaveMesh);
-        lightGroup.name = "LightPillar"
-        this.markupPoint  .add(lightGroup)
-        console.log(33, lightGroup)
+        lightGroup.name = "LightPillar";
+        this.markupPoint.add(lightGroup);
+        console.log(33, lightGroup);
       }));
       this.earthGroup.add(this.markupPoint);
-      console.log(44, this.earthGroup)
+      console.log(44, this.earthGroup);
     }));
   }
 
   async createSpriteLabel() {
-    await (this.options.data.map(async item => {
+    await Promise.all(this.options.data.map(async item => {
       let cityArry = [];
       cityArry.push(item.region);
       cityArry = cityArry.concat(...item.location);
+
       await (cityArry.map(async e => {
-        console.log(e)
+        this.font.load("/node_modules/three/examples/fonts/droid/droid_sans_bold.typeface.json", (font) => {
+          this.textGeometry = new Three.TextGeometry('Scroll to Start', {
+            size: 5,
+            height: 1,
+            font: font,
+            bevelSize: 5,
+            bevelThickness: 2,
+          });
+        })
+        console.log(e);
+
         const p = lon2xyz(this.options.earth.radius * 1.001, e.EW, e.NS);
         const opts = {
-          backgroundColor: null, // 背景透明
+          backgroundColor: null,
           scale: 6,
-          dpi: window.devicePixelRatio,
+          dpi: window.devicePixelRatio
         };
-        await (this.canvas, opts)
-        const dataURL = this.canvas.toDataURL("image/png", opts);
+
+        // Must be canvas element
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        const dataURL = canvas.toDataURL("image/png", opts);
         const map = new Three.TextureLoader().load(dataURL);
-        console.log(map)
+        console.log(map);
+
+        const textMaterial = new Three.MeshBasicMaterial({map: map, transparent:true, opacity: .5});
+        const mesh = new Three.Mesh(this.textGeometry, textMaterial);
+
+        // Computing text = canvas size for no stretching of text
+        const len = (e.name.length) * 2 + 5
+        context.font = `20px Arial`;
+        const textMetric = context.measureText(e.name);
+        const scaleX = 200 / textMetric.width;
+        const scaleY = 50 / 20;
+        const canvasScale = Math.min(scaleX, scaleY);
+        canvas.width = 200;
+        canvas.height = 50;
+        context.scale(canvasScale, canvasScale);
+
+        // Background color
+        context.fillStyle = "rgba(72, 187, 120, 0.5)";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = 'white';
+        context.fillText(e.name, canvas.width/2, canvas.height/2);
+
         const material = new Three.SpriteMaterial({
           map: map,
-          transparent: true,
+          transparent: true
         });
         const sprite = new Three.Sprite(material);
-        const len = 3 + (e.name.length - 2) * 2;
-        sprite.scale.set(len, 2, 1);
+        const spriteScale = 5 / canvasScale;
+        sprite.scale.set(spriteScale, spriteScale, 1);
         sprite.position.set(p.x * 1.15, p.y * 1.15, p.z * 1.15);
-        console.log(p)
-        console.log(sprite)
+
+        sprite.add(mesh)
+
+        console.log(p);
+        console.log(sprite);
         this.earth.add(sprite);
-      }))
-    }))
+      }));
+    }));
   }
 
   createFlyLine() {
     this.flyLineArcGroup = new Three.Group();
-    this.flyLineArcGroup.userData['flyLineArray'] = []
-    this.earthGroup.add(this.flyLineArcGroup)
+    this.flyLineArcGroup.userData["flyLineArray"] = [];
+    this.earthGroup.add(this.flyLineArcGroup);
 
     this.options.data.forEach((cities) => {
       cities.location.forEach(item => {
@@ -343,10 +383,10 @@ export default class Earth {
         );
 
         this.flyLineArcGroup.add(arcLine);
-        this.flyLineArcGroup.userData['flyLineArray'].push(arcLine.userData['flyLine'])
+        this.flyLineArcGroup.userData["flyLineArray"].push(arcLine.userData["flyLine"]);
       });
 
-    })
+    });
 
   }
 
@@ -361,10 +401,10 @@ export default class Earth {
   }
 
   renderEarth() {
-    this.flyLineArcGroup?.userData['flyLineArray']?.forEach(fly => {
+    this.flyLineArcGroup?.userData["flyLineArray"]?.forEach(fly => {
       fly.rotation.z += this.options.flyLine.speed;
       if (fly.rotation.z >= fly.flyEndAngle) fly.rotation.z = 0;
-    })
+    });
 
     if (this.isRotation) {
       this.earthGroup.rotation.y += this.options.earth.rotateSpeed;
