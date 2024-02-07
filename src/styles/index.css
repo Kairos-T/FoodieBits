@@ -7,5 +7,5 @@
 }
 
 .chakra-popover__content {
-    z-index: 9999; /* Adjust the z-index as needed */
-  }
+    z-index: 9999;
+}

@@ -40,6 +40,7 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
 
   const [scrollY, setScrollY] = useState(0);
 
+  // Measuring the amount of scroll for the parallax effect
   const handleScroll = () => {
     setScrollY(window.scrollY);
   };
@@ -130,6 +131,7 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
             py="4"
             fontSize="16px"
           >
+            {/*Parallax Effect for Image*/}
             <Box
               as="header"
               textAlign="center"
@@ -187,6 +189,7 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
                   backgroundColor="rgba(180, 180, 180, 0.15)" borderRadius="10px"
                   width="fit-content" margin="auto"
             >
+              {/*Buttons for Downloading and Copying Link*/}
               <IconButton
                 icon={<DownloadIcon />}
                 aria-label="Download"
@@ -195,7 +198,6 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
                 variant={"unstyled"}
                 _hover={{ transform: "scale(1.1)" }}
                 transition="all 0.2s ease-in-out"
-
               />
               <IconButton
                 icon={<LinkIcon />}
@@ -218,6 +220,7 @@ export const getStaticPaths = async () => {
   const posts = await getFiles("recipes");
 
   return {
+    // Removes file extension in the URL
     paths: posts.map((post) => ({
       params: {
         slug: post.replace(/\.mdx/, "")
