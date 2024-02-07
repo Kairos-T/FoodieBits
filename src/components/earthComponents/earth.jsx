@@ -1,7 +1,7 @@
 // Wayne
 import * as Three from "three";
 import { gsap } from "gsap";
-import { createLightPillar, createPointMesh, createWaveMesh, getCirclePoints, lon2xyz } from "./utils.jsx";
+import { createLightPillar, createPointMesh, createWaveMesh, lon2xyz, flyArc } from "./utils.jsx";
 
 import Vertex from "/public/shaders/vertex";
 import Fragment from "/public/shaders/fragment";
@@ -10,6 +10,7 @@ import Fragment from "/public/shaders/fragment";
 export default class Earth {
   constructor(options) {
     this.options = options;
+    this.canvas = this.options.domElement
 
     this.group = new Three.Group();
     this.group.name = "group";
@@ -63,7 +64,8 @@ export default class Earth {
       this.createEarthGlow(); // 创建地球辉光
       this.createEarthAperture(); // 创建地球的大气层
       await this.createMarkupPoint(); // 创建柱状点位
-      // await this.createSpriteLabel(); // 创建标签
+      await this.createSpriteLabel(); // 创建标签
+      this.createFlyLine()
 
       this.show();
       console.log(this); // Check if Earth up
@@ -291,6 +293,63 @@ export default class Earth {
     }));
   }
 
+  async createSpriteLabel() {
+    await (this.options.data.map(async item => {
+      let cityArry = [];
+      cityArry.push(item.region);
+      cityArry = cityArry.concat(...item.location);
+      await (cityArry.map(async e => {
+        console.log(e)
+        const p = lon2xyz(this.options.earth.radius * 1.001, e.EW, e.NS);
+        const opts = {
+          backgroundColor: null, // 背景透明
+          scale: 6,
+          dpi: window.devicePixelRatio,
+        };
+        await (this.canvas, opts)
+        const dataURL = this.canvas.toDataURL("image/png", opts);
+        const map = new Three.TextureLoader().load(dataURL);
+        console.log(map)
+        const material = new Three.SpriteMaterial({
+          map: map,
+          transparent: true,
+        });
+        const sprite = new Three.Sprite(material);
+        const len = 3 + (e.name.length - 2) * 2;
+        sprite.scale.set(len, 2, 1);
+        sprite.position.set(p.x * 1.15, p.y * 1.15, p.z * 1.15);
+        console.log(p)
+        console.log(sprite)
+        this.earth.add(sprite);
+      }))
+    }))
+  }
+
+  createFlyLine() {
+    this.flyLineArcGroup = new Three.Group();
+    this.flyLineArcGroup.userData['flyLineArray'] = []
+    this.earthGroup.add(this.flyLineArcGroup)
+
+    this.options.data.forEach((cities) => {
+      cities.location.forEach(item => {
+
+        const arcLine = flyArc(
+          this.options.earth.radius,
+          cities.region.EW,
+          cities.region.NS,
+          item.EW,
+          item.NS,
+          this.options.flyLine
+        );
+
+        this.flyLineArcGroup.add(arcLine);
+        this.flyLineArcGroup.userData['flyLineArray'].push(arcLine.userData['flyLine'])
+      });
+
+    })
+
+  }
+
   show() {
     gsap.to(this.group.scale, {
       x: 1,
@@ -302,6 +361,11 @@ export default class Earth {
   }
 
   renderEarth() {
+    this.flyLineArcGroup?.userData['flyLineArray']?.forEach(fly => {
+      fly.rotation.z += this.options.flyLine.speed;
+      if (fly.rotation.z >= fly.flyEndAngle) fly.rotation.z = 0;
+    })
+
     if (this.isRotation) {
       this.earthGroup.rotation.y += this.options.earth.rotateSpeed;
     }

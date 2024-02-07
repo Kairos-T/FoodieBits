@@ -49,7 +49,13 @@ export default class World {
           startColor: 0xe4007f, // 起点颜色
           endColor: 0xffffff // 终点颜色
         }
-      }
+      },
+      flyLine: {
+        color: 0xf3ae76, // 飞线的颜色
+        flyLineColor: 0xff7714, // 飞行线的颜色
+        speed: 0.004, // 拖尾飞线的速度
+      },
+      domElement : this.renderer.domElement
     });
     this.scene.add(this.earth.group);
     await this.earth.initEarth();
@@ -81,7 +87,7 @@ export default class World {
     this.color.m = color[1];
     this.scene.background = new Three.Color(this.color.b);
     if (this.earth) {
-      const shieldPoint = this.earth.earthGroup.getChildByName("shield");
+      const shieldPoint = this.earth.earthGroup.getObjectByName("shield");
       shieldPoint.material.color = new Three.Color(this.color.m);
     }
   }
@@ -120,7 +126,10 @@ export default class World {
   positionLock() {
     this.pointer.setFromCamera( this.mouse, this.camera);
 
-    const intersect = this.pointer.intersectObjects(this.earth.markupPoint.children)
+    const intersect = this.pointer.intersectObjects(this.earth.earth.children)
+    if (intersect > 0){
+      console.log(1111)
+    }
     for ( let i = 0; i < intersect.length; i ++ ) {
       const groupName = intersect[ i ].object.name;
       if (groupName !== undefined){

@@ -52,6 +52,7 @@ const ThreeGlobeScene = (windowSize, color) => {
       requestAnimationFrame(renderGlobeScene);
       if (world) {
         world.renderWorld();
+        window.world = world
       }
     };
     renderGlobeScene();
