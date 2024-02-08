@@ -19,21 +19,21 @@ export default class World {
     this.controls = this.basic.controls;
 
     // Clickable Pointers
-    this.mouse = new Three.Vector2();
+    this.mouse = new Three.Vector2(0, 0);
     this.pointer = new Three.Raycaster();
-    this.delay = 200;
-    this.recentTime = performance.now();
+    this.interStatus = false;
+    this.timeDown = performance.now()
 
     this.container.appendChild(this.renderer.domElement);
 
-    this.resources = new Resource(async() => {
+    this.resources = new Resource(async () => {
       await this.createEarth();
-      console.log("Done")
+      console.log("Done");
       this.renderWorld();
     });
   }
 
- async createEarth() {
+  async createEarth() {
     this.earth = new Earth({
       color: this.color,
       data: cuisineCoords,
@@ -47,12 +47,22 @@ export default class World {
         circleColor: 0x3892ff,
         lightColumn: {
           startColor: 0xe4007f, // 起点颜色
-          endColor: 0xffffff, // 终点颜色
-        },
+          endColor: 0xffffff // 终点颜色
+        }
       },
+      flyLine: {
+        color: 0xf3ae76, // 飞线的颜色
+        flyLineColor: 0xff7714, // 飞行线的颜色
+        speed: 0.004, // 拖尾飞线的速度
+      },
+      domElement : this.renderer.domElement
     });
-   this.scene.add(this.earth.group);
-   await this.earth.initEarth();
+    this.scene.add(this.earth.group);
+    await this.earth.initEarth();
+    console.log("Scan")
+    this.container.addEventListener("click", (event)=> this.mouseUpCheck(event));
+    this.container.addEventListener("mousedown", () => this.mouseDownCheck())
+    this.container.addEventListener("mouseup", () => this.earth.isRotation = true)
   }
 
   /**
@@ -69,41 +79,67 @@ export default class World {
     this.renderer.setSize(windowSize[0], windowSize[1]);
     this.camera.aspect = windowSize[0] / windowSize[1];
     this.camera.updateProjectionMatrix();
+    console.log(this.camera);
   }
 
   updateColor(color) {
     this.color.b = color[0];
     this.color.m = color[1];
     this.scene.background = new Three.Color(this.color.b);
-    if (this.earth){
-      const shieldPoint = this.earth.earthGroup.getChildByName("shield")
+    if (this.earth) {
+      const shieldPoint = this.earth.earthGroup.getObjectByName("shield");
       shieldPoint.material.color = new Three.Color(this.color.m);
     }
   }
 
-  positionLock(windowSize, useRaycast) {
-    const currentTime = performance.now();
-    if (currentTime - this.recentTime < this.delay) {
+  mouseUpCheck(event) {
+    // Get current time mouse released
+    const timeUp = performance.now();
+    console.log(timeUp)
+    console.log(this.timeDown)
+    if (timeUp - this.timeDown < 500) {
       return;
     }
-    this.recentTime = currentTime;
+    this.timeDown = timeUp;
 
     // Get mouse position in screen space
-    this.mouse.x = (event.clientX / windowSize[0]) * 2 - 1;
-    this.mouse.y = -(event.clientY / windowSize[1]) * 2 + 1;
-    // Only raycast if not panning (optimization)
-    if (useRaycast) {
-      this.pointer.setFromCamera(this.mouse, this.camera);
+    const rect = document.getElementById("three-container").getBoundingClientRect();
+    // console.log(3, this.mouse);
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    if (!isNaN(mouseX) && !isNaN(mouseY)) {
+      this.mouse = new Three.Vector2(mouseX, mouseY);
+      this.interStatus = true;
+    } else {
+      this.interStatus = false;
+    }
+    console.log(this.interStatus);
+    console.log(2, this.mouse);
 
-      // Raycast to single object
-      const hits = this.pointer.intersectObject(this.scene.earthGroup.getObjectByName(""), false);
+    this.positionLock()
+  }
 
-      // Run if we have intersections
-      if (hits.length > 0) {
-        hits.forEach(hit => {
-          // Change material color of item we clicked on
-          hit.object.material.color.set(0xff0000);
-        });
+  mouseDownCheck() {
+    this.earth.isRotation = false;
+  }
+
+  positionLock() {
+    this.pointer.setFromCamera( this.mouse, this.camera);
+
+    const intersect = this.pointer.intersectObjects(this.earth.earth.children)
+    if (intersect > 0){
+      console.log(1111)
+    }
+    for ( let i = 0; i < intersect.length; i ++ ) {
+      const groupName = intersect[ i ].object.name;
+      if (groupName !== undefined){
+        cuisineCoords.find(cuisine => {
+          if ("LightPillar" === groupName){
+            window.location.assign("/")
+            console.log(112)
+          }
+        })
+        break;
       }
     }
   }

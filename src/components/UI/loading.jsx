@@ -1,5 +1,5 @@
 // Loading component as between pages
-// By: Kairos and Bowen
+// By: Kairos (Logic) and Bowen (Styles and Layout)
 
 import React, { useEffect, useState } from "react";
 import { Box, Spinner, Text, useColorModeValue } from "@chakra-ui/react";

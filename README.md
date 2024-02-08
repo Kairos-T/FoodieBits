@@ -21,66 +21,19 @@ This website is built by: Kairos Tay, Hu Bowen, Wayne Chia and Ruby Lee as part 
    ```bash
    npm install --legacy-peer-deps
    ```
-3. Run the development server
+3. Add API keys
+   - Create a `.env.local` file in the root directory of the project
+   - Add the following environment variables to the `.env.local` file:
+     ```env
+     GOOGLE_MAPS_API_KEY=<GOOGLE_MAPS_API_KEY>
+     ```
+   - Replace `<GOOGLE_MAPS_API_KEY>` with your Google Maps API key
+4. Run the development server
    ```bash
    npm run dev
    ```
 
 ## Documentation
-
-### Libraries Used & Reasoning
-
-**UI:**
-
-- [Chakra UI](https://chakra-ui.com/docs/getting-started)
-    - Chakra UI is a component library that provides a set of accessible, reusable, and composable React components that
-      make it easy to build websites and apps. Due to the ease of use and the features it provides, we decided to use it
-      to streamline the development process.
-- [Framer Motion](https://www.framer.com/motion/)
-    - Framer Motion is a production-ready motion library for React. It is used to create animations for the website. We
-      decided to use it to implement smooth transitions between pages and components for a better user experience.
-      Additionally, it is easy to use and has a wide range of features, creating various effects.
-- [React Icons](https://react-icons.github.io/react-icons/)
-    - React Icons is a library that provides popular icons for use in React projects. We decided to use it to add icons
-      to our website as it is simple to use and has a wide range of icons in addition to the ones provided by Chakra UI.
-- [ityped](https://ityped.surge.sh/)
-    - ityped is a library that allows for typing animations. We decided to use it to add a typing animation to the
-      landing page to make it more interesting, giving the users ample information without overwhelming them with too
-      much text at once.
-
-**Utilities:**
-
-Recipe Page:
-
-- [dayjs](https://day.js.org/)
-    - dayjs is a library that allows for manipulation of dates and times. It was used to format the published date of
-      the recipes in the recipe search page. We decided to use it as opposed to the native JavaScript Date object as
-      it can be more easily manipulated and formatted.
-- [fuse.js](https://fusejs.io/)
-    - fuse.js is a library that allows for fuzzy-searching, which is a type of search that will find results even
-      when there are typos or spelling mistakes. It was used to implement the search function in the recipe search
-      page which improves the user experience by giving them more relevant results.
-- [remark](https://remark.js.org/)
-    - remark is a library that allows for easy manipulation of markdown, aiding in the creation of the various
-      recipe pages. We used it for the efficient conversion of the recipes in MDX format to be displayed on the
-      website as usual pages.
-- [gray-matter](https://www.npmjs.com/package/gray-matter)
-    - gray-matter is a library that allows for manipulation of front matter, which is the metadata at the top of a
-      markdown file. It was used to extract the metadata from the recipes in MDX format to be used for utilities
-      like sorting and tagging.
-
-Restaurants Page:
-
-- [react-multi-carousel](https://www.npmjs.com/package/react-multi-carousel)
-    - react-multi-carousel is a library that provides a responsive and customizable carousel component for React
-      applications. It allows one to display multiple items in a slide, with the ability to customize the number of
-      items per slide based on the viewport size. This library is used to create a interactive display of images to
-      showcase restaurants.
-
-- [react-rating](https://www.npmjs.com/package/react-rating)
-    - react-rating is a library that allows for the easy creation and manipulation of rating components, such as stars
-      or hearts, in a React application. It provides both read-only and interactive modes, making it versatile for
-      different use cases. This library is used to display the rating of a restaurant taken from the Google Maps API.
 
 ### Project Structure
 

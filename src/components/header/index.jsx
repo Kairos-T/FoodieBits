@@ -30,7 +30,7 @@ const Header = () => {
       top="0"
       zIndex={100}
       bg={isScrolled ? "rgba(255, 255, 255, 0.02)" : "transparent"}
-      backdropFilter="blur(10px)"
+      backdropFilter="blur(15px)"
       transition="background-color 0.3s ease"
     >
       <Box

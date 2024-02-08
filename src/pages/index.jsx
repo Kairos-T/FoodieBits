@@ -1,3 +1,5 @@
+// Landing page
+// Group page: Done by Kairos, Bowen, Wayne, Ruby
 import { Box, Heading, useColorModeValue } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import Faq from "../components/faq";
@@ -38,6 +40,7 @@ const Home = () => {
           ]
         }}
       />
+        {/*Hero Section*/}
         <Hero />
         {/*About Section*/}
         {/*By: Ruby*/}
@@ -78,7 +81,6 @@ const Home = () => {
 
         </Box>
         <Faq />
-
       </motion.main>
     </>
   );

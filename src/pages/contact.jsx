@@ -18,15 +18,17 @@ import {
   Image,
 } from '@chakra-ui/react';
 
+//stores emailjs key to be sent to
 emailjs.init('vB5Ojf6X0YBHrjcdn');
 
+//run to get entered data as contact form
 function ContactForm() {
   const [errors, setErrors] = useState({ name: '', email: '', message: '', category: '' });
   const form = useRef();
 
   const validateForm = async (e) => {
     e.preventDefault();
-
+//stores value, user input
     const name = form.current["name"];
     const email = form.current["email"];
     const message = form.current["message"];
@@ -69,7 +71,7 @@ function ContactForm() {
 
     setErrors(newErrors);
   };
-
+//Sends email to FoodieBits' email address based on template created in emailjs
   const sendEmail = () => {
     console.log('Sending email...');
     return emailjs
@@ -81,17 +83,17 @@ function ContactForm() {
         console.error('Email error:', error.text);
       });
   };
-
+//Other information related to contact
   return (
     <Box>
-      <Heading textAlign="center" fontSize="72px">
+      <Heading textAlign="center" fontSize={{ base: '36px', md: '72px' }}>
         Get in Touch!
       </Heading>
-      <Heading textAlign="center" fontSize="30px">
+      <Heading textAlign="center" fontSize={{ base: '24px', md: '30px' }}>
         Contact Form
       </Heading>
       <form ref={form} onSubmit={validateForm} method="post">
-        <Box maxW="400px" m="10px auto" p="20px 12px 10px 20px">
+        <Box maxW={{ base: '100%', md: '400px' }} m="10px auto" p={{ base: '10px', md: '20px 12px 10px 20px' }}>
           <FormControl isInvalid={errors.name !== ''}>
             <FormLabel>
               Your name <Text color="red">*</Text>
@@ -135,45 +137,38 @@ function ContactForm() {
           </Button>
         </Box>
       </form>
-      <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        <h2>Find Out More?</h2>
-        <p>
-          We are on Instagram (@FoodieBits), Youtube (FoodieTube), and Github (FoodieBits) with more content than ever!
-
-          Drop us an email at info@FoodieBits.com for other related enquiries or partnerships.
-        </p>
-      </div>
-      {/* Google Map Embed */}
-      <div style={{ marginTop: '20px', textAlign: 'center'  }}>
-        <h2>Our Office</h2>
-        <p>Feel free to send us fan or corporate mail to office at 219 Henderson Road #09-03 Singapore 159556</p>
-        <div style={{ width: '80%', margin: 'auto' }}>
-        <iframe
-          title="Google Map"
-          width="600"
-          height="450"
-          loading="lazy"
-          allowFullScreen
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.822144597304!2d103.81733707481736!3d1.28037766179553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da11f1aee5dcb3%3A0x39fee500981d0d0a!2sMount%20Hermon%20Bible%20-%20Presbyterian!5e0!3m2!1sen!2ssg!4v1706378229958!5m2!1sen!2ssg" 
-        ></iframe>
-        </div>
-      </div>
-      <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        <h2>Our Past Partners!</h2>
-        <p>
-          Here are some of the wonderful companies and events we've been honoured to be apart of!
-        </p>
-        {/* Flex container for logos */}
-        <Flex justify="center" align="center" mt="4">
-          <Image src="/images/contact/ock.png" alt="Old Chang Kee" boxSize="150px" mr="4" />
-          <Image src="/images/contact/eatbook.png" alt="EatBook" boxSize="150px" mr="4" />
-          <Image src="/images/contact/gastrobeats.png" alt="GastroBeats" boxSize="150px" mr="4" />
-          <Image src="/images/contact/singaporefest.png" alt="Singapore Food Festival" boxSize="150px" mr="4" />
-          <Image src="/images/contact/stamford.png" alt="Stamford Catering" boxSize="150px" mr="4" />
+{/*Embed a map of our supposed office location along with pictures of past partners to give legitimacy */}
+      <Box textAlign="center" mt="20px">
+        <Heading fontSize={{ base: '24px', md: '36px' }}>Our Office</Heading>
+        <Text>Feel free to send us fan or corporate mail to office at Blk 28 Kallang Pl, #03-12, Singapore 339158</Text>
+        <Box w={{ base: '100%', md: '80%' }} m="auto">
+          <iframe
+            title="Google Map"
+            width="100%"
+            height="450"
+            loading="lazy"
+            allowFullScreen
+            style={{ border: '0', display: 'block', margin: 'auto' }}
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7715701640886!2d103.86631950658614!3d1.312478166449059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da19ccfdd88ce1%3A0x2c2dab992de62c0f!2sMaple%20Tree!5e0!3m2!1sen!2ssg!4v1707387254997!5m2!1sen!2ssg"
+          ></iframe>
+        </Box>
+      </Box>
+      <Box textAlign="center" mt="20px">
+        <Heading fontSize={{ base: '24px', md: '36px' }}>Our Past Partners!</Heading>
+        <Text>Here are some of the wonderful companies and events we've been honoured to have worked with!</Text>
+        <Flex justify="center" align="center" mt="4" flexWrap="wrap">
+          <Image src="/images/contact/ock.png" alt="Old Chang Kee" boxSize={{ base: '100px', md: '150px' }} m="4" />
+          <Image src="/images/contact/eatbook.png" alt="EatBook" boxSize={{ base: '100px', md: '150px' }} m="4" />
+          <Image src="/images/contact/gastrobeats.png" alt="GastroBeats" boxSize={{ base: '100px', md: '150px' }} m="4" />
+          <Image src="/images/contact/singaporefest.png" alt="Singapore Food Festival" boxSize={{ base: '100px', md: '150px' }} m="4" />
+          <Image src="/images/contact/stamford.png" alt="Stamford Catering" boxSize={{ base: '100px', md: '150px' }} m="4" />
         </Flex>
-      </div>
+      </Box>
     </Box>
   );
 }
 
+
 export default ContactForm;
+
+

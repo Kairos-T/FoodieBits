@@ -6,9 +6,7 @@ import World from "./world.jsx";
 // Initialise Globe Scene for ThreeJS
 // Export default
 const ThreeGlobeScene = (windowSize, color) => {
-
   const [world, setWorld] = useState(null);
-  const [click, setClick] = useState(false);
   const cleanUp = (world) => {
     if (world) {
       console.log(`Before ${world.container.childNodes.length}`);
@@ -54,6 +52,7 @@ const ThreeGlobeScene = (windowSize, color) => {
       requestAnimationFrame(renderGlobeScene);
       if (world) {
         world.renderWorld();
+        window.world = world
       }
     };
     renderGlobeScene();
@@ -62,20 +61,5 @@ const ThreeGlobeScene = (windowSize, color) => {
       cleanUp(world);
     };
   }, [world]);
-
-  // Handle Click
-  useEffect(() => {
-    const handleMouseClick = () => {
-      if (world){
-        const found = world.positionLock();
-      }
-    };
-    handleMouseClick();
-    window.addEventListener("mousedown", handleMouseClick);
-    return () => {
-      // Dispose remove event listeners
-      window.removeEventListener("mousedown", handleMouseClick);
-    };
-  }, []);
 };
 export default ThreeGlobeScene;

@@ -79,9 +79,9 @@ const Cuisines = () => {
         >
         </Box>
         <Box
-        display="flex"
-        flexDir="column"
-        textAlign="center"
+          display="flex"
+          flexDir="column"
+          textAlign="center"
         >
           <Text fontSize="2xl" py="10">
             Country Cuisine of the Day
