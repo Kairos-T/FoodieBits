@@ -15,6 +15,7 @@ import RecipePosts from "@/components/recipePosts";
 
 import { motion } from "framer-motion";
 
+// Fuse.js options for fuzzy searching
 const options = {
   includeScore: true,
   threshold: 0.3,
@@ -26,28 +27,35 @@ const Recipe = ({ posts }) => {
   const router = useRouter();
   const color = useColorModeValue("telegram.500", "telegram.400");
   const searchColor = useColorModeValue("gray.400", "gray.500");
+
+  // Initialising Fuse.js for searching
   const fuse = new Fuse(posts, options);
 
+  // Setting of state variables for the search + filtered posts
   const [recipePost, setrecipePost] = useState(posts);
   const [searchValue, setSearchValue] = useState("");
 
+  // Function to reset filters (and search)
   const resetFilters = () => {
     setSearchValue("");
     setrecipePost(posts);
     router.push("/recipes");
   };
 
+  // Function to filter posts based on selected tag
   const filteredPosts = (tag) => {
     const recipeResults = posts.filter((post) => post.tags.includes(tag));
     setrecipePost(recipeResults);
   };
 
+  // Function to update search results (using Fuse.js)
   const updateSearch = () => {
     const results = fuse.search(searchValue);
     const recipeResults = results.map((res) => res.item);
     setrecipePost(recipeResults);
   };
 
+  // Debounced search function -> Prevents constant re-rendering on every keystroke
   const delayedSearch = useCallback(updateSearch, [searchValue]);
 
   useEffect(() => {
@@ -57,6 +65,7 @@ const Recipe = ({ posts }) => {
     delayedSearch();
   }, [delayedSearch]);
 
+  // Effect to filter posts based on tag when the route changes
   useEffect(() => {
     if (router.query?.tag !== undefined) {
       filteredPosts(router.query?.tag);
@@ -184,6 +193,7 @@ const Recipe = ({ posts }) => {
   );
 };
 
+// Fetch all recipes as static props during build time
 export async function getStaticProps() {
   const data = await getAllFilesFrontMatter("recipes");
   const posts = data.sort(

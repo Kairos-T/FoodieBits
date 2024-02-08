@@ -4,7 +4,7 @@ import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import NextImage from "next/image";
 import { data } from "../data/constants";
-
+//Sets colour and image parameters for about section of index.jsx page
 const About = () => {
   const isOdd = (num) => num % 2;
   const textColor = useColorModeValue("gray.700", "gray.200");
