@@ -15,8 +15,8 @@ import {
   Text,
   Textarea,
   Flex,
-  Image,
-} from '@chakra-ui/react';
+  Image, PopoverBody, Popover, PopoverTrigger, PopoverContent, PopoverHeader
+} from "@chakra-ui/react";
 
 //stores emailjs key to be sent to
 emailjs.init('vB5Ojf6X0YBHrjcdn');
@@ -163,6 +163,24 @@ function ContactForm() {
           <Image src="/images/contact/singaporefest.png" alt="Singapore Food Festival" boxSize={{ base: '100px', md: '150px' }} m="4" />
           <Image src="/images/contact/stamford.png" alt="Stamford Catering" boxSize={{ base: '100px', md: '150px' }} m="4" />
         </Flex>
+      </Box>
+      <Box textAlign="center" my={5}>
+        <Popover>
+          <PopoverTrigger>
+            <Button variant="outline">Share</Button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverHeader>Share FoodieBits with Others</PopoverHeader>
+            <PopoverBody>
+              <div><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//foodie-bits.vercel.app/">Share on Facebook</a></div>
+              <div><a href="https://twitter.com/intent/tweet?text=All%20the%20best%20recipes%20and%20restaurants%20at%20FoodieBits%20-%20https%3A//foodie-bits.vercel.app/">Share on X</a></div>
+              <div><a href="https://t.me/share/url?url=https%3A//foodie-bits.vercel.app/&text=For%20all%20the%20best%20recipes%20and%20restaurants%20in%20Singapore,%20its%20all%20on%20FoodieBits!">Send via Telegram</a></div>
+              <div><a href="whatsapp://send?text=https://foodie-bits.vercel.app/" target="_blank" rel="nofollow noopener">Share on WhatsApp</a></div>
+              <div><a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https://foodie-bits.vercel.app/&title=FoodieBits&caption=For%20all%20the%20best%20places%20to%20dine%20and%20the%20tastiest%20recipes%20in%20Singapore!" target="_blank" rel="nofollow noopener">Share on Tumblr</a></div>
+              <div></div>
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
       </Box>
     </Box>
   );
