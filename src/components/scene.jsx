@@ -1,6 +1,6 @@
 // Wayne
 // Import usages
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import World from "./world.jsx";
 
 // Initialise Globe Scene for ThreeJS
@@ -47,7 +47,7 @@ const ThreeGlobeScene = (windowSize, color) => {
       requestAnimationFrame(renderGlobeScene);
       if (world) {
         world.renderWorld();
-        window.world = world
+        window.world = world;
       }
     };
     renderGlobeScene();

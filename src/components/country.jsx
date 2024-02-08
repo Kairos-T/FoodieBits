@@ -1,10 +1,7 @@
 import { seo } from "../../config";
-import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { sceneColor } from "../data/constants";
-import ThreeGlobeScene from "@/components/scene";
+import { useColorModeValue } from "@chakra-ui/react";
+import React from "react";
 import { motion } from "framer-motion";
-import { NextSeo } from "next-seo";
 
 const Country = (country) => {
   const title = country.name;
