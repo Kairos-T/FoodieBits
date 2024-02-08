@@ -25,7 +25,6 @@ const Cuisines = () => {
     const handleWindowResize = () => {
       const width = document.getElementById("three-container").offsetWidth;
       setWindowSize([width, width * 9 / 16]);
-      console.log(`Cuisines.jsx: ${windowSize}`);
     };
     handleWindowResize();
     window.addEventListener("resize", handleWindowResize);
@@ -37,7 +36,6 @@ const Cuisines = () => {
 
   useEffect(() => {
     const handleColorChange = () => {
-      console.log(`Cuisines.jsx: ${changeRequest}`);
       setChangeRequest(changeColor);
     };
     handleColorChange();

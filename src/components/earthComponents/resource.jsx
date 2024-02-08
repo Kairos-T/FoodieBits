@@ -34,20 +34,16 @@ export default class Resource {
     this.manager = new Three.LoadingManager()
     // Start
     this.manager.onStart = () => {
-      console.log('Start Downloading Documents...')
     }
     // Finish Loading
     this.manager.onLoad = (url) => {
-      console.log(`Download Complete: ${url}`)
       this.callback()
     }
     // Downloading
     this.manager.onProgress = (url) => {
-      console.log(`Downloading From：${url}`)
     }
 
     this.manager.onError = url => {
-      console.log('Download Fail：' + url)
     }
 
   }

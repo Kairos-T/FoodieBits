@@ -10,20 +10,16 @@ const ThreeGlobeScene = (windowSize, color) => {
   const [world, setWorld] = useState(null);
   const cleanUp = (world) => {
     if (world) {
-      console.log(`Before ${world.container.childNodes.length}`);
       if (world.container.childNodes.length > 0) {
         world.container.removeChild(world.renderer.domElement);
       }
-      console.log(`After ${world.container.childNodes.length}`);
     }
   };
   useEffect(() => {
     const initGlobeScene = () => {
-      console.log("Start Init");
       // Three.js code to set up your 3D scene
       const globe = new World(windowSize, color);
       setWorld(globe);
-      console.log(color);
       globe.updateColor(color);
     };
     initGlobeScene();
@@ -36,14 +32,12 @@ const ThreeGlobeScene = (windowSize, color) => {
     // Three.js code to set up your 3D scene
     if (world) {
       world.updateSize(windowSize);
-      console.log(`Scene.jsx: ${windowSize}`);
     }
   }, [windowSize]);
 
   useEffect(() => {
     if (world) {
       world.updateColor(color);
-      console.log(`Scene.jsx: ${color}`);
     }
   }, [color]);
 

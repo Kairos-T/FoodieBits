@@ -60,7 +60,6 @@ export default class Earth {
 
   async initEarth() {
     return (async () => {
-      console.log("Start");
       this.createEarth();
       this.createStars();
       this.createEarthGlow();
@@ -69,7 +68,6 @@ export default class Earth {
       this.createFlyLine();
 
       this.show();
-      console.log(this); // Check if Earth up
     })();
   }
 
@@ -100,9 +98,6 @@ export default class Earth {
     this.earth = new Three.Mesh(earthGeometry, earthMaterial);
     this.earth.name = "earth";
     this.earthGroup.add(this.earth); // Add Earth Globe
-
-    // console.log(this.uniforms);
-    console.log(this.earth);
   }
 
   // 2. Create Stars
@@ -264,7 +259,6 @@ export default class Earth {
 
       lightGroup.name = "LightPillar";
       this.markupPoint.add(lightGroup);
-      console.log(22, this.earthGroup);
 
       await (item.location.map((obj) => {
         const lightGroup = new Three.Group();
@@ -287,10 +281,8 @@ export default class Earth {
         this.waveMeshArr.push(WaveMesh);
         lightGroup.name = "LightPillar";
         this.markupPoint.add(lightGroup);
-        console.log(33, lightGroup);
       }));
       this.earthGroup.add(this.markupPoint);
-      console.log(44, this.earthGroup);
     }));
   }
 

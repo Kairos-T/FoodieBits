@@ -26,7 +26,6 @@ export default class World {
 
     this.resources = new Resource(async () => {
       await this.createEarth();
-      console.log("Done");
       this.renderWorld();
     });
   }
@@ -56,7 +55,6 @@ export default class World {
     });
     this.scene.add(this.earth.group);
     await this.earth.initEarth();
-    console.log("Scan")
     this.container.addEventListener("click", (event)=> this.mouseClickCheck(event), false);
     this.container.addEventListener("mousedown", () => this.earth.isRotation = false)
     this.container.addEventListener("mouseup", () => this.earth.isRotation = true)
@@ -76,7 +74,6 @@ export default class World {
     this.renderer.setSize(windowSize[0], windowSize[1]);
     this.camera.aspect = windowSize[0] / windowSize[1];
     this.camera.updateProjectionMatrix();
-    console.log(this.camera);
   }
 
   updateColor(color) {
@@ -92,8 +89,6 @@ export default class World {
   mouseClickCheck(event) {
     // Get current time mouse released
     const timeUp = performance.now();
-    console.log(timeUp)
-    console.log(this.timeDown)
     if (timeUp - this.timeDown < 500) {
       return;
     }
@@ -101,7 +96,6 @@ export default class World {
 
     // Get mouse position in screen space
     const rect = document.getElementById("three-container").getBoundingClientRect();
-    // console.log(3, this.mouse);
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
     if (!isNaN(mouseX) && !isNaN(mouseY)) {
@@ -110,14 +104,5 @@ export default class World {
     } else {
       this.interStatus = false;
     }
-    console.log(this.interStatus);
-    console.log(2, this.mouse);
-
-    this.positionLock()
-  }
-
-  positionLock() {
-    console.log("Debugging...")
-
   }
 }
