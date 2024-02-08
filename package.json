@@ -45,7 +45,8 @@
     "react-rating": "^2.0.5",
     "reading-time": "^1.5.0",
     "remark-slug": "^7.0.1",
-    "three": "^0.135.0"
+    "three": "^0.135.0",
+    "threex.domevents": "^1.0.1"
   },
   "devDependencies": {
     "next-sitemap": "^1.6.203",

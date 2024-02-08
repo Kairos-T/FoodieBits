@@ -239,3 +239,75 @@ export const sceneColor = {
   light: ["#edf2f7", "#63B3ED"],
   dark: ["#1a202c", "#4FD1C5"]
 };
+
+export const cuisineContent = [
+  { // China
+    region: {
+      name: "China",
+      content: "",
+      funFact: [""]
+    },
+    location: [
+      { name: "Guangdong",
+        content: "",
+        funFact: [""] },
+      { name: "Fujian",
+        content: "",
+        funFact: [""] },
+      { name: "Hunan",
+        content: "",
+        funFact: [""] },
+      { name: "Jiangsu",
+        content: "",
+        funFact: [""]},
+      { name: "Shandong",
+        content: "",
+        funFact: [""] },
+      { name: "Sichuan",
+        content: "",
+        funFact: [""]},
+      { name: "Zhejiang",
+        content: "",
+        funFact: [""] },
+      { name: "Hong Kong",
+        content: "",
+        funFact: [""] }
+    ]},
+  { // SEA
+    region: {
+      name: "South East Asia",
+      content: "",
+      funFact: [""] },
+    location: [
+      { name: "Singapore",
+        content: "",
+        funFact: [""] },
+      { name: "Malaysia",
+        content: "",
+        funFact: [""] }
+    ]},
+  { // West
+    region: {
+      name: "USA",
+      content: "",
+      funFact: [""] },
+    location: [
+      { name: "New York",
+        content: "",
+        funFact: [""] }
+    ]},
+  { // Europe
+    region: {
+      name: "Europe",
+      content: "",
+      funFact: [""] },
+    location: [
+      { name: "England",
+        content: "",
+        funFact: [""] },
+      { name: "France",
+        content: "",
+        funFact: [""] }
+    ]
+  }
+]

@@ -1,7 +1,6 @@
 // Wayne
 
 import * as Three from "three";
-
 import Basic from "./earthComponents/setup.jsx";
 import Resource from "./earthComponents/resource.jsx";
 import Earth from "./earthComponents/earth.jsx";
@@ -20,9 +19,9 @@ export default class World {
 
     // Clickable Pointers
     this.mouse = new Three.Vector2(0, 0);
-    this.pointer = new Three.Raycaster();
     this.interStatus = false;
     this.timeDown = performance.now()
+    this.canvasEvents = ThreeX.DomEvents(this.camera, this.renderer.domElement)
 
     this.container.appendChild(this.renderer.domElement);
 
@@ -59,7 +58,7 @@ export default class World {
     this.scene.add(this.earth.group);
     await this.earth.initEarth();
     console.log("Scan")
-    this.container.addEventListener("click", (event)=> this.mouseClickCheck(event));
+    this.canvasEvents.addEventListener(this.earth.markupPoint.children, "click", (event)=> this.mouseClickCheck(event), false);
     this.container.addEventListener("mousedown", () => this.earth.isRotation = false)
     this.container.addEventListener("mouseup", () => this.earth.isRotation = true)
   }
@@ -120,23 +119,6 @@ export default class World {
 
   positionLock() {
     console.log("Debugging...")
-    this.pointer.setFromCamera( this.mouse, this.camera);
 
-    const intersect = this.pointer.intersectObjects(this.earth.earth.children)
-    if (intersect > 0){
-      console.log(1111)
-    }
-    for ( let i = 0; i < intersect.length; i ++ ) {
-      const groupName = intersect[ i ].object.name;
-      if (groupName !== undefined){
-        cuisineCoords.find(cuisine => {
-          if ("LightPillar" === groupName){
-            window.location.assign("/")
-            console.log(112)
-          }
-        })
-        break;
-      }
-    }
   }
 }
