@@ -137,7 +137,7 @@ function ContactForm() {
       </form>
       <Box textAlign="center" mt="20px">
         <Heading fontSize={{ base: '24px', md: '36px' }}>Our Office</Heading>
-        <Text>Feel free to send us fan or corporate mail to office at 219 Henderson Road #09-03 Singapore 159556</Text>
+        <Text>Feel free to send us fan or corporate mail to office at Blk 28 Kallang Pl, #03-12, Singapore 339158</Text>
         <Box w={{ base: '100%', md: '80%' }} m="auto">
           <iframe
             title="Google Map"
@@ -146,7 +146,7 @@ function ContactForm() {
             loading="lazy"
             allowFullScreen
             style={{ border: '0', display: 'block', margin: 'auto' }}
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.822144597304!2d103.81733707481736!3d1.28037766179553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da11f1aee5dcb3%3A0x39fee500981d0d0a!2sMount%20Hermon%20Bible%20-%20Presbyterian!5e0!3m2!1sen!2ssg!4v1706378229958!5m2!1sen!2ssg"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7715701640886!2d103.86631950658614!3d1.312478166449059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da19ccfdd88ce1%3A0x2c2dab992de62c0f!2sMaple%20Tree!5e0!3m2!1sen!2ssg!4v1707387254997!5m2!1sen!2ssg"
           ></iframe>
         </Box>
       </Box>
