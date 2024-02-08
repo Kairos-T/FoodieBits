@@ -18,15 +18,17 @@ import {
   Image,
 } from '@chakra-ui/react';
 
+//stores emailjs key to be sent to
 emailjs.init('vB5Ojf6X0YBHrjcdn');
 
+//run to get entered data as contact form
 function ContactForm() {
   const [errors, setErrors] = useState({ name: '', email: '', message: '', category: '' });
   const form = useRef();
 
   const validateForm = async (e) => {
     e.preventDefault();
-
+//stores value, user input
     const name = form.current["name"];
     const email = form.current["email"];
     const message = form.current["message"];
@@ -69,7 +71,7 @@ function ContactForm() {
 
     setErrors(newErrors);
   };
-
+//Sends email to FoodieBits' email address based on template created in emailjs
   const sendEmail = () => {
     console.log('Sending email...');
     return emailjs
@@ -81,7 +83,7 @@ function ContactForm() {
         console.error('Email error:', error.text);
       });
   };
-
+//Other information related to contact
   return (
     <Box>
       <Heading textAlign="center" fontSize={{ base: '36px', md: '72px' }}>
@@ -135,6 +137,7 @@ function ContactForm() {
           </Button>
         </Box>
       </form>
+{/*Embed a map of our supposed office location along with pictures of past partners to give legitimacy */}
       <Box textAlign="center" mt="20px">
         <Heading fontSize={{ base: '24px', md: '36px' }}>Our Office</Heading>
         <Text>Feel free to send us fan or corporate mail to office at Blk 28 Kallang Pl, #03-12, Singapore 339158</Text>

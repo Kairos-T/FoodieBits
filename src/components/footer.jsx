@@ -6,6 +6,7 @@ import { MAX_WIDTH } from "../../config";
 import NextLink from "next/link";
 import { footerData } from "../data/constants";
 
+//Popover from Chakra UI to allow users to share the website with others
 const SharePopover = () => (
   <Popover>
     <PopoverTrigger>
@@ -25,6 +26,7 @@ const SharePopover = () => (
   </Popover>
 );
 
+//Manages colours and spacing of button and footer content and spacing
 const Footer = () => {
   const footerColor = useColorModeValue("gray.200", "gray.900");
 
@@ -32,9 +34,9 @@ const Footer = () => {
     <>
       <Box
         position="fixed"
-        top="5rem" // adjust this value as needed
+        top="5rem"
         right="5"
-        zIndex="popover" // adjust this value to ensure it's above other content
+        zIndex="popover" 
       >
         <SharePopover />
       </Box>
