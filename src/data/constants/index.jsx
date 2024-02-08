@@ -79,7 +79,7 @@ export const footerData = [
     href: "/recipes",
     links: [
       { label: "Browse", href: "/recipes" },
-      { label: "Suggest", href: "/contact" },
+      { label: "Suggest", href: "/contact" }
     ]
   },
   {
@@ -87,7 +87,7 @@ export const footerData = [
     href: "/restaurants",
     links: [
       { label: "Find", href: "/restaurants" },
-      { label: "Recommend", href: "/contact" },
+      { label: "Recommend", href: "/contact" }
     ]
   },
   {
@@ -170,69 +170,101 @@ export const cuisineCoords = [
       EW: 104.1954
     },
     location: [
-      { name: "Guangdong",
+      {
+        name: "Guangdong",
         NS: 22.379032,
-        EW: 110.763283, },
-      { name: "Fujian",
+        EW: 110.763283
+      },
+      {
+        name: "Fujian",
         NS: 25.924480,
-        EW: 118.278992 },
-      { name: "Hunan",
+        EW: 118.278992
+      },
+      {
+        name: "Hunan",
         NS: 28.228001,
-        EW: 112.939003 },
-      { name: "Jiangsu",
+        EW: 112.939003
+      },
+      {
+        name: "Jiangsu",
         NS: 33.140171,
-        EW: 119.788925},
-      { name: "Shandong",
+        EW: 119.788925
+      },
+      {
+        name: "Shandong",
         NS: 37.80060640,
-        EW: 122.26999180 },
-      { name: "Sichuan",
+        EW: 122.26999180
+      },
+      {
+        name: "Sichuan",
         NS: 31.456781,
-        EW: 102.843018},
-      { name: "Zhejiang",
+        EW: 102.843018
+      },
+      {
+        name: "Zhejiang",
         NS: 29.14164320,
-        EW: 119.78892480, },
-      { name: "Hong Kong",
+        EW: 119.78892480
+      },
+      {
+        name: "Hong Kong",
         NS: 22.396427,
-        EW: 114.109497, }
-    ]},
+        EW: 114.109497
+      }
+    ]
+  },
   { // SEA
     region: {
       name: "South East Asia",
       NS: -2.2180,
-      EW: 115.6628 },
+      EW: 115.6628
+    },
     location: [
-      { name: "Singapore",
+      {
+        name: "Singapore",
         NS: 1.3521,
-        EW: 103.8198 },
-      { name: "Malaysia",
+        EW: 103.8198
+      },
+      {
+        name: "Malaysia",
         NS: 4.2105,
-        EW: 101.9758, }
-    ]},
+        EW: 101.9758
+      }
+    ]
+  },
   { // West
     region: {
       name: "USA",
       NS: 37.0902,
-      EW: 275.7129 },
+      EW: 275.7129
+    },
     location: [
-      { name: "New York",
+      {
+        name: "New York",
         NS: 40.7128,
-        EW: -74.0060 }
-    ]},
+        EW: -74.0060
+      }
+    ]
+  },
   { // Europe
     region: {
       name: "Europe",
       NS: 54.5260,
-      EW: 15.2551 },
+      EW: 15.2551
+    },
     location: [
-      { name: "England",
+      {
+        name: "England",
         NS: 52.3555,
-        EW: 359.82421875 },
-      { name: "France",
+        EW: 359.82421875
+      },
+      {
+        name: "France",
         NS: 46.2276,
-        EW: 2.2137 }
+        EW: 2.2137
+      }
     ]
   }
-]
+];
 
 export const sceneColor = {
   // Background, Material
@@ -248,66 +280,98 @@ export const cuisineContent = [
       funFact: [""]
     },
     location: [
-      { name: "Guangdong",
+      {
+        name: "Guangdong",
         content: "",
-        funFact: [""] },
-      { name: "Fujian",
+        funFact: [""]
+      },
+      {
+        name: "Fujian",
         content: "",
-        funFact: [""] },
-      { name: "Hunan",
+        funFact: [""]
+      },
+      {
+        name: "Hunan",
         content: "",
-        funFact: [""] },
-      { name: "Jiangsu",
+        funFact: [""]
+      },
+      {
+        name: "Jiangsu",
         content: "",
-        funFact: [""]},
-      { name: "Shandong",
+        funFact: [""]
+      },
+      {
+        name: "Shandong",
         content: "",
-        funFact: [""] },
-      { name: "Sichuan",
+        funFact: [""]
+      },
+      {
+        name: "Sichuan",
         content: "",
-        funFact: [""]},
-      { name: "Zhejiang",
+        funFact: [""]
+      },
+      {
+        name: "Zhejiang",
         content: "",
-        funFact: [""] },
-      { name: "Hong Kong",
+        funFact: [""]
+      },
+      {
+        name: "Hong Kong",
         content: "",
-        funFact: [""] }
-    ]},
+        funFact: [""]
+      }
+    ]
+  },
   { // SEA
     region: {
       name: "South East Asia",
       content: "",
-      funFact: [""] },
+      funFact: [""]
+    },
     location: [
-      { name: "Singapore",
+      {
+        name: "Singapore",
         content: "",
-        funFact: [""] },
-      { name: "Malaysia",
+        funFact: [""]
+      },
+      {
+        name: "Malaysia",
         content: "",
-        funFact: [""] }
-    ]},
+        funFact: [""]
+      }
+    ]
+  },
   { // West
     region: {
       name: "USA",
       content: "",
-      funFact: [""] },
+      funFact: [""]
+    },
     location: [
-      { name: "New York",
+      {
+        name: "New York",
         content: "",
-        funFact: [""] }
-    ]},
+        funFact: [""]
+      }
+    ]
+  },
   { // Europe
     region: {
       name: "Europe",
       content: "",
-      funFact: [""] },
+      funFact: [""]
+    },
     location: [
-      { name: "England",
+      {
+        name: "England",
         content: "",
-        funFact: [""] },
-      { name: "France",
+        funFact: [""]
+      },
+      {
+        name: "France",
         content: "",
-        funFact: [""] }
+        funFact: [""]
+      }
     ]
   }
-]
+];

@@ -3,7 +3,7 @@ import { NextSeo } from "next-seo";
 import { motion } from "framer-motion";
 import { seo } from "config";
 import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
-import { sceneColor, cuisineContent } from "../data/constants";
+import { cuisineContent, sceneColor } from "../data/constants";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -15,7 +15,7 @@ const Cuisines = () => {
   const url = `${seo.canonical}cuisines`;
   const color = useColorModeValue("telegram.500", "telegram.400");
 
-  const router = useRouter()
+  const router = useRouter();
   // Initialise
   const [windowSize, setWindowSize] = useState([0, 0]);
   const changeColor = useColorModeValue(sceneColor.light, sceneColor.dark);
@@ -67,7 +67,7 @@ const Cuisines = () => {
           {region.name}
         </Text>
       </Box>
-  );
+    );
   }
 
   return (

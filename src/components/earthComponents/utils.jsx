@@ -1,4 +1,5 @@
-import * as Three from "three"
+import * as Three from "three";
+
 export const lon2xyz = (R, longitude, latitude) => {
   let lon = longitude * Math.PI / 180; // 转弧度值
   const lat = latitude * Math.PI / 180; // 转弧度值
@@ -10,7 +11,7 @@ export const lon2xyz = (R, longitude, latitude) => {
   const z = R * Math.cos(lat) * Math.sin(lon);
   // 返回球面坐标
   return new Three.Vector3(x, y, z);
-}
+};
 export const createWaveMesh = (options) => {
   const geometry = new Three.PlaneBufferGeometry(1, 1); //默认在XOY平面上
   const texture = options.textures.aperture;
@@ -20,21 +21,21 @@ export const createWaveMesh = (options) => {
     map: texture,
     transparent: true, //使用背景透明的png贴图，注意开启透明计算
     opacity: 1.0,
-    depthWrite: false, //禁止写入深度缓冲区数据
+    depthWrite: false //禁止写入深度缓冲区数据
   });
   const mesh = new Three.Mesh(geometry, material);
   // 经纬度转球面坐标
   const coord = lon2xyz(options.radius * 1.001, options.lon, options.lat);
   const size = options.radius * 0.12; //矩形平面Mesh的尺寸
   mesh.scale.set(size, size, size); //设置mesh大小
-  mesh.userData['size'] = size; //自顶一个属性，表示mesh静态大小
-  mesh.userData['scale'] = Math.random(); //自定义属性._s表示mesh在原始大小基础上放大倍数  光圈在原来mesh.size基础上1~2倍之间变化
+  mesh.userData["size"] = size; //自顶一个属性，表示mesh静态大小
+  mesh.userData["scale"] = Math.random(); //自定义属性._s表示mesh在原始大小基础上放大倍数  光圈在原来mesh.size基础上1~2倍之间变化
   mesh.position.set(coord.x, coord.y, coord.z);
   const coordVec3 = new Three.Vector3(coord.x, coord.y, coord.z).normalize();
   const meshNormal = new Three.Vector3(0, 0, 1);
   mesh.quaternion.setFromUnitVectors(meshNormal, coordVec3);
   return mesh;
-}
+};
 export const createLightPillar = (options) => {
   const height = options.radius * 0.3;
   const geometry = new Three.PlaneBufferGeometry(options.radius * 0.05, height);
@@ -43,11 +44,11 @@ export const createLightPillar = (options) => {
   const material = new Three.MeshBasicMaterial({
     map: options.textures.light_column,
     color: options.index === 0
-        ? options.punctuation.lightColumn.startColor
-        : options.punctuation.lightColumn.endColor,
+      ? options.punctuation.lightColumn.startColor
+      : options.punctuation.lightColumn.endColor,
     transparent: true,
     side: Three.DoubleSide,
-    depthWrite: false, //是否对深度缓冲区有任何的影响
+    depthWrite: false //是否对深度缓冲区有任何的影响
   });
   const mesh = new Three.Mesh(geometry, material);
   const group = new Three.Group();
@@ -64,7 +65,7 @@ export const createLightPillar = (options) => {
   const meshNormal = new Three.Vector3(0, 0, 1);
   group.quaternion.setFromUnitVectors(meshNormal, coordVec3);
   return group;
-}
+};
 
 export const createPointMesh = (options) => {
 
@@ -81,7 +82,7 @@ export const createPointMesh = (options) => {
   const meshNormal = new Three.Vector3(0, 0, 1);
   mesh.quaternion.setFromUnitVectors(meshNormal, coordVec3);
   return mesh;
-}
+};
 
 // Arc
 
@@ -117,16 +118,16 @@ const createFlyLine = (radius, startAngle, endAngle, color) => {
     size, //点大小
     // vertexColors: VertexColors
     transparent: true,
-    depthWrite: false,
+    depthWrite: false
   });
 
-  material.onBeforeCompile = function (shader) {
+  material.onBeforeCompile = function(shader) {
 
     shader.vertexShader = shader.vertexShader.replace(
       "void main() {",
       [
         "attribute float percent;",
-        "void main() {",
+        "void main() {"
       ].join("\n")
     );
     // 调整点渲染大小计算方式
@@ -136,11 +137,11 @@ const createFlyLine = (radius, startAngle, endAngle, color) => {
     );
   };
   const FlyLine = new Three.Points(geometry, material);
-  material.color = new Three.Color(color)
+  material.color = new Three.Color(color);
   FlyLine.name = "FlyLine";
 
   return FlyLine;
-}
+};
 
 export const flyArc = (radius, lon1, lat1, lon2, lat2, options) => {
   const sphereCoord1 = lon2xyz(radius, lon1, lat1);
@@ -150,12 +151,12 @@ export const flyArc = (radius, lon1, lat1, lon2, lat2, options) => {
   // startSphereCoord：轨迹线结束点球面坐标
   const endSphereCoord = new Three.Vector3(sphereCoord2.x, sphereCoord2.y, sphereCoord2.z);
 
-  const startEndQua = _3Dto2D(startSphereCoord, endSphereCoord)
+  const startEndQua = _3Dto2D(startSphereCoord, endSphereCoord);
   // 调用arcXOY函数绘制一条圆弧飞线轨迹
-  const arcLine = arcXOY(radius, startEndQua.startPoint, startEndQua.endPoint,options);
-  arcLine.quaternion.multiply(startEndQua.quaternion)
+  const arcLine = arcXOY(radius, startEndQua.startPoint, startEndQua.endPoint, options);
+  arcLine.quaternion.multiply(startEndQua.quaternion);
   return arcLine;
-}
+};
 
 const _3Dto2D = (startSphere, endSphere) => {
 
@@ -181,26 +182,26 @@ const _3Dto2D = (startSphere, endSphere) => {
   const startSpherXOY_Y = startSphereXOY.clone().applyQuaternion(quaternionXOY_Y);
   const endSphereXOY_Y = endSphereXOY.clone().applyQuaternion(quaternionXOY_Y);
 
-  const quaternionInverse = quaternion3D_XOY.clone().invert().multiply(quaternionXOY_Y.clone().invert())
+  const quaternionInverse = quaternion3D_XOY.clone().invert().multiply(quaternionXOY_Y.clone().invert());
   return {
     quaternion: quaternionInverse,
 
     startPoint: startSpherXOY_Y,
-    endPoint: endSphereXOY_Y,
-  }
-}
+    endPoint: endSphereXOY_Y
+  };
+};
 
-export const arcXOY = (radius,startPoint, endPoint,options) => {
+export const arcXOY = (radius, startPoint, endPoint, options) => {
 
   const middleV3 = new Three.Vector3().addVectors(startPoint, endPoint).multiplyScalar(0.5);
 
-  const dir = middleV3.clone().normalize()
+  const dir = middleV3.clone().normalize();
 
-  const earthRadianAngle = radianAOB(startPoint, endPoint, new Three.Vector3(0, 0, 0))
+  const earthRadianAngle = radianAOB(startPoint, endPoint, new Three.Vector3(0, 0, 0));
 
-  const arcTopCoord = dir.multiplyScalar(radius + earthRadianAngle * radius * 0.2)
+  const arcTopCoord = dir.multiplyScalar(radius + earthRadianAngle * radius * 0.2);
 
-  const flyArcCenter = threePointCenter(startPoint, endPoint, arcTopCoord)
+  const flyArcCenter = threePointCenter(startPoint, endPoint, arcTopCoord);
 
   const flyArcR = Math.abs(flyArcCenter.y - arcTopCoord.y);
 
@@ -208,7 +209,7 @@ export const arcXOY = (radius,startPoint, endPoint,options) => {
   const startAngle = -Math.PI / 2 + flyRadianAngle;
   const endAngle = Math.PI - startAngle;
 
-  const arcline = circleLine(flyArcCenter.x, flyArcCenter.y, flyArcR, startAngle, endAngle, options.color)
+  const arcline = circleLine(flyArcCenter.x, flyArcCenter.y, flyArcR, startAngle, endAngle, options.color);
 
   arcline.center = flyArcCenter;
   arcline.topCoord = arcTopCoord;
@@ -225,10 +226,10 @@ export const arcXOY = (radius,startPoint, endPoint,options) => {
 
   flyLine.AngleZ = arcline.flyEndAngle * Math.random();
 
-  arcline.userData['flyLine'] = flyLine;
+  arcline.userData["flyLine"] = flyLine;
 
-  return arcline
-}
+  return arcline;
+};
 
 const radianAOB = (A, B, O) => {
   // dir1、dir2：球面上两个点和球心构成的方向向量
@@ -237,7 +238,7 @@ const radianAOB = (A, B, O) => {
   //点乘.dot()计算夹角余弦值
   const cosAngle = dir1.clone().dot(dir2);
   return Math.acos(cosAngle); //余弦值转夹角弧度值,通过余弦值可以计算夹角范围是0~180度
-}
+};
 
 const circleLine = (x, y, r, startAngle, endAngle, color) => {
   const geometry = new Three.BufferGeometry();
@@ -247,10 +248,10 @@ const circleLine = (x, y, r, startAngle, endAngle, color) => {
   const points = arc.getSpacedPoints(80);
   geometry.setFromPoints(points);
   const material = new Three.LineBasicMaterial({
-    color:color || 0xd18547,
+    color: color || 0xd18547
   });
   return new Three.Line(geometry, material);
-}
+};
 
 const threePointCenter = (p1, p2, p3) => {
   const L1 = p1.lengthSq(); //p1到坐标原点距离的平方
@@ -267,4 +268,4 @@ const threePointCenter = (p1, p2, p3) => {
   const y = (L3 * x2 + L2 * x1 + L1 * x3 - L1 * x2 - L2 * x3 - L3 * x1) / S / 2;
   // 三点外接圆圆心坐标
   return new Three.Vector3(x, y, 0);
-}
+};

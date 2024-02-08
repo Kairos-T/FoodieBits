@@ -20,7 +20,7 @@ export default class World {
     // Clickable Pointers
     this.mouse = new Three.Vector2(0, 0);
     this.interStatus = false;
-    this.timeDown = performance.now()
+    this.timeDown = performance.now();
 
     this.container.appendChild(this.renderer.domElement);
 
@@ -50,14 +50,14 @@ export default class World {
       flyLine: {
         color: 0xf3ae76, // 飞线的颜色
         flyLineColor: 0xff7714, // 飞行线的颜色
-        speed: 0.004, // 拖尾飞线的速度
-      },
+        speed: 0.004 // 拖尾飞线的速度
+      }
     });
     this.scene.add(this.earth.group);
     await this.earth.initEarth();
-    this.container.addEventListener("click", (event)=> this.mouseClickCheck(event), false);
-    this.container.addEventListener("mousedown", () => this.earth.isRotation = false)
-    this.container.addEventListener("mouseup", () => this.earth.isRotation = true)
+    this.container.addEventListener("click", (event) => this.mouseClickCheck(event), false);
+    this.container.addEventListener("mousedown", () => this.earth.isRotation = false);
+    this.container.addEventListener("mouseup", () => this.earth.isRotation = true);
   }
 
   /**

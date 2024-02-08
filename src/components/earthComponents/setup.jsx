@@ -9,8 +9,8 @@ export default class Basic {
     this.windowSize = windowSize;
     this.color = color;
 
-    this.initScenes()
-    this.setControls()
+    this.initScenes();
+    this.setControls();
   }
 
   /**
@@ -19,16 +19,16 @@ export default class Basic {
   initScenes() {
     // Three.js code to set up your 3D scene
     this.scene = new Three.Scene();
-    this.scene.background = new Three.Color(this.color[0])
+    this.scene.background = new Three.Color(this.color[0]);
 
     // Set up perspective camera
     this.camera = new Three.PerspectiveCamera(45, this.windowSize[0] / this.windowSize[1], 0.1, 100000);
-    this.camera.position.set(0, 30, -250)
+    this.camera.position.set(0, 30, -250);
 
 
     this.renderer = new Three.WebGLRenderer({
       alpha: true, // Transparent
-      antialias: true, //
+      antialias: true //
     });
     this.renderer.setSize(this.windowSize[0], this.windowSize[1]);
     this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -42,7 +42,7 @@ export default class Basic {
     // OrbitControls, Camera, Render Dom
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
-    this.controls.autoRotateSpeed = 3
+    this.controls.autoRotateSpeed = 3;
 
     this.controls.enableDamping = true;
 

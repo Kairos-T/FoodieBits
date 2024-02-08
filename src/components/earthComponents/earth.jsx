@@ -1,8 +1,8 @@
 // Wayne
 import * as Three from "three";
 import { gsap } from "gsap";
-import { createLightPillar, createPointMesh, createWaveMesh, lon2xyz, flyArc } from "./utils.jsx";
-import { FontLoader } from "/node_modules/three/examples/jsm/loaders/FontLoader.js"
+import { createLightPillar, createPointMesh, createWaveMesh, flyArc } from "./utils.jsx";
+import { FontLoader } from "/node_modules/three/examples/jsm/loaders/FontLoader.js";
 
 import Vertex from "/public/shaders/vertex";
 import Fragment from "/public/shaders/fragment";
