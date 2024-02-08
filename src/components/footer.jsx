@@ -9,7 +9,7 @@ import { footerData } from "../data/constants";
 const SharePopover = () => (
   <Popover>
     <PopoverTrigger>
-      <Button>Share</Button>
+      <Button variant="outline">Share</Button>
     </PopoverTrigger>
     <PopoverContent>
       <PopoverHeader>Share FoodieBits with Others</PopoverHeader>
@@ -29,11 +29,21 @@ const Footer = () => {
   const footerColor = useColorModeValue("gray.200", "gray.900");
 
   return (
-    <Box
-      width="100%"
-      backgroundColor={footerColor}
-    >
-      <VStack spacing={5} alignItems="initial" maxW={MAX_WIDTH} px={[4, 6, 10, 14, 20]} marginTop={10} padding={10} mx="auto">
+    <>
+      <Box
+        position="fixed"
+        top="5rem" // adjust this value as needed
+        right="5"
+        zIndex="popover" // adjust this value to ensure it's above other content
+      >
+        <SharePopover />
+      </Box>
+      <Box
+        width="100%"
+        backgroundColor={footerColor}
+        marginTop="5rem" // adjust this value to leave space for the popover
+      >
+        <VStack spacing={5} alignItems="initial" maxW={MAX_WIDTH} px={[4, 6, 10, 14, 20]} padding={10} mx="auto">
         <Flex
           flexWrap="wrap"
           direction={{ base: "column", md: "row" }}
@@ -86,8 +96,9 @@ const Footer = () => {
             &copy; 2024 FoodieBits. All rights reserved.
           </Text>
         </Flex>
-      </VStack>
-    </Box>
+        </VStack>
+      </Box>
+    </>
   );
 };
 
