@@ -1,3 +1,4 @@
+// By: Wayne
 import { Heading, Box, Text } from "@chakra-ui/react";
 
 const CuisineComponent = ({array}) => {
