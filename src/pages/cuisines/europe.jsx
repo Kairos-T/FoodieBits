@@ -3,9 +3,10 @@
 import { cuisineContent } from "../../data/constants";
 import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import CuisineComponent from "@/components/cuisineComponent";
+
 export default function Europe() {
   const color = useColorModeValue("telegram.500", "telegram.400");
-  const region = cuisineContent[3]
+  const region = cuisineContent[3];
   return (
     <>
       <Box

@@ -20,7 +20,7 @@ export default class World {
     // Clickable Pointers
     this.mouse = new Three.Vector2(0, 0);
     this.interStatus = false;
-    this.timeDown = performance.now()
+    this.timeDown = performance.now();
 
     this.container.appendChild(this.renderer.domElement);
 
@@ -50,14 +50,14 @@ export default class World {
       flyLine: {
         color: 0xf3ae76,
         flyLineColor: 0xff7714,
-        speed: 0.004,
-      },
+        speed: 0.004
+      }
     });
     this.scene.add(this.earth.group);
     await this.earth.initEarth();
-    this.container.addEventListener("click", (event)=> this.mouseClickCheck(event), false);
-    this.container.addEventListener("mousedown", () => this.earth.isRotation = false)
-    this.container.addEventListener("mouseup", () => this.earth.isRotation = true)
+    this.container.addEventListener("click", (event) => this.mouseClickCheck(event), false);
+    this.container.addEventListener("mousedown", () => this.earth.isRotation = false);
+    this.container.addEventListener("mouseup", () => this.earth.isRotation = true);
   }
 
   /**

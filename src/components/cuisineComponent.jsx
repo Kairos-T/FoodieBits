@@ -1,12 +1,13 @@
 // By: Wayne
 import { Heading, Box, Text } from "@chakra-ui/react";
 
-const CuisineComponent = ({array}) => {
+const CuisineComponent = ({ array }) => {
   return (
     <Box>
       {array.map((location, index) => (
         <div key={index}>
-          <Heading as="h3" fontSize="3xl" fontWeight="700" mt={5}                 _hover={{ color: "telegram.600", transition: "color 0.3s ease-in-out" }}
+          <Heading as="h3" fontSize="3xl" fontWeight="700" mt={5}
+                   _hover={{ color: "telegram.600", transition: "color 0.3s ease-in-out" }}
           >
             {location.name}
           </Heading>

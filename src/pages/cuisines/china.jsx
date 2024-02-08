@@ -2,10 +2,11 @@
 
 import { cuisineContent } from "../../data/constants";
 import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
-import CuisineComponent from "/src/components/cuisineComponent"
+import CuisineComponent from "/src/components/cuisineComponent";
+
 export default function China() {
   const color = useColorModeValue("telegram.500", "telegram.400");
-  const region = cuisineContent[0]
+  const region = cuisineContent[0];
   return (
     <>
       <Box
@@ -42,5 +43,5 @@ export default function China() {
         <CuisineComponent array={region.location} />
       </Box>
     </>
-   );
+  );
 }

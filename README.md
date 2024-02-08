@@ -22,12 +22,12 @@ This website is built by: Kairos Tay, Hu Bowen, Wayne Chia and Ruby Lee as part 
    npm install --legacy-peer-deps
    ```
 3. Add API keys
-   - Create a `.env.local` file in the root directory of the project
-   - Add the following environment variables to the `.env.local` file:
-     ```env
-     GOOGLE_MAPS_API_KEY=<GOOGLE_MAPS_API_KEY>
-     ```
-   - Replace `<GOOGLE_MAPS_API_KEY>` with your Google Maps API key
+    - Create a `.env.local` file in the root directory of the project
+    - Add the following environment variables to the `.env.local` file:
+      ```env
+      GOOGLE_MAPS_API_KEY=<GOOGLE_MAPS_API_KEY>
+      ```
+    - Replace `<GOOGLE_MAPS_API_KEY>` with your Google Maps API key
 4. Run the development server
    ```bash
    npm run dev

@@ -79,7 +79,7 @@ export const footerData = [
     href: "/recipes",
     links: [
       { label: "Browse", href: "/recipes" },
-      { label: "Suggest", href: "/contact" },
+      { label: "Suggest", href: "/contact" }
     ]
   },
   {
@@ -87,7 +87,7 @@ export const footerData = [
     href: "/restaurants",
     links: [
       { label: "Find", href: "/restaurants" },
-      { label: "Recommend", href: "/contact" },
+      { label: "Recommend", href: "/contact" }
     ]
   },
   {
@@ -170,69 +170,101 @@ export const cuisineCoords = [
       EW: 104.1954
     },
     location: [
-      { name: "Guangdong",
+      {
+        name: "Guangdong",
         NS: 22.379032,
-        EW: 110.763283, },
-      { name: "Fujian",
+        EW: 110.763283
+      },
+      {
+        name: "Fujian",
         NS: 25.924480,
-        EW: 118.278992 },
-      { name: "Hunan",
+        EW: 118.278992
+      },
+      {
+        name: "Hunan",
         NS: 28.228001,
-        EW: 112.939003 },
-      { name: "Jiangsu",
+        EW: 112.939003
+      },
+      {
+        name: "Jiangsu",
         NS: 33.140171,
-        EW: 119.788925},
-      { name: "Shandong",
+        EW: 119.788925
+      },
+      {
+        name: "Shandong",
         NS: 37.80060640,
-        EW: 122.26999180 },
-      { name: "Sichuan",
+        EW: 122.26999180
+      },
+      {
+        name: "Sichuan",
         NS: 31.456781,
-        EW: 102.843018},
-      { name: "Zhejiang",
+        EW: 102.843018
+      },
+      {
+        name: "Zhejiang",
         NS: 29.14164320,
-        EW: 119.78892480, },
-      { name: "Hong Kong",
+        EW: 119.78892480
+      },
+      {
+        name: "Hong Kong",
         NS: 22.396427,
-        EW: 114.109497, }
-    ]},
+        EW: 114.109497
+      }
+    ]
+  },
   { // SEA
     region: {
       name: "South East Asia",
       NS: -2.2180,
-      EW: 115.6628 },
+      EW: 115.6628
+    },
     location: [
-      { name: "Singapore",
+      {
+        name: "Singapore",
         NS: 1.3521,
-        EW: 103.8198 },
-      { name: "Malaysia",
+        EW: 103.8198
+      },
+      {
+        name: "Malaysia",
         NS: 4.2105,
-        EW: 101.9758, }
-    ]},
+        EW: 101.9758
+      }
+    ]
+  },
   { // West
     region: {
       name: "USA",
       NS: 37.0902,
-      EW: 275.7129 },
+      EW: 275.7129
+    },
     location: [
-      { name: "New York",
+      {
+        name: "New York",
         NS: 40.7128,
-        EW: -74.0060 }
-    ]},
+        EW: -74.0060
+      }
+    ]
+  },
   { // Europe
     region: {
       name: "Europe",
       NS: 54.5260,
-      EW: 15.2551 },
+      EW: 15.2551
+    },
     location: [
-      { name: "England",
+      {
+        name: "England",
         NS: 52.3555,
-        EW: 359.82421875 },
-      { name: "France",
+        EW: 359.82421875
+      },
+      {
+        name: "France",
         NS: 46.2276,
-        EW: 2.2137 }
+        EW: 2.2137
+      }
     ]
   }
-]
+];
 
 export const sceneColor = {
   // Background, Material
@@ -249,44 +281,57 @@ export const cuisineContent = [
       funFact: [""]
     },
     location: [
-      { name: "Guangdong",
+      {
+        name: "Guangdong",
         content: "Cantonese cuisine is one of the most well-known Chinese cuisines internationally.\n" +
           "Characterized by fresh ingredients, subtle flavors, and meticulous preparation methods.\n" +
           "Steaming, stir-frying, and deep-frying are common cooking techniques.\n" +
           "Dishes often feature seafood, poultry, pork, and vegetables.\n" +
           "Dim sum, a style of small, bite-sized dishes, is a popular aspect of Cantonese cuisine.",
-        funFact: [""] },
-      { name: "Fujian",
+        funFact: [""]
+      },
+      {
+        name: "Fujian",
         content: "Fujian cuisine emphasizes the use of seafood, poultry, and mushrooms.\n" +
           "Known for its clear, fresh, and slightly sweet flavors.\n" +
           "Utilizes various cooking techniques including steaming, stewing, braising, and stir-frying.\n" +
           "Dishes often incorporate ingredients like bamboo shoots, mushrooms, and seafood.",
-        funFact: [""] },
-      { name: "Hunan",
+        funFact: [""]
+      },
+      {
+        name: "Hunan",
         content: "Similar to Sichuan cuisine in its use of spicy flavors, but tends to be hotter and oilier.\n" +
           "Utilizes a wide variety of ingredients, including pork, beef, poultry, and tofu.\n" +
           "Known for its liberal use of chili peppers and garlic.\n" +
           "Famous dishes include \"Dong'an chicken\" and \"Chairman Mao's red-braised pork.\"",
-        funFact: [""] },
-      { name: "Jiangsu",
+        funFact: [""]
+      },
+      {
+        name: "Jiangsu",
         content: "Jiangsu cuisine is known for its delicacy, elegance, and artistic presentation.\n" +
           "Features freshwater fish, crustaceans, and vegetables.\n" +
           "Braising and stewing are common cooking methods.\n" +
           "Famous dishes include \"Lion's Head\" meatballs and \"Beggar's Chicken,\" which is marinated and wrapped in lotus leaves before being baked.",
-        funFact: [""]},
-      { name: "Shandong",
+        funFact: [""]
+      },
+      {
+        name: "Shandong",
         content: "Shandong cuisine is characterized by its emphasis on seafood and simple, savory flavors.\n" +
           "Reflects a strong influence from Confucian philosophy, emphasizing freshness, purity, and natural flavors.\n" +
           "Common cooking techniques include braising, stir-frying, and deep-frying.\n" +
           "Shandong is famous for its seafood dishes, particularly braised abalone and sea cucumber.",
-        funFact: [""] },
-      { name: "Sichuan",
+        funFact: [""]
+      },
+      {
+        name: "Sichuan",
         content: "Known for its bold, spicy, and flavorful dishes.\n" +
           "The use of Sichuan peppercorns and chili peppers gives the cuisine its distinctive numbing and spicy sensation.\n" +
           "Common ingredients include garlic, ginger, peanuts, and various pickled vegetables.\n" +
           "Famous dishes include Mapo tofu, Kung Pao chicken, and Sichuan hot pot.",
-        funFact: [""]},
-      { name: "Zhejiang",
+        funFact: [""]
+      },
+      {
+        name: "Zhejiang",
         content: "Zhejiang Cuisine (Zhe Cuisine):\n" +
           "\n" +
           "Zhejiang cuisine hails from the Zhejiang province in eastern China, known for its lush landscapes and access to fresh ingredients from both the sea and land.\n" +
@@ -297,8 +342,10 @@ export const cuisineContent = [
           "Dongpo Pork: A braised pork belly dish with a history dating back to the Song Dynasty, named after the famous poet and politician Su Dongpo.\n" +
           "West Lake Vinegar Fish: A freshwater fish dish cooked with Zhejiang vinegar, ginger, sugar, and soy sauce, named after Hangzhou's picturesque West Lake.\n" +
           "Longjing Shrimp: Shrimp stir-fried with Longjing tea leaves, known for its fresh and delicate taste.",
-        funFact: [""] },
-      { name: "Hong Kong",
+        funFact: [""]
+      },
+      {
+        name: "Hong Kong",
         content: "Hong Kong cuisine is a fusion of Cantonese, British, and Western influences, reflecting the city's unique history and cosmopolitan nature.\n" +
           "Characterized by its wide variety of dishes, from traditional Cantonese dim sum to international cuisines.\n" +
           "Known for its high-quality ingredients, sophisticated cooking techniques, and attention to detail.\n" +
@@ -309,15 +356,19 @@ export const cuisineContent = [
           "Dim Sum: Various small dishes served in bamboo steamers or on small plates, including dumplings, buns, rice rolls, and pastries.\n" +
           "Char Siu: Barbecued pork with a sweet and savory marinade, often served with rice or noodles.\n" +
           "Wonton Noodle Soup: Egg noodles served in a clear broth with wontons filled with shrimp or pork.",
-        funFact: [""] }
-    ]},
+        funFact: [""]
+      }
+    ]
+  },
   { // SEA
     region: {
       name: "South East Asia",
       content: "",
-      funFact: [""] },
+      funFact: [""]
+    },
     location: [
-      { name: "Singapore",
+      {
+        name: "Singapore",
         content: "Singaporean cuisine is a melting pot of flavors and culinary traditions from various ethnic groups. Here are some key aspects:\n" +
           "\n" +
           "Hawker Culture: Singapore is famous for its hawker centers, which are bustling open-air food courts offering a wide variety of affordable and delicious dishes. Hawker centers are where locals and tourists alike enjoy authentic Singaporean food.\n" +
@@ -331,8 +382,10 @@ export const cuisineContent = [
           "Satay: Satay is a popular street food featuring skewered and grilled meat (often chicken, beef, or lamb) served with a flavorful peanut sauce.\n" +
           "\n" +
           "Roti Prata: A type of Indian-influenced flatbread, roti prata is crispy on the outside and fluffy on the inside, often served with curry.",
-        funFact: [""] },
-      { name: "Malaysia",
+        funFact: [""]
+      },
+      {
+        name: "Malaysia",
         content: "Malaysian cuisine is a reflection of the country's multicultural heritage, with influences from Malay, Chinese, Indian, and indigenous culinary traditions. Here are some highlights:\n" +
           "\n" +
           "Nasi Lemak: Often considered Malaysia's national dish, nasi lemak consists of fragrant rice cooked in coconut milk, served with anchovies, peanuts, boiled egg, cucumber slices, and spicy sambal sauce.\n" +
@@ -346,15 +399,19 @@ export const cuisineContent = [
           "Char Kway Teow: A flavorful stir-fried noodle dish made with flat rice noodles, prawns, cockles, Chinese lap cheong (sausage), eggs, bean sprouts, and chives, cooked in a dark soy sauce.\n" +
           "\n" +
           "Rendang: Originating from the Minangkabau ethnic group of Indonesia, rendang is a rich and aromatic dry curry made with beef, coconut milk, and a blend of spices.",
-        funFact: [""] }
-    ]},
+        funFact: [""]
+      }
+    ]
+  },
   { // West
     region: {
       name: "USA",
       content: "",
-      funFact: [""] },
+      funFact: [""]
+    },
     location: [
-      { name: "New York",
+      {
+        name: "New York",
         content: "New York City, in particular, is a culinary mecca known for its diverse and eclectic food scene. Here are some highlights:\n" +
           "\n" +
           "Pizza: New York-style pizza is iconic, characterized by its thin crust, foldable slices, and generous toppings. Pizzerias throughout the city serve up classic pies as well as creative variations.\n" +
@@ -366,15 +423,19 @@ export const cuisineContent = [
           "Fine Dining: New York City boasts a thriving fine dining scene, with world-class restaurants helmed by renowned chefs. From Michelin-starred establishments to trendy eateries, the city offers an unparalleled dining experience for food enthusiasts.\n" +
           "\n" +
           "Street Food: Food carts and street vendors are ubiquitous throughout New York City, offering everything from hot dogs and pretzels to falafel and kebabs. Grabbing a quick bite from a street vendor is a quintessential New York experience.",
-        funFact: [""] }
-    ]},
+        funFact: [""]
+      }
+    ]
+  },
   { // Europe
     region: {
       name: "Europe",
       content: "",
-      funFact: [""] },
+      funFact: [""]
+    },
     location: [
-      { name: "England",
+      {
+        name: "England",
         content: "Traditional English Breakfast: A classic English breakfast typically includes eggs, bacon, sausages, baked beans, grilled tomatoes, mushrooms, and toast. It's a hearty and substantial meal often enjoyed on weekends or as a special treat.\n" +
           "\n" +
           "Roast Dinner: The Sunday roast is a beloved tradition in England, featuring roasted meat (such as beef, chicken, or lamb) served with Yorkshire pudding, roast potatoes, vegetables, and gravy.\n" +
@@ -384,8 +445,10 @@ export const cuisineContent = [
           "Pies and Puddings: England is known for its savory pies, such as steak and kidney pie, chicken and mushroom pie, and shepherd's pie. Traditional British puddings, like sticky toffee pudding, spotted dick, and treacle tart, are also cherished desserts.\n" +
           "\n" +
           "Afternoon Tea: Afternoon tea is a cherished English tradition that typically includes a selection of finger sandwiches, scones with clotted cream and jam, cakes, and pastries, served with a pot of tea.",
-        funFact: [""] },
-      { name: "France",
+        funFact: [""]
+      },
+      {
+        name: "France",
         content: "Haute Cuisine: French cuisine is renowned worldwide for its sophistication and emphasis on high-quality ingredients and meticulous preparation techniques. Haute cuisine, or \"high cuisine,\" refers to the elaborate and refined dishes typically associated with French fine dining.\n" +
           "\n" +
           "Classical French Dishes: French cuisine features a wide variety of classic dishes that have become staples of culinary culture around the world. These include Coq au Vin (chicken cooked in red wine), Beef Bourguignon (beef stewed in red wine), Boeuf Bourguignon (braised beef in red wine), Escargot (snails cooked in garlic butter), and Bouillabaisse (a Provencal fish stew).\n" +
@@ -395,7 +458,8 @@ export const cuisineContent = [
           "Cheese: France is known for its extensive variety of cheeses, with over 1,000 different types produced across the country. From creamy Brie and tangy Roquefort to nutty Comté and pungent Camembert, French cheeses are beloved by cheese enthusiasts worldwide.\n" +
           "\n" +
           "Wine: France is one of the world's leading wine-producing countries, famous for its Bordeaux, Burgundy, Champagne, and Rhône Valley wines. Wine is an integral part of French cuisine and culture, often enjoyed alongside meals to complement the flavors of the food.",
-        funFact: [""] }
+        funFact: [""]
+      }
     ]
   }
-]
+];

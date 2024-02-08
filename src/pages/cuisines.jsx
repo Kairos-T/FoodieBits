@@ -63,11 +63,11 @@ const Cuisines = () => {
         cursor={"pointer"}
         mx={3}
       >
-          <img
-            src={imageUrl}
-            alt={region.name}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
+        <img
+          src={imageUrl}
+          alt={region.name}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
 
         <Text fontSize="2xl" py="10">
           {region.name}
