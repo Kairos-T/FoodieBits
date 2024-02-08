@@ -36,11 +36,11 @@ const Footer = () => {
         position="fixed"
         top="5rem"
         right="5"
-        zIndex="popover" 
+        zIndex="popover"
       >
         <SharePopover />
       </Box>
-        <VStack spacing={5} alignItems="initial" maxW={MAX_WIDTH} px={[4, 6, 10, 14, 20]} padding={10} mx="auto">
+        <VStack spacing={5} alignItems="initial" maxW={MAX_WIDTH} px={[4, 6, 10, 14, 20]} padding={10} mx="auto" backgroundColor={footerColor}>
         <Flex
           flexWrap="wrap"
           direction={{ base: "column", md: "row" }}
