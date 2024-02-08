@@ -1,18 +1,23 @@
+import { Heading, Box, Text } from "@chakra-ui/react";
+
 const CuisineComponent = ({array}) => {
   return (
-    <div>
+    <Box>
       {array.map((location, index) => (
         <div key={index}>
-          <h2>{location.name}</h2>
-          <p>{location.content}</p>
-          <ul>
+          <Heading as="h3" fontSize="3xl" fontWeight="700" mt={5}                 _hover={{ color: "telegram.600", transition: "color 0.3s ease-in-out" }}
+          >
+            {location.name}
+          </Heading>
+          <Text>{location.content}</Text>
+          <Text>
             {location.funFact.map((fact, i) => (
-              <li key={i}>{fact}</li>
+              <Text key={i}>{fact}</Text>
             ))}
-          </ul>
+          </Text>
         </div>
       ))}
-    </div>
+    </Box>
   );
 };
 

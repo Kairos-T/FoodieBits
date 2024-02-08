@@ -14,6 +14,7 @@ const Cuisines = () => {
   const description = seo.description;
   const url = `${seo.canonical}cuisines`;
   const color = useColorModeValue("telegram.500", "telegram.400");
+  const bgColor = useColorModeValue("gray.200", "gray.700");
 
   const router = useRouter();
   // Initialise
@@ -57,12 +58,17 @@ const Cuisines = () => {
         overflow="hidden"
         position="relative"
         onClick={() => handleClick()}
+        _hover={{ transform: "scale(1.1)" }}
+        transition="all 0.2s ease-in-out"
+        cursor={"pointer"}
+        mx={3}
       >
-        <img
-          src={imageUrl}
-          alt={region.name}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
+          <img
+            src={imageUrl}
+            alt={region.name}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+
         <Text fontSize="2xl" py="10">
           {region.name}
         </Text>
@@ -111,9 +117,10 @@ const Cuisines = () => {
           flexDir="column"
           textAlign="center"
         >
-          <Text fontSize="2xl" py="10">
-            Regions of the World
-          </Text>
+          <Heading as="h2" color={color} fontSize="3xl" fontWeight="700" py="2"
+          >
+            Regions of The World
+          </Heading>
         </Box>
         <Box
           display="flex"
