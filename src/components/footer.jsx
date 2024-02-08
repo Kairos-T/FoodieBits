@@ -38,11 +38,6 @@ const Footer = () => {
       >
         <SharePopover />
       </Box>
-      <Box
-        width="100%"
-        backgroundColor={footerColor}
-        marginTop="5rem" // adjust this value to leave space for the popover
-      >
         <VStack spacing={5} alignItems="initial" maxW={MAX_WIDTH} px={[4, 6, 10, 14, 20]} padding={10} mx="auto">
         <Flex
           flexWrap="wrap"
@@ -82,11 +77,6 @@ const Footer = () => {
                     </Text>
                   </NextLink>
                 ))}
-                {data.label === "Social" && (
-                  <>
-                    <SharePopover />
-                  </>
-                )}
               </Flex>
             </Flex>
           ))}
@@ -97,7 +87,6 @@ const Footer = () => {
           </Text>
         </Flex>
         </VStack>
-      </Box>
     </>
   );
 };
