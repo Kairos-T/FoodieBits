@@ -3,9 +3,10 @@ import { NextSeo } from "next-seo";
 import { motion } from "framer-motion";
 import { seo } from "config";
 import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
-import { sceneColor } from "../data/constants";
+import { sceneColor, cuisineContent } from "../data/constants";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import ThreeGlobeScene from "@/components/scene.jsx";
 
 const Cuisines = () => {
@@ -14,6 +15,7 @@ const Cuisines = () => {
   const url = `${seo.canonical}cuisines`;
   const color = useColorModeValue("telegram.500", "telegram.400");
 
+  const router = useRouter()
   // Initialise
   const [windowSize, setWindowSize] = useState([0, 0]);
   const changeColor = useColorModeValue(sceneColor.light, sceneColor.dark);
@@ -42,6 +44,33 @@ const Cuisines = () => {
   }, [changeColor, changeRequest]);
 
   ThreeGlobeScene(windowSize, changeRequest);
+
+  function ImageBox(imageUrl, linkUrl, region) {
+    const handleClick = () => {
+      router.push(linkUrl);
+    };
+    return (
+      <Box
+        w="500px"
+        h="200px"
+        borderWidth="2px"
+        padding="6px"
+        borderRadius="lg"
+        overflow="hidden"
+        position="relative"
+        onClick={() => handleClick()}
+      >
+        <img
+          src={imageUrl}
+          alt={region.name}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
+        <Text fontSize="2xl" py="10">
+          {region.name}
+        </Text>
+      </Box>
+  );
+  }
 
   return (
     <>
@@ -85,8 +114,20 @@ const Cuisines = () => {
           textAlign="center"
         >
           <Text fontSize="2xl" py="10">
-            Country Cuisine of the Day
+            Regions of the World
           </Text>
+        </Box>
+        <Box
+          display="flex"
+          alignItems="center"
+          flexDir="row"
+          textAlign="center"
+          py="4"
+        >
+          {ImageBox("/images/countries/China.png", "/cuisines/china", cuisineContent[0])}
+          {ImageBox("/images/countries/ASEAN.png", "/cuisines/sea", cuisineContent[1])}
+          {ImageBox("/images/countries/USA.png", "/cuisines/usa", cuisineContent[2])}
+          {ImageBox("/images/countries/Europe.png", "/cuisines/europe", cuisineContent[3])}
         </Box>
       </motion.main>
     </>

@@ -21,7 +21,6 @@ export default class World {
     this.mouse = new Three.Vector2(0, 0);
     this.interStatus = false;
     this.timeDown = performance.now()
-    this.canvasEvents = ThreeX.DomEvents(this.camera, this.renderer.domElement)
 
     this.container.appendChild(this.renderer.domElement);
 
@@ -58,7 +57,7 @@ export default class World {
     this.scene.add(this.earth.group);
     await this.earth.initEarth();
     console.log("Scan")
-    this.canvasEvents.addEventListener(this.earth.markupPoint.children, "click", (event)=> this.mouseClickCheck(event), false);
+    this.container.addEventListener("click", (event)=> this.mouseClickCheck(event), false);
     this.container.addEventListener("mousedown", () => this.earth.isRotation = false)
     this.container.addEventListener("mouseup", () => this.earth.isRotation = true)
   }
