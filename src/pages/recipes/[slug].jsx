@@ -26,32 +26,39 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
   const color = useColorModeValue("telegram.400", "telegram.400");
   const btnColor = useColorModeValue("gray.100", "gray.100");
 
+  // Hydrating MDX source to render components
   const content = hydrate(mdxSource, {
     components: MDXComponents
   });
 
+  // Extracting metadata from front matter
   const title = frontMatter.title;
   const description = frontMatter.summary;
   const url = `${seo.canonical}recipes/${frontMatter.slug}`;
   const img = frontMatter.image;
 
+  // Constructing recipe URL and file path
   const recipeUrl = `${siteUrl}recipes/${frontMatter.slug}`;
   const filePath = `/recipes/${frontMatter.slug}.mdx`;
 
+  // State to track scroll position for parallax effect
   const [scrollY, setScrollY] = useState(0);
 
-  // Measuring the amount of scroll for the parallax effect
+  // Event handler for scroll
   const handleScroll = () => {
     setScrollY(window.scrollY);
   };
 
+  // Event handler for downloading content
   const handleDownload = async () => {
     try {
       const fileName = `${frontMatter.slug}.txt`;
 
+      // Fetching MDX content
       const response = await fetch(filePath);
       const mdxContent = await response.text();
 
+      // Triggering download by creating the download link
       const downloadLink = document.createElement("a");
       downloadLink.href = `data:text/plain;charset=utf-8,${encodeURIComponent(mdxContent)}`;
       downloadLink.download = fileName;
@@ -61,6 +68,7 @@ const RecipePost = ({ mdxSource, frontMatter }) => {
 
       document.body.removeChild(downloadLink);
 
+      // Success toast!
       toast({
         title: "Content Downloaded!",
         status: "success",
