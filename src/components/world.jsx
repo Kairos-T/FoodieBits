@@ -43,14 +43,14 @@ export default class World {
       punctuation: {
         circleColor: 0x3892ff,
         lightColumn: {
-          startColor: 0xe4007f, // 起点颜色
-          endColor: 0xffffff // 终点颜色
+          startColor: 0xe4007f,
+          endColor: 0xffffff
         }
       },
       flyLine: {
-        color: 0xf3ae76, // 飞线的颜色
-        flyLineColor: 0xff7714, // 飞行线的颜色
-        speed: 0.004, // 拖尾飞线的速度
+        color: 0xf3ae76,
+        flyLineColor: 0xff7714,
+        speed: 0.004,
       },
     });
     this.scene.add(this.earth.group);

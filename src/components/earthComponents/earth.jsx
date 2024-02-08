@@ -136,23 +136,20 @@ export default class Earth {
 
   // 3. Create Glow
   createEarthGlow() {
-    const R = this.options.earth.radius; //地球半径
+    const R = this.options.earth.radius;
 
-    // TextureLoader创建一个纹理加载器对象，可以加载图片作为纹理贴图
-    const texture = this.options.textures.glow; // 加载纹理贴图
+    const texture = this.options.textures.glow;
 
-    // 创建精灵材质对象SpriteMaterial
     const spriteMaterial = new Three.SpriteMaterial({
-      map: texture, // 设置精灵纹理贴图
+      map: texture,
       color: 0x4390d1,
-      transparent: true, //开启透明
-      opacity: 0.7, // 可以通过透明度整体调节光圈
-      depthWrite: false //禁止写入深度缓冲区数据
+      transparent: true,
+      opacity: 0.7,
+      depthWrite: false
     });
 
-    // 创建表示地球光圈的精灵模型
     const sprite = new Three.Sprite(spriteMaterial);
-    sprite.scale.set(R * 3.0, R * 3.0, 1); //适当缩放精灵
+    sprite.scale.set(R * 3.0, R * 3.0, 1);
     this.earthGroup.add(sprite);
   }
 
@@ -164,14 +161,13 @@ export default class Earth {
       "varying vec3	vVertexNormal;",
       "varying vec4	vFragColor;",
       "void main(){",
-      "	vVertexNormal	= normalize(normalMatrix * normal);", //将法线转换到视图坐标系中
-      "	vVertexWorldPosition	= (modelMatrix * vec4(position, 1.0)).xyz;", //将顶点转换到世界坐标系中
+      "	vVertexNormal	= normalize(normalMatrix * normal);",
+      "	vVertexWorldPosition	= (modelMatrix * vec4(position, 1.0)).xyz;",
       "	// set gl_Position",
       "	gl_Position	= projectionMatrix * modelViewMatrix * vec4(position, 1.0);",
       "}"
     ].join("\n");
 
-    //大气层效果
     const AeroSphere = {
       uniforms: {
         coefficient: {
@@ -199,9 +195,9 @@ export default class Earth {
         "varying vec4	vFragColor;",
 
         "void main(){",
-        "	vec3 worldCameraToVertex = vVertexWorldPosition - cameraPosition;", //世界坐标系中从相机位置到顶点位置的距离
-        "	vec3 viewCameraToVertex	= (viewMatrix * vec4(worldCameraToVertex, 0.0)).xyz;", //视图坐标系中从相机位置到顶点位置的距离
-        "	viewCameraToVertex= normalize(viewCameraToVertex);", //规一化
+        "	vec3 worldCameraToVertex = vVertexWorldPosition - cameraPosition;",
+        "	vec3 viewCameraToVertex	= (viewMatrix * vec4(worldCameraToVertex, 0.0)).xyz;",
+        "	viewCameraToVertex= normalize(viewCameraToVertex);",
         "	float intensity	= pow(coefficient + dot(vVertexNormal, viewCameraToVertex), power);",
         "	gl_FragColor = vec4(glowColor, intensity);",
         "}"
@@ -227,18 +223,18 @@ export default class Earth {
 
       const name = item.region.name;
       const radius = this.options.earth.radius;
-      const lon = item.region.EW; //经度
-      const lat = item.region.NS; //纬度
+      const lon = item.region.EW;
+      const lat = item.region.NS;
       const lightGroup = new Three.Group();
 
       this.punctuationMaterial = new Three.MeshBasicMaterial({
         color: new Three.Color(this.options.punctuation.circleColor),
         map: this.options.textures.label,
-        transparent: true, //使用背景透明的png贴图，注意开启透明计算
-        depthWrite: false //禁止写入深度缓冲区数据
+        transparent: true,
+        depthWrite: false
       });
 
-      const mesh = createPointMesh({ radius, lon, lat, material: this.punctuationMaterial }); //光柱底座矩形平面
+      const mesh = createPointMesh({ radius, lon, lat, material: this.punctuationMaterial });
       lightGroup.add(mesh);
 
       const LightPillar = createLightPillar({
@@ -248,12 +244,12 @@ export default class Earth {
         index: 0,
         textures: this.options.textures,
         punctuation: this.options.punctuation
-      }); //光柱
+      });
       LightPillar.name = name;
       lightGroup.add(LightPillar);
 
       // Create Ripples
-      const WaveMesh = createWaveMesh({ radius, lon, lat, textures: this.options.textures }); //波动光圈
+      const WaveMesh = createWaveMesh({ radius, lon, lat, textures: this.options.textures });
       lightGroup.add(WaveMesh);
       this.waveMeshArr.push(WaveMesh);
 
@@ -262,9 +258,9 @@ export default class Earth {
 
       await (item.location.map((obj) => {
         const lightGroup = new Three.Group();
-        const lon = obj.EW; //经度
-        const lat = obj.NS; //纬度
-        const mesh = createPointMesh({ radius, lon, lat, material: this.punctuationMaterial }); //光柱底座矩形平面
+        const lon = obj.EW;
+        const lat = obj.NS;
+        const mesh = createPointMesh({ radius, lon, lat, material: this.punctuationMaterial });
         lightGroup.add(mesh);
         const LightPillar = createLightPillar({
           radius: this.options.earth.radius,
@@ -273,10 +269,10 @@ export default class Earth {
           index: 1,
           textures: this.options.textures,
           punctuation: this.options.punctuation
-        }); //光柱
+        });
         LightPillar.name = obj.name;
         lightGroup.add(LightPillar);
-        const WaveMesh = createWaveMesh({ radius, lon, lat, textures: this.options.textures }); //波动光圈
+        const WaveMesh = createWaveMesh({ radius, lon, lat, textures: this.options.textures });
         lightGroup.add(WaveMesh);
         this.waveMeshArr.push(WaveMesh);
         lightGroup.name = "LightPillar";
@@ -345,9 +341,9 @@ export default class Earth {
           mesh.userData["size"] * mesh.userData["scale"]
         );
         if (mesh.userData["scale"] <= 1.5) {
-          mesh.material.opacity = (mesh.userData["scale"] - 1) * 2; //2等于1/(1.5-1.0)，保证透明度在0~1之间变
+          mesh.material.opacity = (mesh.userData["scale"] - 1) * 2;
         } else if (mesh.userData["scale"] > 1.5 && mesh.userData["scale"] <= 2) {
-          mesh.material.opacity = 1 - (mesh.userData["scale"] - 1.5) * 2; //2等于1/(2.0-1.5) mesh缩放2倍对应0 缩放1.5被对应1
+          mesh.material.opacity = 1 - (mesh.userData["scale"] - 1.5) * 2;
         } else {
           mesh.userData["scale"] = 1;
         }

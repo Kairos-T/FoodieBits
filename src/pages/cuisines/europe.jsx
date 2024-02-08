@@ -2,6 +2,7 @@
 
 import { cuisineContent } from "../../data/constants";
 import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react";
+import CuisineComponent from "@/components/cuisineComponent";
 export default function Europe() {
   const color = useColorModeValue("telegram.500", "telegram.400");
   const region = cuisineContent[3]
@@ -35,6 +36,10 @@ export default function Europe() {
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
         </Box>
+      </Box>
+      <Box>
+        <Text>{region.content}</Text>
+        <CuisineComponent array={region.location} />
       </Box>
     </>
   );
