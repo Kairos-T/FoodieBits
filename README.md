@@ -56,18 +56,18 @@ Recipe Page:
     - dayjs is a library that allows for manipulation of dates and times. It was used to format the published date of
       the recipes in the recipe search page. We decided to use it as opposed to the native JavaScript Date object as
       it can be more easily manipulated and formatted.
-    - [fuse.js](https://fusejs.io/)
-        - fuse.js is a library that allows for fuzzy-searching, which is a type of search that will find results even
-          when there are typos or spelling mistakes. It was used to implement the search function in the recipe search
-          page which improves the user experience by giving them more relevant results.
-    - [remark](https://remark.js.org/)
-        - remark is a library that allows for easy manipulation of markdown, aiding in the creation of the various
-          recipe pages. We used it for the efficient conversion of the recipes in MDX format to be displayed on the
-          website as usual pages.
-    - [gray-matter](https://www.npmjs.com/package/gray-matter)
-        - gray-matter is a library that allows for manipulation of front matter, which is the metadata at the top of a
-          markdown file. It was used to extract the metadata from the recipes in MDX format to be used for utilities
-          like sorting and tagging.
+- [fuse.js](https://fusejs.io/)
+    - fuse.js is a library that allows for fuzzy-searching, which is a type of search that will find results even
+      when there are typos or spelling mistakes. It was used to implement the search function in the recipe search
+      page which improves the user experience by giving them more relevant results.
+- [remark](https://remark.js.org/)
+    - remark is a library that allows for easy manipulation of markdown, aiding in the creation of the various
+      recipe pages. We used it for the efficient conversion of the recipes in MDX format to be displayed on the
+      website as usual pages.
+- [gray-matter](https://www.npmjs.com/package/gray-matter)
+    - gray-matter is a library that allows for manipulation of front matter, which is the metadata at the top of a
+      markdown file. It was used to extract the metadata from the recipes in MDX format to be used for utilities
+      like sorting and tagging.
 
 ### Project Structure
 
