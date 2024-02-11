@@ -9,6 +9,7 @@ This website is built by: Kairos Tay, Hu Bowen, Wayne Chia and Ruby Lee as part 
 
 1. [Getting Started](#getting-started)
 2. [Documentation](#documentation)
+3. [Website Snapshots](#website-snapshots)
 
 ## Getting Started
 
@@ -54,3 +55,28 @@ This website is built by: Kairos Tay, Hu Bowen, Wayne Chia and Ruby Lee as part 
 - `config.js` contains main configuration for the project (i.e. site title, description, etc.)
 - `package.json` contains all the dependencies used in the project, should only be updated when adding new
   dependencies (use chore(deps) for commit message)
+
+## Website Snapshots
+### Landing Page
+![Landing Page](website-snapshots/landing-page(light).png)
+![Landing Page](website-snapshots/landing-page(dark).png)
+
+### Cuisines
+![Cuisines](website-snapshots/cuisines(light).png)
+![Cuisines](website-snapshots/cuisines(dark).png)
+![Cuisines](website-snapshots/cuisines(asean).png)
+
+### Recipes
+![Recipes](website-snapshots/recipes(light).png)
+![Recipes](website-snapshots/recipes(dark).png)
+![Recipes](website-snapshots/recipes(example).png)
+
+### Restaurants
+![Restaurants](website-snapshots/restaurants(light).png)
+![Restaurants](website-snapshots/restaurants(dark).png)
+![Restaurants](website-snapshots/restaurants(example).png)
+Note: The background is a little off due to the scrolling screenshot tool used; only the modal scrolls 😊
+
+### Contact
+![Contact](website-snapshots/contact(light).png)
+![Contact](website-snapshots/contact(dark).png)
